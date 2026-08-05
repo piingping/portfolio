@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PAO — Case Study | [Your Name]</title>
+
+  <!-- Site chrome fonts: Plus Jakarta Sans (Latin) + Kanit (Latin + Thai) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Case-study content fonts (scoped to .case-study--pao only): Fraunces + Inter + JetBrains Mono
+       Same type system as tooyenplus.html / pinghub.html, so every case study reads as one family of pages. -->
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Nav brand/signature font (Regular + Bold) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../styles/main.css">
+
+  <style>
+    /* ---------------------------------------------------
+       Local tokens for this case study's content only.
+       Prefixed --ty- so nothing here can shadow main.css's
+       own :root tokens used by site-header/site-footer/etc.
+       (Same shared token/component set as tooyenplus.html / pinghub.html.)
+    --------------------------------------------------- */
+    :root {
+      --ty-bg: #FBF7EE;
+      --ty-surface: #FFFFFF;
+      --ty-border: #EBE0D0;
+      --ty-text: #3A231C;
+      --ty-text-sub: #6E5A51;
+      --ty-text-disabled: #AA9A90;
+      --ty-accent: #D65B3E;
+      --ty-accent-dark: #B8492F;
+      --ty-accent-2: #E5A754;
+      --ty-shadow-soft: 0 24px 48px -28px rgba(58, 35, 28, 0.35);
+      --ty-shadow-card: 0 10px 24px -16px rgba(58, 35, 28, 0.25);
+      --ty-radius-sm: 10px;
+      --ty-radius-md: 20px;
+      --ty-radius-lg: 32px;
+      --ty-font-display: "Fraunces", Georgia, serif;
+      --ty-font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      --ty-font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+      --ty-maxw: 1120px;
+      --ty-edge: clamp(20px, 5vw, 64px);
+    }
+
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+    /* ---------------------------------------------------
+       Everything below is scoped under .case-study--pao
+       so it can't leak into the shared site-header/footer.
+    --------------------------------------------------- */
+    .case-study--pao {
+      background: var(--ty-bg);
+      color: var(--ty-text);
+      font-family: var(--ty-font-body);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    .case-study--pao img { max-width: 100%; display: block; }
+    .case-study--pao a { color: inherit; text-decoration: none; }
+    .case-study--pao h1, .case-study--pao h2, .case-study--pao h3, .case-study--pao h4 {
+      font-family: var(--ty-font-display); margin: 0; font-weight: 600;
+    }
+    .case-study--pao p { margin: 0 0 1em; color: var(--ty-text-sub); }
+    .case-study--pao ul { margin: 0; padding: 0; list-style: none; }
+    .case-study--pao section { position: relative; }
+    .case-study--pao ::selection { background: var(--ty-accent-2); color: var(--ty-text); }
+
+    .wrap {
+      max-width: var(--ty-maxw);
+      margin: 0 auto;
+      padding-left: var(--ty-edge);
+      padding-right: var(--ty-edge);
+    }
+
+    .eyebrow {
+      font-family: var(--ty-font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ty-text-sub);
+    }
+
+    /* Signature: price-tag label */
+    .tag-label {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--ty-accent-2);
+      color: var(--ty-text);
+      font-family: var(--ty-font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 7px 16px 7px 22px;
+      clip-path: polygon(14px 0, 100% 0, 100% 100%, 14px 100%, 0 50%);
+      margin-bottom: 20px;
+    }
+    .tag-label::before {
+      content: '';
+      position: absolute;
+      left: 7px; top: 50%;
+      width: 4px; height: 4px;
+      background: var(--ty-bg);
+      border-radius: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* ---------------------------------------------------
+       ON-THIS-PAGE SIDE TOC
+    --------------------------------------------------- */
+    .toc-side {
+      position: fixed;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      z-index: 90;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .toc-side a {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      padding: 6px 4px;
+      font-family: var(--ty-font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--ty-text-disabled);
+      transition: color 0.2s ease;
+    }
+    .toc-side a::before {
+      content: '';
+      flex-shrink: 0;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--ty-text-disabled);
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .toc-side a:hover { color: var(--ty-text); }
+    .toc-side a.is-active { color: var(--ty-accent); }
+    .toc-side a.is-active::before { background: var(--ty-accent); transform: scale(1.5); }
+    @media (max-width: 960px) {
+      .toc-side { display: none; }
+    }
+
+    /* ---------------------------------------------------
+       HERO
+    --------------------------------------------------- */
+    .case-study--pao .hero { padding: 56px 0 88px; overflow: hidden; }
+    .hero__grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 56px;
+      align-items: center;
+    }
+    @media (max-width: 860px) {
+      .hero__grid { grid-template-columns: 1fr; gap: 48px; }
+      .hero__art { order: -1; }
+    }
+    .hero h1 { font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.02; letter-spacing: -0.01em; }
+    .hero h1 .accent { color: var(--ty-accent); }
+    .hero__tagline { font-size: 1.1rem; max-width: 46ch; margin-top: 18px; }
+
+    .factbox {
+      margin-top: 34px;
+      background: var(--ty-surface);
+      border: 2px solid var(--ty-text);
+      border-radius: var(--ty-radius-sm);
+      max-width: 440px;
+      box-shadow: var(--ty-shadow-card);
+    }
+    .factbox__head {
+      font-family: var(--ty-font-display);
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: 12px 18px;
+      border-bottom: 6px solid var(--ty-text);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .factbox__head span { font-family: var(--ty-font-mono); font-size: 0.65rem; color: var(--ty-text-sub); font-weight: 500; }
+    .fact-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      padding: 9px 18px;
+      border-bottom: 1px dashed var(--ty-border);
+      font-size: 0.86rem;
+    }
+    .fact-row:last-child { border-bottom: none; }
+    .fact-row .label { white-space: nowrap; color: var(--ty-text-sub); font-family: var(--ty-font-mono); font-size: 0.72rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .fact-row .leader { flex: 1; border-bottom: 2px dotted var(--ty-border); margin-bottom: 5px; }
+    .fact-row .value { white-space: nowrap; font-weight: 600; text-align: right; }
+
+    .hero__art { position: relative; display: flex; justify-content: center; }
+    .hero__phone {
+      position: relative;
+      z-index: 1;
+      width: 260px;
+      border-radius: 24px;
+      box-shadow: var(--ty-shadow-soft);
+      border: 6px solid var(--ty-surface);
+      overflow: hidden;
+      background: var(--ty-surface);
+    }
+
+    /* ---------------------------------------------------
+       SECTION generic
+    --------------------------------------------------- */
+    .case-study--pao .section { padding: 80px 0; border-top: 1px solid var(--ty-border); }
+    .section__head { max-width: 62ch; margin-bottom: 44px; }
+    .section__head h2 { font-size: clamp(1.6rem, 3.4vw, 2.4rem); line-height: 1.12; }
+    .section__lede { font-size: 1.05rem; margin-top: 14px; }
+    .subhead { font-size: 1.15rem; margin: 0 0 12px; }
+
+    .case-study--pao [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .case-study--pao [data-reveal].in-view { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      .case-study--pao [data-reveal] { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* Intro copy */
+    .story__intro { max-width: 68ch; font-size: 1.02rem; margin-bottom: 40px; }
+    .story__intro strong { color: var(--ty-text); }
+
+    .research-note {
+      margin-top: 32px;
+      display: flex; gap: 14px; align-items: flex-start;
+      background: var(--ty-surface);
+      border: 1px dashed var(--ty-text-disabled);
+      border-radius: var(--ty-radius-sm);
+      padding: 16px 20px;
+      max-width: 68ch;
+    }
+    .research-note svg { flex-shrink: 0; width: 20px; height: 20px; color: var(--ty-accent); margin-top: 2px; }
+    .research-note p { margin: 0; font-size: 0.9rem; }
+
+    /* Pain / insight cards */
+    .pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .pain-grid--2 { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 860px) { .pain-grid, .pain-grid--2 { grid-template-columns: 1fr; } }
+    .pain-card {
+      background: var(--ty-surface);
+      border: 1px solid var(--ty-border);
+      border-radius: var(--ty-radius-md);
+      padding: 26px 24px 24px;
+      box-shadow: var(--ty-shadow-card);
+    }
+    .pain-card__num { font-family: var(--ty-font-mono); font-size: 0.72rem; color: var(--ty-accent); font-weight: 700; letter-spacing: 0.06em; }
+    .pain-card h3 { font-size: 1.1rem; margin: 8px 0 10px; line-height: 1.3; }
+    .pain-card p { margin: 0; font-size: 0.92rem; }
+    .pain-card p:not(:last-child) { margin-bottom: 10px; }
+    .pain-card p strong { color: var(--ty-text); }
+
+    /* Role */
+    .role__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    @media (max-width: 860px) { .role__grid { grid-template-columns: 1fr; } }
+    .scope-list { display: flex; flex-direction: column; gap: 10px; }
+    .scope-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.95rem; color: var(--ty-text); }
+    .scope-list li strong { color: var(--ty-text); }
+    .scope-list svg { flex-shrink: 0; width: 18px; height: 18px; color: var(--ty-accent); margin-top: 3px; }
+    .responsibility { border-left: 3px solid var(--ty-accent-2); padding-left: 18px; margin-bottom: 20px; }
+    .responsibility:last-child { margin-bottom: 0; }
+    .responsibility h4 { font-size: 0.98rem; font-family: var(--ty-font-body); font-weight: 700; margin-bottom: 4px; }
+    .responsibility p { font-size: 0.9rem; margin: 0; }
+
+    /* Process — before/after (reuses the 2-card side-by-side layout) */
+    .iteration-notes { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 8px; }
+    @media (max-width: 760px) { .iteration-notes { grid-template-columns: 1fr; } }
+    .iteration-notes > div { background: var(--ty-surface); border: 1px solid var(--ty-border); border-radius: var(--ty-radius-sm); padding: 20px 22px; }
+    .iteration-notes h4 { font-size: 0.95rem; margin-bottom: 8px; }
+    .iteration-notes p { font-size: 0.9rem; margin: 0; }
+    .tag-mini {
+      display: inline-block;
+      font-family: var(--ty-font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .tag-mini--before { background: var(--ty-border); color: var(--ty-text-sub); }
+    .tag-mini--after { background: var(--ty-accent); color: #fff; }
+
+    /* Solution */
+    .shot-row {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(180px, 240px);
+      gap: 18px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      scrollbar-width: thin;
+    }
+    .shot {
+      background: var(--ty-surface);
+      border: 1px solid var(--ty-border);
+      border-radius: var(--ty-radius-sm);
+      padding: 10px 10px 12px;
+      cursor: zoom-in;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .shot:hover { transform: translateY(-4px); box-shadow: var(--ty-shadow-card); }
+    .shot img { border-radius: 8px; width: 100%; min-height: 160px; background: var(--ty-bg); }
+    .shot figcaption { font-size: 0.76rem; color: var(--ty-text-sub); margin-top: 8px; text-align: center; }
+
+    .solution-block { margin-bottom: 44px; }
+    .solution-block:last-child { margin-bottom: 0; }
+    .solution-block h3 { font-size: 1.2rem; margin-bottom: 12px; }
+
+    /* Role/Permission table */
+    .role-table-wrap {
+      border: 1px solid var(--ty-border);
+      border-radius: var(--ty-radius-sm);
+      overflow: hidden;
+      margin: 20px 0 24px;
+      max-width: 560px;
+    }
+    .role-table { width: 100%; border-collapse: collapse; background: var(--ty-surface); }
+    .role-table th, .role-table td {
+      padding: 12px 18px;
+      text-align: left;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--ty-border);
+    }
+    .role-table tr:last-child td { border-bottom: none; }
+    .role-table th {
+      font-family: var(--ty-font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ty-text-sub);
+      background: var(--ty-bg);
+    }
+    .role-table td.yes { color: var(--ty-accent); font-weight: 700; }
+    .role-table td.no { color: var(--ty-text-disabled); }
+
+    /* Screens gallery (Pages) */
+    .screen-group { margin-bottom: 52px; }
+    .screen-group:last-child { margin-bottom: 0; }
+    .screen-group__head { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; margin-bottom: 18px; flex-wrap: wrap; }
+    .screen-group__head h3 { font-size: 1.15rem; }
+    .screen-group__head p { font-size: 0.88rem; margin: 0; max-width: 48ch; color: var(--ty-text-sub); }
+
+    /* Impact */
+    .checklist { display: flex; flex-direction: column; gap: 12px; margin-top: 18px; }
+    .checklist li {
+      display: flex; gap: 10px; align-items: flex-start;
+      font-size: 0.92rem;
+      background: var(--ty-surface);
+      border: 1px solid var(--ty-border);
+      border-radius: var(--ty-radius-sm);
+      padding: 12px 14px;
+    }
+    .checklist svg { width: 17px; height: 17px; color: var(--ty-accent); flex-shrink: 0; margin-top: 2px; }
+
+    /* Lesson Learned */
+    .lesson-card { padding: 20px 0; border-bottom: 1px solid var(--ty-border); }
+    .lesson-card:first-child { padding-top: 0; }
+    .lesson-card:last-child { border-bottom: none; padding-bottom: 0; }
+    .lesson-card .tag-label { margin-bottom: 10px; }
+    .lesson-card p { font-size: 0.94rem; margin: 0; }
+
+    /* Closing note inside the case study (real Contact footer follows after) */
+    .ty-close {
+      border-top: 1px solid var(--ty-border);
+      padding: 40px 0;
+      text-align: center;
+    }
+    .ty-close p { font-size: 0.85rem; color: var(--ty-text-sub); margin: 0 0 14px; }
+    .ty-close a.back {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--ty-font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ty-accent);
+      border: 1px solid var(--ty-accent);
+      padding: 9px 18px;
+      border-radius: 100px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .ty-close a.back:hover { background: var(--ty-accent); color: #fff; }
+
+    /* Lightbox */
+    .ty-lightbox {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(58, 35, 28, 0.82);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      font-family: var(--ty-font-body);
+    }
+    .ty-lightbox.is-open { display: flex; }
+    .ty-lightbox img { max-width: min(560px, 90vw); max-height: 82vh; border-radius: var(--ty-radius-sm); box-shadow: 0 30px 60px rgba(0,0,0,0.4); }
+    .ty-lightbox figcaption { color: #fff; text-align: center; font-size: 0.85rem; margin-top: 14px; opacity: 0.85; }
+    .ty-lightbox__close { position: absolute; top: 24px; right: 28px; background: none; border: none; cursor: pointer; color: #fff; }
+    .ty-lightbox__close svg { width: 26px; height: 26px; }
+    .ty-lightbox__frame { display: flex; flex-direction: column; align-items: center; }
+  </style>
+</head>
+<body>
+  <!-- Copied from tooyenplus.html (case-studies/) — project: PAO.
+       Structure/components/tokens/scripts reused from tooyenplus.html/pinghub.html;
+       section set below follows PAO's own content instead of forcing a 1:1 section match.
+
+       NOTE on source doc (PAO_Case_Study_Draft.md): two things were deliberately left OUT
+       of this page because they read as notes-to-self rather than finished case study copy —
+       see the end-of-task summary for the full list:
+         1. The "(Suggested visual to add here: Line vs SMS comparison)" parenthetical under Research.
+         2. The "Small Fixes to Apply on the Page" section at the end of the .md (stale to-dos
+            referencing a footer strip / "Other Projects" list that doesn't exist in this sitemap). -->
+
+  <!-- =========================================================
+       GLOBAL NAVIGATION (same markup as index.html)
+       Note: this file lives in case-studies/, one level deeper
+       than root, so links back to root pages use ../
+  ========================================================== -->
+  <header class="site-header">
+    <nav class="main-nav container" aria-label="Main navigation">
+      <a href="../index.html" class="nav-logo">Sasiyakorn</a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle-checkbox">
+      <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle navigation menu">
+        <span class="nav-toggle-icon"></span>
+      </label>
+
+      <ul class="nav-list">
+        <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="../index.html#case-study-preview" class="nav-link" aria-current="page">Case Study</a></li>
+        <li class="nav-item"><a href="../about.html" class="nav-link">About Me</a></li>
+        <li class="nav-item"><a href="../resume.html" class="nav-link">Resume</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- =========================================================
+       ON-THIS-PAGE SIDE TOC — links match PAO's own sections
+  ========================================================== -->
+  <nav class="toc-side" aria-label="On this page">
+    <a href="#challenge" data-toc>Challenge</a>
+    <a href="#role" data-toc>Role</a>
+    <a href="#research" data-toc>Research</a>
+    <a href="#process" data-toc>Process</a>
+    <a href="#solution" data-toc>Solution</a>
+    <a href="#pages" data-toc>Pages</a>
+    <a href="#impact" data-toc>Impact</a>
+    <a href="#lessons" data-toc>Lessons</a>
+  </nav>
+
+  <main class="case-study--pao">
+
+    <!-- ============ HERO ============ -->
+    <header class="hero" id="top">
+      <div class="wrap hero__grid">
+        <div data-reveal>
+          <p class="eyebrow">Case study — UX/UI Design &amp; Frontend</p>
+          <h1>Chachoengsao <span class="accent">PAO</span></h1>
+          <p class="hero__tagline">A custom management website for the Chachoengsao Provincial Administrative Organization — replacing decentralized, manual workflows with a modern system, built directly from requirements gathered with the organization's own officials.</p>
+
+          <div class="factbox">
+            <div class="factbox__head">Project Facts <span>NO. 03</span></div>
+            <div class="fact-row"><span class="label">Role</span><span class="leader"></span><span class="value">UX/UI &amp; Frontend, Meeting Module</span></div>
+            <div class="fact-row"><span class="label">Timeline</span><span class="leader"></span><span class="value">Aug – Sep 2025</span></div>
+            <div class="fact-row"><span class="label">Tools</span><span class="leader"></span><span class="value">Figma, React, Vite, Tailwind</span></div>
+            <div class="fact-row"><span class="label">Team</span><span class="leader"></span><span class="value">8, 3 on UX/UI &amp; Frontend</span></div>
+          </div>
+        </div>
+
+        <div class="hero__art" data-reveal>
+          <div class="hero__phone">
+            <!-- placeholder: needs real screenshot — Create Meeting screen -->
+            <img src="../assets/images/case-studies/pao/01-create-meeting.png" alt="Create Meeting screen with topic, time, and attendees pulled from the Personnel Database, showing the automatic SMS notification triggered on save">
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ============ CHALLENGE ============ -->
+    <section class="section" id="challenge">
+      <div class="wrap">
+        <span class="tag-label">Tag 01 — The Challenge</span>
+        <div class="section__head">
+          <h2>A structured organization, an unstructured workflow.</h2>
+        </div>
+
+        <div class="story__intro">
+          <p>Despite having a structured organization, the client faced operational inefficiencies caused by decentralized, manual processes.</p>
+        </div>
+
+        <div class="pain-grid">
+          <div class="pain-card" data-reveal>
+            <span class="pain-card__num">01 · Data</span>
+            <h3>Complex data management</h3>
+            <p>Personnel records, including the history of Royal Decorations (เครื่องราชอิสริยาภรณ์), were tracked manually. There was no easy way to filter staff by Position or Group, making the process error-prone and slow.</p>
+          </div>
+          <div class="pain-card" data-reveal>
+            <span class="pain-card__num">02 · Meetings</span>
+            <h3>Meeting chaos</h3>
+            <p>Meeting coordination relied on informal channels like Line, which senior officials often overlooked. This led to missed meetings, scheduling conflicts, and no reliable way to audit past meeting evidence.</p>
+          </div>
+          <div class="pain-card" data-reveal>
+            <span class="pain-card__num">03 · Approvals</span>
+            <h3>Opaque approval process</h3>
+            <p>Document requests relied on physical paper trails. Staff had no way to check whether a request was "Pending" or "Rejected" without asking in person.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ROLE & RESPONSIBILITY ============ -->
+    <section class="section" id="role">
+      <div class="wrap">
+        <span class="tag-label">Tag 02 — Role &amp; Responsibility</span>
+        <div class="section__head">
+          <h2>UX/UI Designer &amp; Frontend — Meeting Management Module</h2>
+          <p class="section__lede">This was a team project: an 8-person group split into PM+UX/UI (1), UX/UI &amp; Frontend (3), Backend (2), and Deploy &amp; Testing (2). Within the 3-person UX/UI &amp; Frontend team, each person owned a module end-to-end. I owned the Meeting Management Module — design and frontend implementation — while my two teammates owned Document Management and Personnel Data respectively.</p>
+        </div>
+
+        <div class="role__grid">
+          <div data-reveal>
+            <ul class="scope-list">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>PM + UX/UI</strong> — 1 person</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>UX/UI &amp; Frontend</strong> — 3 people, one module each: Meeting (me), Document, Personnel</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Backend</strong> — 2 people</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Deploy &amp; Testing</strong> — 2 people</span></li>
+            </ul>
+          </div>
+
+          <div data-reveal>
+            <div class="responsibility">
+              <h4>Design ownership</h4>
+              <p>Designed the full meeting workflow, from creation to evidence archiving, based on direct consultation with PAO staff.</p>
+            </div>
+            <div class="responsibility">
+              <h4>Feature design</h4>
+              <p>Designed the "Meeting Evidence" flow, allowing staff to upload minutes and attendee lists after each meeting.</p>
+            </div>
+            <div class="responsibility">
+              <h4>Cross-module collaboration</h4>
+              <p>Worked with my Personnel Data teammate to integrate meeting attendee lists directly with the Personnel Database, and with the Backend team to define the notification and permission logic.</p>
+            </div>
+            <div class="responsibility">
+              <h4>Frontend implementation</h4>
+              <p>Built the Meeting module's interface using React and Tailwind CSS, as part of the shared frontend codebase with my two teammates.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RESEARCH ============ -->
+    <section class="section" id="research">
+      <div class="wrap">
+        <span class="tag-label">Tag 03 — Research</span>
+        <div class="section__head">
+          <h2>Two insights from talking to the people who'd actually use it.</h2>
+          <p class="section__lede">Since this is an internal system, my research focused on direct consultation with the client. I interviewed staff to understand their actual workflow, which surfaced two key pain points.</p>
+        </div>
+
+        <div class="pain-grid pain-grid--2">
+          <div class="pain-card" data-reveal>
+            <span class="pain-card__num">Insight 01 · Channel trust</span>
+            <h3>Senior officials don't check Line regularly</h3>
+            <p>Line invites sat unopened. Staff explained that this demographic pays far more attention to SMS, treating it as a direct and urgent alert, while Line notifications are easy to mute or ignore.</p>
+          </div>
+          <div class="pain-card" data-reveal>
+            <span class="pain-card__num">Insight 02 · Audit trail</span>
+            <h3>Meeting summaries lived on paper</h3>
+            <p>There was no centralized digital archive. During audits, staff wasted hours digging through physical folders to find evidence of past meetings.</p>
+          </div>
+        </div>
+
+        <h3 class="subhead" style="margin-top:36px;">A design decision, not a default</h3>
+        <div class="story__intro" style="margin-bottom:0;">
+          <p>My first instinct was to build notifications on Line — it's the tool everyone already uses, and the more "modern" integration. But the research pointed the other way: the tool people <em>use</em> daily wasn't the tool they <em>acted on</em> for anything official. I tested this assumption directly with the client before committing, and confirmed that senior officials treat SMS as the higher-priority channel.</p>
+          <p>This wasn't a free win, though. SMS has a real cost per message and no rich formatting, unlike a free Line message. I accepted that trade-off because the recipient group was small and well-defined (staff and officials), so guaranteed visibility mattered more than message richness or cost at that scale.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROCESS ============ -->
+    <section class="section" id="process">
+      <div class="wrap">
+        <span class="tag-label">Tag 04 — Process</span>
+        <div class="section__head">
+          <h2>From an informal Line message to a logged, notified meeting.</h2>
+        </div>
+
+        <div class="iteration-notes" data-reveal>
+          <div>
+            <span class="tag-mini tag-mini--before">Before</span>
+            <p>A meeting got scheduled through an informal Line message to attendees — no confirmation, and no record kept anywhere once the message scrolled out of view.</p>
+          </div>
+          <div>
+            <span class="tag-mini tag-mini--after">After</span>
+            <p>The admin creates the meeting in the system → the system automatically sends an SMS to every attendee → attendance and evidence get logged and archived in one place.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SOLUTION ============ -->
+    <section class="section" id="solution">
+      <div class="wrap">
+        <span class="tag-label">Tag 05 — Solution</span>
+        <div class="section__head">
+          <h2>Two systems doing the heavy lifting.</h2>
+        </div>
+
+        <div class="solution-block" data-reveal>
+          <h3>Appointment &amp; SMS dispatch</h3>
+          <p>I designed a comprehensive Meeting Creation Form that captures all essential details (Topic, Time, Attendees), with attendees pulled directly from the Personnel Database rather than typed manually. Upon submission, the system automatically triggers an SMS notification to all participants — ensuring high-priority invites reach senior officials immediately, bypassing the noise of chat apps.</p>
+          <p>The key design decision here was turning notification into a guaranteed side effect of saving a meeting, rather than a separate manual step. The admin doesn't send an invite — they create a meeting, and the system ensures everyone is notified as part of that single action.</p>
+          <div class="shot-row">
+            <!-- placeholder: needs real screenshot — Create Meeting screen -->
+            <figure class="shot" data-shot data-caption="Meeting Creation Form — topic, time, and attendees pulled from the Personnel Database">
+              <img src="../assets/images/case-studies/pao/01-create-meeting.png" alt="Create Meeting screen with topic, time, and attendees pulled from the Personnel Database, showing the automatic SMS notification triggered on save" loading="lazy">
+              <figcaption>Create Meeting — form &amp; SMS trigger</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="solution-block" data-reveal>
+          <h3>Meeting history function</h3>
+          <p>A centralized history log lets users view past meetings and retrieve evidence. To protect data integrity and prevent tampering, I designed a role-based permission structure.</p>
+          <p>Restricting Edit and Delete to Admins only was a deliberate design decision to preserve an accurate, tamper-proof audit trail — not just a technical access-control setting. If any staff member could alter a record after the fact, the archive couldn't function as real audit evidence — it would just be a file dump. This permission structure is what makes the archive trustworthy, not just searchable.</p>
+
+          <!-- TODO: รอผมยืนยันว่าจะใช้ 2 หรือ 3 tier — ระบบจริงที่ส่งมอบมี 3 ระดับสิทธิ์
+               (General User / Admin / senior-official tier ที่สิทธิ์สูงกว่า) แต่ draft
+               ต้นฉบับ (PAO_Case_Study_Draft.md) เขียนตารางไว้แค่ 2 tier (Staff/Admin)
+               ตารางด้านล่างคือเวอร์ชัน simplified 2 tier ตามที่ draft เขียนไว้ — ห้ามเปลี่ยน
+               เป็น 3 tier เองจนกว่าจะได้รับการยืนยัน -->
+          <div class="role-table-wrap">
+            <table class="role-table">
+              <thead>
+                <tr><th>Role</th><th>View History</th><th>Create Meeting</th><th>Edit / Delete Records</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Staff</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td></tr>
+                <tr><td>Admin</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="shot-row">
+            <!-- placeholder: needs real screenshot — Meeting History Archive screen -->
+            <figure class="shot" data-shot data-caption="Meeting History Archive — filterable by status, date, or category">
+              <img src="../assets/images/case-studies/pao/02-meeting-history-archive.png" alt="Meeting History Archive screen listing past meetings, filterable by status, date, or category" loading="lazy">
+              <figcaption>Meeting History Archive</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PAGES ============ -->
+    <section class="section" id="pages">
+      <div class="wrap">
+        <span class="tag-label">Tag 06 — Pages</span>
+        <div class="section__head">
+          <h2>The screens, end to end.</h2>
+          <p class="section__lede">Tap any screen to see it larger.</p>
+        </div>
+
+        <div class="screen-group">
+          <div class="screen-group__head">
+            <h3>Meeting Overview &amp; History Archive</h3>
+            <p>Users can view a complete list of upcoming meetings and access the history of past sessions. A filter system lets users sort meetings by status, date, or category.</p>
+          </div>
+          <div class="shot-row">
+            <!-- placeholder: needs real screenshot — Meeting Overview & History Archive -->
+            <figure class="shot" data-shot data-caption="Upcoming meetings and a filterable history of past sessions">
+              <img src="../assets/images/case-studies/pao/02-meeting-history-archive.png" alt="Meeting History Archive screen listing past meetings, filterable by status, date, or category" loading="lazy">
+              <figcaption>Meeting Overview &amp; History</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="screen-group">
+          <div class="screen-group__head">
+            <h3>Create Meeting &amp; Meeting Details Page</h3>
+            <p>Admins can easily create new meetings and select participants from the database. Once saved, the system automatically sends an instant SMS notification to all selected members.</p>
+          </div>
+          <div class="shot-row">
+            <!-- placeholder: needs real screenshot — Create Meeting / Meeting Details -->
+            <figure class="shot" data-shot data-caption="Creating a meeting and selecting participants from the Personnel Database">
+              <img src="../assets/images/case-studies/pao/01-create-meeting.png" alt="Create Meeting screen with topic, time, and attendees pulled from the Personnel Database, showing the automatic SMS notification triggered on save" loading="lazy">
+              <figcaption>Create Meeting &amp; Details</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="screen-group">
+          <div class="screen-group__head">
+            <h3>Meeting Record Page</h3>
+            <p>After the meeting concludes, staff finalize the record on this page — verifying actual attendance against the invited list and uploading meeting minutes or summary documents.</p>
+          </div>
+          <div class="shot-row">
+            <!-- placeholder: needs real screenshot — Meeting Record page -->
+            <figure class="shot" data-shot data-caption="Verifying attendance and uploading meeting minutes after the meeting concludes">
+              <img src="../assets/images/case-studies/pao/03-meeting-record.png" alt="Meeting Record page for verifying attendance against the invited list and uploading meeting minutes or summary documents" loading="lazy">
+              <figcaption>Meeting Record</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ANTICIPATED IMPACT ============ -->
+    <section class="section" id="impact">
+      <div class="wrap">
+        <span class="tag-label">Tag 07 — Anticipated Impact</span>
+        <div class="section__head">
+          <h2>What each feature was designed to fix.</h2>
+          <p class="section__lede">This project was completed and handed off, and I wasn't able to follow up on real usage data afterward — so rather than claim results I can't verify, here's what each feature was specifically designed to address.</p>
+        </div>
+
+        <ul class="checklist">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> The <strong>SMS dispatch</strong> was designed to close the gap where senior officials missed invites sent through Line — guaranteeing visibility regardless of chat app fatigue.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> The <strong>Meeting History Archive</strong> was designed to remove the audit bottleneck of manually searching paper folders, turning a multi-hour physical search into a single filtered lookup.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> The <strong>RBAC permission structure</strong> was designed to make the archive usable as trustworthy audit evidence, not just a searchable file store.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ LESSON LEARNED ============ -->
+    <section class="section" id="lessons">
+      <div class="wrap">
+        <span class="tag-label">Tag 08 — Lesson Learned</span>
+        <div class="section__head">
+          <h2>What I'd carry into the next client project.</h2>
+        </div>
+
+        <div data-reveal>
+          <div class="lesson-card">
+            <span class="tag-label">Clarity &amp; agreement</span>
+            <p>Working with a real client highlighted the importance of scope definition. I learned that verbal discussions aren't enough — both the developer and the client need to agree on every detail explicitly. This ensures a shared vision and prevents scope creep.</p>
+          </div>
+          <div class="lesson-card">
+            <span class="tag-label">Technology must fit the user</span>
+            <p>I initially wanted to use Line because it's modern, but the reality was that senior users respond better to SMS. I learned that the "best" technology isn't always the most modern one — it's the one that fits actual user behavior.</p>
+          </div>
+          <div class="lesson-card">
+            <span class="tag-label">Feedback loops matter</span>
+            <p>I delivered this project but didn't have a way to check back on real usage afterward. In hindsight, I'd want to define a simple follow-up point or success metric with the client before the project wraps, so future case studies can speak to actual outcomes, not just design intent.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CLOSING NOTE (real Contact footer follows below) ============ -->
+    <div class="ty-close">
+      <div class="wrap">
+        <p>The Chachoengsao PAO Management Website was built as a client project for the Chachoengsao Provincial Administrative Organization, by an 8-person team.</p>
+        <a class="back" href="#top">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+          Back to top
+        </a>
+      </div>
+    </div>
+
+    <!-- ============ LIGHTBOX ============ -->
+    <div class="ty-lightbox" id="tyLightbox">
+      <button class="ty-lightbox__close" id="tyLightboxClose" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="ty-lightbox__frame">
+        <img id="tyLightboxImg" src="" alt="">
+        <figcaption id="tyLightboxCaption"></figcaption>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- =========================================================
+       FOOTER (Contact) — same markup as index.html
+  ========================================================== -->
+  <footer class="site-footer section container" id="contact">
+    <h2 class="footer-title">Contact</h2>
+    <div class="contact-info">
+      <p class="contact-email"><!-- placeholder: email --></p>
+      <p class="contact-phone"><!-- placeholder: phone --></p>
+      <div class="contact-socials">
+        <a href="#" class="social-link"><!-- placeholder: LinkedIn --></a>
+        <a href="#" class="social-link"><!-- placeholder: Behance / other portfolio link --></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- <script src="../scripts/main.js" defer></script> Phase 2: script -->
+
+  <script>
+    // ---- scroll reveal ----
+    var tyRevealEls = document.querySelectorAll('.case-study--pao [data-reveal]');
+    var tyRevealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          tyRevealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    tyRevealEls.forEach(function (el) { tyRevealObserver.observe(el); });
+
+    // ---- active side-TOC link on scroll ----
+    var tySections = document.querySelectorAll('.case-study--pao section[id]');
+    var tyTocLinks = document.querySelectorAll('[data-toc]');
+    var tyTocObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var id = entry.target.getAttribute('id');
+        var link = document.querySelector('[data-toc][href="#' + id + '"]');
+        if (!link) return;
+        if (entry.isIntersecting) {
+          tyTocLinks.forEach(function (a) { a.classList.remove('is-active'); });
+          link.classList.add('is-active');
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    tySections.forEach(function (s) { tyTocObserver.observe(s); });
+
+    // ---- lightbox ----
+    var tyLightbox = document.getElementById('tyLightbox');
+    var tyLightboxImg = document.getElementById('tyLightboxImg');
+    var tyLightboxCaption = document.getElementById('tyLightboxCaption');
+    var tyLightboxClose = document.getElementById('tyLightboxClose');
+
+    document.querySelectorAll('[data-shot]').forEach(function (fig) {
+      fig.addEventListener('click', function () {
+        var img = fig.querySelector('img');
+        tyLightboxImg.src = img.src;
+        tyLightboxImg.alt = img.alt;
+        tyLightboxCaption.textContent = fig.getAttribute('data-caption') || '';
+        tyLightbox.classList.add('is-open');
+      });
+    });
+
+    function tyCloseLightbox() {
+      tyLightbox.classList.remove('is-open');
+      tyLightboxImg.src = '';
+    }
+    tyLightboxClose.addEventListener('click', tyCloseLightbox);
+    tyLightbox.addEventListener('click', function (e) { if (e.target === tyLightbox) tyCloseLightbox(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') tyCloseLightbox(); });
+  </script>
+
+</body>
+</html>

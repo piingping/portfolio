@@ -1,0 +1,781 @@
+/* ==========================================================================
+   1. DESIGN TOKENS (CSS VARIABLES)
+   ========================================================================== */
+:root {
+  /* --- Color Tokens --- */
+  --bg-primary: #FBF7EE;      /* Warm Beige / Soft Cream Background */
+  --surface: #FFFFFF;         /* White Surface for Cards & Containers */
+  --border-color: #EBE0D0;    /* Soft Warm Sand Border */
+
+  /* Typography Colors (Pass WCAG Accessibility) */
+  --text-primary: #3A231C;    /* Dark Espresso Brown for Main Text & Headings */
+  --text-secondary: #6E5A51;  /* Warm Muted Brown for Subtitles & Meta */
+  --text-disabled: #AA9A90;   /* Ash Brown for Placeholders / Muted Elements */
+
+  /* Accent Colors */
+  --accent-primary: #D65B3E;   /* Terracotta Coral (Buttons, Links, Highlights) */
+  --accent-hover: #B8472C;     /* Darker Terracotta for Hover States */
+  --accent-secondary: #E5A754; /* Warm Amber for Badges & Tag Highlights */
+
+  /* --- Typography Scale (Mobile First Defaults) --- */
+  --font-family: 'Plus Jakarta Sans', 'Kanit', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+  
+  --fs-hero: 2rem;            /* 32px */
+  --fs-h1: 1.75rem;           /* 28px */
+  --fs-h2: 1.5rem;            /* 24px */
+  --fs-h3: 1.25rem;           /* 20px */
+  --fs-body: 1rem;            /* 16px */
+  --fs-small: 0.875rem;       /* 14px */
+
+  --lh-tight: 1.2;
+  --lh-heading: 1.3;
+  --lh-body: 1.6;
+
+  /* --- Spacing & Container (8pt Grid System) --- */
+  --container-max-width: 1200px;
+  --section-padding-y: 64px;
+  --container-padding-x: 20px;
+  --gap-grid: 24px;
+  --radius-card: 16px;
+  --radius-button: 8px;
+
+  /* --- Elevation / Shadow --- */
+  --shadow-card: 0 4px 20px rgba(58, 35, 28, 0.05);
+  --shadow-hover: 0 8px 30px rgba(58, 35, 28, 0.1);
+}
+
+/* --- Responsive Adjustments for Desktop (768px and up) --- */
+@media (min-width: 768px) {
+  :root {
+    --fs-hero: 3.25rem;       /* 52px */
+    --fs-h1: 2.25rem;         /* 36px */
+    --fs-h2: 1.75rem;         /* 28px */
+    --fs-h3: 1.5rem;          /* 24px */
+    
+    --section-padding-y: 112px;
+    --container-padding-x: 40px;
+    --gap-grid: 32px;
+  }
+}
+
+/* ==========================================================================
+   2. BASE STYLES & RESET
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Layout Container */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding-x);
+  padding-right: var(--container-padding-x);
+}
+
+.section {
+  padding-top: var(--section-padding-y);
+  padding-bottom: var(--section-padding-y);
+}
+
+/* ==========================================================================
+   3. TYPOGRAPHY CLASSES
+   ========================================================================== */
+.hero-title {
+  font-size: var(--fs-hero);
+  line-height: var(--lh-tight);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+h1, .h1 {
+  font-size: var(--fs-h1);
+  line-height: var(--lh-heading);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+h2, .h2 {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-heading);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+h3, .h3 {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-heading);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.text-sub {
+  color: var(--text-secondary);
+}
+
+.text-accent {
+  color: var(--accent-primary);
+}
+
+/* ==========================================================================
+   4. UI COMPONENTS & UTILITIES
+   ========================================================================== */
+/* Card Component */
+.card {
+  background-color: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Primary Button */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--accent-primary);
+  color: #FFFFFF;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: var(--radius-button);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+}
+
+/* Skill / Category Tag */
+.tag {
+  display: inline-block;
+  background-color: rgba(229, 167, 84, 0.15); /* Amber tint */
+  color: var(--text-primary);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+/* Responsive Grid for Case Studies */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap-grid);
+}
+
+@media (min-width: 768px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.section-title {
+  margin-bottom: var(--gap-grid);
+}
+
+/* ==========================================================================
+   5. BASE LINK STYLES
+   ========================================================================== */
+a {
+  color: var(--accent-primary);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-hover);
+  text-decoration-color: currentColor;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+label:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   6. NAVIGATION
+   ========================================================================== */
+.site-header {
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.main-nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.nav-logo {
+  font-family: 'Gaegu', cursive;
+  font-size: clamp(1.4rem, 1rem + 1.5vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.nav-logo:hover {
+  opacity: 0.72;
+  transform: rotate(-1.5deg);
+}
+
+/* Hamburger toggle (CSS-only, checkbox hack — no JS needed until Phase 3) */
+.nav-toggle-checkbox {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.nav-toggle-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  border-radius: var(--radius-button);
+}
+
+.nav-toggle-icon,
+.nav-toggle-icon::before,
+.nav-toggle-icon::after {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--text-primary);
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.nav-toggle-icon {
+  position: relative;
+}
+
+.nav-toggle-icon::before,
+.nav-toggle-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.nav-toggle-icon::before {
+  top: -7px;
+}
+
+.nav-toggle-icon::after {
+  top: 7px;
+}
+
+.nav-toggle-checkbox:checked ~ .nav-toggle-label .nav-toggle-icon {
+  background-color: transparent;
+}
+
+.nav-toggle-checkbox:checked ~ .nav-toggle-label .nav-toggle-icon::before {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle-checkbox:checked ~ .nav-toggle-label .nav-toggle-icon::after {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Nav links — mobile: hidden dropdown revealed by the checkbox above */
+.nav-list {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  list-style: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border-color);
+  padding: 16px var(--container-padding-x);
+  box-shadow: var(--shadow-card);
+}
+
+.nav-toggle-checkbox:checked ~ .nav-list {
+  display: flex;
+}
+
+.nav-link {
+  display: inline-block;
+  color: var(--text-primary);
+  font-weight: 500;
+  text-decoration: none;
+  padding: 8px 4px;
+  border-bottom: 2px solid transparent;
+}
+
+.nav-link:hover {
+  color: var(--accent-primary);
+}
+
+.nav-link[aria-current="page"] {
+  color: var(--accent-primary);
+  font-weight: 700;
+  border-bottom-color: var(--accent-primary);
+}
+
+/* Nav links — desktop: always-visible horizontal row, hamburger hidden */
+@media (min-width: 768px) {
+  .nav-toggle-label {
+    display: none;
+  }
+
+  .nav-list {
+    display: flex;
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--gap-grid);
+    background-color: transparent;
+    border-bottom: none;
+    box-shadow: none;
+    padding: 0;
+  }
+}
+
+/* ==========================================================================
+   7. FOOTER
+   ========================================================================== */
+.site-footer {
+  background-color: var(--surface);
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.footer-title {
+  margin-bottom: 16px;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-email,
+.contact-phone {
+  color: var(--text-secondary);
+}
+
+.contact-socials {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.social-link:hover {
+  background-color: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   8. HOME PAGE (index.html)
+   ========================================================================== */
+.hero-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  text-align: center;
+  gap: var(--gap-grid);
+}
+
+.hero-profile-image {
+  width: 300px;
+  height: 300px;
+}
+
+.hero-profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+.hero-intro {
+  max-width: 560px;
+  color: var(--text-secondary);
+}
+
+/* Full subline by default; short version swaps in on very small screens
+   where the full sentence reads as cramped next to the hero headline. */
+.hero-intro-short { display: none; }
+@media (max-width: 480px) {
+  .hero-intro-full { display: none; }
+  .hero-intro-short { display: inline; }
+}
+
+.hero-skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  list-style: none;
+}
+
+@media (min-width: 768px) {
+  .hero-section {
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "image name"
+      "image intro"
+      "image skills";
+    align-items: center;
+    justify-items: start;
+    text-align: left;
+    column-gap: calc(var(--gap-grid) * 2);
+    row-gap: 16px;
+  }
+
+  .hero-profile-image {
+    grid-area: image;
+    width: 400px;
+    height: 400px;
+  }
+
+  .hero-name {
+    grid-area: name;
+  }
+
+  .hero-intro {
+    grid-area: intro;
+  }
+
+  .hero-skills-list {
+    grid-area: skills;
+    justify-content: flex-start;
+  }
+}
+
+/* Case study preview cards — built on top of .portfolio-grid + .card */
+.case-study-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.case-study-card-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: calc(var(--radius-card) - 8px);
+  background-color: var(--bg-primary);
+}
+
+.case-study-card-title {
+  margin-top: 4px;
+}
+
+.case-study-card-desc {
+  color: var(--text-secondary);
+  font-size: var(--fs-small);
+}
+
+/* Project tags — pill-chip version of the case-study pages' .tag-label:
+   same accent-secondary background + JetBrains Mono treatment, but a
+   plain rounded pill since several of these sit in a row on one card. */
+.case-study-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 2px;
+  list-style: none;
+}
+
+.project-tag {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--accent-secondary);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.case-study-card-role {
+  font-size: var(--fs-small);
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   9. CASE STUDY PAGE (case-studies/template.html + copies)
+   ========================================================== */
+.case-study-hero-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-grid);
+}
+
+.case-study-hero-image {
+  width: 100%;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  background-color: var(--surface);
+}
+
+.case-study-hero-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.case-study-hook {
+  color: var(--text-secondary);
+  font-size: var(--fs-h3);
+  max-width: 720px;
+}
+
+.case-study-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-grid);
+}
+
+.case-study-meta-label {
+  color: var(--text-secondary);
+  font-size: var(--fs-small);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.case-study-tools-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+}
+
+.case-study-time-value {
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  .case-study-meta {
+    flex-direction: row;
+    gap: calc(var(--gap-grid) * 2);
+  }
+
+  .case-study-tools,
+  .case-study-time {
+    flex: 1;
+  }
+}
+
+/* Details section is intentionally minimal here — content/structure
+   varies per project and gets filled in per case study later. */
+.case-study-details-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-grid);
+}
+
+/* ==========================================================================
+   10. ABOUT ME PAGE (about.html)
+   ========================================================================== */
+.about-hero-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap-grid);
+}
+
+.about-body-text {
+  color: var(--text-secondary);
+}
+
+.about-hero-image {
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.about-hero-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .about-hero-section {
+    grid-template-columns: 1.2fr 1fr;
+    grid-template-areas:
+      "headline image"
+      "body     image";
+    align-items: center;
+    column-gap: calc(var(--gap-grid) * 2);
+  }
+
+  .about-headline {
+    grid-area: headline;
+  }
+
+  .about-body-text {
+    grid-area: body;
+  }
+
+  .about-hero-image {
+    grid-area: image;
+  }
+}
+
+.education-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.education-logo {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.education-university {
+  margin-bottom: 4px;
+}
+
+.education-major,
+.education-graduation,
+.education-gpa {
+  color: var(--text-secondary);
+  font-size: var(--fs-small);
+}
+
+@media (min-width: 768px) {
+  .education-item {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--gap-grid);
+  }
+}
+
+.skills-list,
+.other-skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  list-style: none;
+}
+
+.certificate-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 480px;
+}
+
+.certificate-image {
+  width: 100%;
+  border-radius: calc(var(--radius-card) - 8px);
+  object-fit: cover;
+}
+
+.certificate-source {
+  color: var(--text-secondary);
+  font-size: var(--fs-small);
+}
+
+/* ==========================================================================
+   11. RESUME PAGE (resume.html)
+   ========================================================================== */
+.resume-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--gap-grid);
+}
+
+.resume-title {
+  margin-bottom: 8px;
+}
+
+.resume-preview-image {
+  width: 100%;
+  max-width: 480px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-hover);
+}
+
+.resume-preview-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | [Your Name] — UX/UI Designer Portfolio</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans (Latin) + Kanit (Latin + Thai, for Thai body copy) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <!-- Nav brand/signature font (Regular + Bold) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Project tag pill chips (Case Study Preview cards) -->
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+
+  <!-- =========================================================
+       GLOBAL NAVIGATION
+       Same nav markup copied into: index.html, about.html,
+       resume.html, case-studies/template.html (and its copies)
+  ========================================================== -->
+  <header class="site-header">
+    <nav class="main-nav container" aria-label="Main navigation">
+      <a href="index.html" class="nav-logo">Sasiyakorn</a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle-checkbox">
+      <label for="nav-toggle" class="nav-toggle-label" aria-label="Toggle navigation menu">
+        <span class="nav-toggle-icon"></span>
+      </label>
+
+      <ul class="nav-list">
+        <li class="nav-item"><a href="index.html" class="nav-link" aria-current="page">Home</a></li>
+        <li class="nav-item"><a href="index.html#case-study-preview" class="nav-link">Case Study</a></li>
+        <li class="nav-item"><a href="about.html" class="nav-link">About Me</a></li>
+        <li class="nav-item"><a href="resume.html" class="nav-link">Resume</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- =========================================================
+         SITEMAP 1. HOME > HERO SECTION
+         ชื่อ, ประโยคแนะนำตัวสั้นๆ 2-3 ประโยค, รูปโปรไฟล์, Skill list
+    ========================================================== -->
+    <section class="hero-section section container" id="hero">
+      <div class="hero-profile-image">
+        <!-- placeholder: profile photo -->
+        <!-- <img class="hero-profile-img" src="assets/images/profile-home.png" alt=""> -->
+        <video autoplay loop muted playsinline width="100%">
+          <source src="assets/images/profile-home.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      <!-- <h1 class="hero-name hero-title">  <h1 class="hero-name hero-title">Hi there! I am Pingping</h1>
+</h1> -->
+  <h1 class="hero-name hero-title">I design, test, and redesign — until it actually works.</h1>
+
+      <p class="hero-intro">
+        <span class="hero-intro-full">UX/UI Designer and 4th-year student at KMITL who turns real user feedback into better products.</span>
+        <span class="hero-intro-short">UX/UI Designer · 4th-year student at KMITL</span>
+      </p>
+
+      <ul class="hero-skills-list">
+        <!-- placeholder: รายการ Skill ด้าน UX/UI -->
+        <li class="hero-skill-item tag">4 case studies</li>
+        <li class="hero-skill-item tag">Real usability testing</li>
+        <li class="hero-skill-item tag"><!-- e.g. Wireframing --></li>
+        <li class="hero-skill-item tag"><!-- e.g. Prototyping --></li>
+      </ul>
+    </section>
+
+    <!-- =========================================================
+         SITEMAP 1. HOME > CASE STUDY PREVIEW
+         การ์ดลิงก์ไปยัง 4 โปรเจกต์: NextGen AI, PingHub, PAO, Tooyen+
+         เข้าถึงได้ผ่านการ์ดในหน้านี้เท่านั้น (ไม่มีลิงก์ตรงจาก nav)
+    ========================================================== -->
+    <section class="case-study-preview-section section container" id="case-study-preview">
+      <h2 class="section-title">Case Study Preview</h2>
+
+      <div class="case-study-grid portfolio-grid">
+
+        <a href="case-studies/nextgen-ai.html" class="case-study-card card">
+          <img class="case-study-card-image" src="assets/images/home/nextgen-ai-thumbnail.png" alt="">
+          <h3 class="case-study-card-title">NextGen AI</h3>
+          <p class="case-study-card-desc">Redesigned the student experience for a 1,000+ participant AI education camp —
+            then proved it worked through three rounds of real-world iteration, not a single guess.</p>
+          <ul class="case-study-card-tags">
+            <li class="project-tag">User Research</li>
+            <li class="project-tag">Data-Driven Decisions</li>
+            <li class="project-tag">Iterative Design</li>
+            <li class="project-tag">Persona &amp; Journey Mapping</li>
+          </ul>
+          <p class="case-study-card-role">Individual role · Team of 3</p>
+        </a>
+
+        <a href="case-studies/pinghub.html" class="case-study-card card">
+          <img class="case-study-card-image" src="assets/images/home/pinghub-thumbnail.png" alt="">
+          <h3 class="case-study-card-title">PingHub</h3>
+          <p class="case-study-card-desc">A trip-planning app for friend groups who can never agree — usability tested
+            end-to-end, with real fixes shipped before final delivery.</p>
+          <ul class="case-study-card-tags">
+            <li class="project-tag">Persona &amp; Journey Mapping</li>
+            <li class="project-tag">Usability Testing</li>
+            <li class="project-tag">Iterative Design</li>
+          </ul>
+          <p class="case-study-card-role">Individual role · Team of 4</p>
+        </a>
+
+        <a href="case-studies/pao.html" class="case-study-card card">
+          <img class="case-study-card-image" src="assets/images/home/pao-thumbnail.png" alt="">
+          <h3 class="case-study-card-title">PAO</h3>
+          <p class="case-study-card-desc">A custom system for a provincial government office — built from real
+            stakeholder interviews and defensible trade-offs, not assumptions about what's "modern."</p>
+          <ul class="case-study-card-tags">
+            <li class="project-tag">Stakeholder Research</li>
+            <li class="project-tag">Design Rationale &amp; Trade-offs</li>
+            <li class="project-tag">Permission &amp; Access Design</li>
+          </ul>
+          <p class="case-study-card-role">Individual role · Team of 8</p>
+        </a>
+
+        <a href="case-studies/tooyenplus.html" class="case-study-card card">
+          <img class="case-study-card-image" src="assets/images/home/tooyenplus-thumbnail.png" alt="">
+          <h3 class="case-study-card-title">Tooyen+</h3>
+          <p class="case-study-card-desc">An app for cutting food waste and mealtime decision fatigue — born from my own
+            dorm-room grocery mistakes, refined through self-critique across multiple redesigns.</p>
+          <ul class="case-study-card-tags">
+            <li class="project-tag">Problem Framing</li>
+            <li class="project-tag">Iterative Design</li>
+            <li class="project-tag">Information Architecture</li>
+          </ul>
+          <p class="case-study-card-role">Individual role · Team of 6</p>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       SITEMAP 1. HOME > FOOTER (Contact)
+       Same footer markup copied into every page
+  ========================================================== -->
+  <footer class="site-footer section container" id="contact">
+    <h2 class="footer-title">Contact</h2>
+    <div class="contact-info">
+      <p class="contact-email"><!-- placeholder: email --></p>
+      <p class="contact-phone"><!-- placeholder: phone --></p>
+      <div class="contact-socials">
+        <a href="#" class="social-link"><!-- placeholder: LinkedIn --></a>
+        <a href="#" class="social-link"><!-- placeholder: Behance / other portfolio link --></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- <script src="scripts/main.js" defer></script> Phase 2: script -->
+
+</body>
+
+</html>
