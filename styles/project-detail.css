@@ -371,12 +371,19 @@ html { scroll-behavior: smooth; }
 .pain-card p strong { color: var(--ty-text); }
 
 /* Wide diagram figures (reuse .shot / lightbox). Grid-based, borderless
-   layout: repeat(auto-fit, minmax(280px, 1fr)) wraps to as many columns as
-   fit a row and stretches them evenly to fill it, so a row never needs
-   horizontal scrolling regardless of how many shots it holds. */
+   layout: repeat(auto-fit, minmax(280px, 480px)) wraps to as many columns
+   as fit a row and stretches them evenly to fill it (up to 480px each), so
+   a row never needs horizontal scrolling regardless of how many shots it
+   holds. The 480px cap (was 1fr, uncapped) is what keeps a row with only 1
+   or 2 shots from stretching them across the entire row width — a single
+   shot alone in a row no longer blows up to ~1120px; justify-content:
+   center keeps that capped row from hugging the left edge with empty
+   space beside it. Pages with real mobile screenshots (e.g. PingHub's
+   #screens) override this locally with their own, narrower cap. */
 .shot-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 480px));
+  justify-content: center;
   gap: 24px;
 }
 .shot-row--wide { margin-top: 20px; }
@@ -481,7 +488,7 @@ html { scroll-behavior: smooth; }
   margin-bottom: 10px;
   font-weight: 700;
 }
-.tag-mini--before { background: var(--ty-border); color: var(--ty-text-sub); }
+.tag-mini--before { background: var(--ty-border); color: var(--ty-text-sub);  }
 .tag-mini--after { background: var(--ty-accent); color: #fff; }
 
 /* Checklist — common value across PAO/TooYen+ (surface bg, 18px top margin);
@@ -503,11 +510,12 @@ html { scroll-behavior: smooth; }
    PAO (Process), TooYen+ (Iteration). Common margin-bottom across
    PingHub/PAO; TooYen+ overrides locally (needs more room before the
    honesty-note that follows). */
-.iteration-notes { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 8px; }
-@media (max-width: 760px) { .iteration-notes { grid-template-columns: 1fr; } }
+.iteration-notes { display: grid; grid-template-rows: 1fr 1fr; gap: 24px; margin-bottom: 8px; }
+@media (max-width: 760px) { .iteration-notes { grid-template-rows: 1fr; } }
 .iteration-notes > div { background: var(--ty-surface); border: 1px solid var(--ty-border); border-radius: var(--ty-radius-sm); padding: 20px 22px; }
 .iteration-notes h4 { font-size: 0.95rem; margin-bottom: 8px; }
 .iteration-notes p { font-size: 0.9rem; margin: 0; }
+
 
 /* Reflection 2-column layout — used by PingHub and TooYen+ */
 .split-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }

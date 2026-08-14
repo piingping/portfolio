@@ -41,7 +41,15 @@
       box-shadow: var(--ty-shadow-card);
       overflow: hidden;
     }
-    .persona-card__img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--ty-bg); }
+    /* Media wrapper is separate from .persona-card__body (name/meta/bio)
+       so the image itself is what's clickable to zoom (via the shared
+       [data-shot] lightbox), not the card's descriptive text. aspect-ratio
+       2/3 + object-fit:contain (was 4/3 + cover) — these persona sheets
+       are portrait (measured ~612x889-949px, ratio ~1.5), so the old
+       landscape 4:3 box + cover was cropping a large chunk of every
+       sheet off the top/bottom instead of showing it in full. */
+    .persona-card__media { cursor: zoom-in; }
+    .persona-card__img { width: 100%; aspect-ratio: 2 / 3; object-fit: contain; background: var(--ty-bg); display: block; }
     .persona-card__body { padding: 20px 22px 24px; }
     .persona-card h3 { font-size: 1.1rem; margin-bottom: 2px; }
     .persona-card .persona-meta {
@@ -66,6 +74,23 @@
        --ty-surface), and less top margin since the card supplies its own. */
     .checklist { margin-top: 4px; }
     .checklist li { background: var(--ty-bg); }
+
+    /* Screens gallery: real mobile screenshots, not fill-the-row diagrams —
+       the shared .shot-row default (minmax(280px, 1fr)) lets a column grow
+       to fill whatever's left in its row, so a row with only 1 or 2 shots
+       (e.g. the solo Edit Route row) stretched them far wider than a 3-shot
+       row's columns, and the 3 not wrapped in .mockup-scroll-frame (Trip
+       Members/Voting/Map) were additionally being squeezed into the shared
+       .shot img fallback's 4:3 landscape box. Capping the track at a fixed
+       320px (not 1fr) makes every shot here the same width regardless of
+       row size; justify-content:center keeps shorter rows from hugging the
+       left edge with empty space beside them. shot--mobile (applied to
+       every figure in this section) gives them a portrait aspect-ratio box
+       matching what they actually are, instead of the landscape fallback. */
+    #screens .shot-row {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 320px));
+      justify-content: center;
+    }
   </style>
 </head>
 <body>
@@ -147,7 +172,7 @@
         <div class="hero__art" data-reveal>
           <div class="hero__phone">
             <!-- placeholder: needs real screenshot — Trip Detail screen -->
-            <img src="../assets/images/case-studies/pinghub/07-trip-detail.png" alt="PingHub Trip Detail screen showing itinerary, destination, per-person budget, active votes, and shared notes">
+            <img src="../assets/images/case-studies/pinghub/pinghub-hero.png" alt="PingHub Trip Detail screen showing itinerary, destination, per-person budget, active votes, and shared notes">
           </div>
         </div>
       </div>
@@ -185,7 +210,9 @@
         <div class="persona-grid">
           <div class="persona-card" data-reveal>
             <!-- placeholder: needs real screenshot — Wa persona sheet -->
-            <img class="persona-card__img" src="../assets/images/case-studies/pinghub/01-persona-wa.png" alt="Persona card for Wa, a 22-year-old university student who travels with a fixed group of 3 and plans trips quickly">
+            <figure class="persona-card__media" data-shot data-caption="Persona card for Wa, a 22-year-old university student who travels with a fixed group of 3 and plans trips quickly">
+              <img class="persona-card__img" src="../assets/images/case-studies/pinghub/01-persona-wa.png" alt="Persona card for Wa, a 22-year-old university student who travels with a fixed group of 3 and plans trips quickly">
+            </figure>
             <div class="persona-card__body">
               <h3>Wa</h3>
               <span class="persona-meta">22 · University student · Group of 3</span>
@@ -194,7 +221,9 @@
           </div>
           <div class="persona-card" data-reveal>
             <!-- placeholder: needs real screenshot — Bam persona sheet -->
-            <img class="persona-card__img" src="../assets/images/case-studies/pinghub/02-persona-bam.png" alt="Persona card for Bam, who is tired of chasing reviews across five separate apps">
+            <figure class="persona-card__media" data-shot data-caption="Persona card for Bam, who is tired of chasing reviews across five separate apps">
+              <img class="persona-card__img" src="../assets/images/case-studies/pinghub/02-persona-bam.png" alt="Persona card for Bam, who is tired of chasing reviews across five separate apps">
+            </figure>
             <div class="persona-card__body">
               <h3>Bam</h3>
               <!-- TODO: ผมต้องกรอกเอง — persona meta ของ Bam (อายุ · อาชีพ · ขนาดกลุ่ม) ไม่มีในไฟล์ .md ใหม่ -->
@@ -203,7 +232,9 @@
           </div>
           <div class="persona-card" data-reveal>
             <!-- placeholder: needs real screenshot — Mind persona sheet -->
-            <img class="persona-card__img" src="../assets/images/case-studies/pinghub/03-persona-mind.png" alt="Persona card for Mind, who can never get a straight answer from her group on who is free">
+            <figure class="persona-card__media" data-shot data-caption="Persona card for Mind, who can never get a straight answer from her group on who is free">
+              <img class="persona-card__img" src="../assets/images/case-studies/pinghub/03-persona-mind.png" alt="Persona card for Mind, who can never get a straight answer from her group on who is free">
+            </figure>
             <div class="persona-card__body">
               <h3>Mind</h3>
               <!-- TODO: ผมต้องกรอกเอง — persona meta ของ Mind (อายุ · อาชีพ · ขนาดกลุ่ม) ไม่มีในไฟล์ .md ใหม่ -->
@@ -219,7 +250,8 @@
         <div class="shot-row shot-row--wide" data-reveal>
           <!-- placeholder: needs real screenshot — journey map diagram -->
           <figure class="shot" data-shot data-caption="Before → After journey map: Mind plans a trip with friends">
-            <img src="../assets/images/case-studies/pinghub/04-journey-map.png" alt="Journey map comparing Mind's before and after experience planning a trip with friends" loading="lazy">
+            <img src="../assets/images/case-studies/pinghub/04-journey-map-before.png" alt="Journey map comparing Mind's before and after experience planning a trip with friends" loading="lazy">
+             <img src="../assets/images/case-studies/pinghub/05-journey-map-after.png" alt="Journey map comparing Mind's before and after experience planning a trip with friends" loading="lazy">
             <figcaption>Journey map — Before → After</figcaption>
           </figure>
         </div>
@@ -230,15 +262,12 @@
         <div class="shot-row shot-row--wide" data-reveal>
           <!-- placeholder: needs real screenshot — user story map diagram -->
           <figure class="shot" data-shot data-caption="User story map: the full flow, login to shared itinerary">
-            <img src="../assets/images/case-studies/pinghub/05-user-story-map.png" alt="User story map covering the full PingHub flow from login to the shared itinerary" loading="lazy">
+            <img src="../assets/images/case-studies/pinghub/06-user-story.png" alt="User story map covering the full PingHub flow from login to the shared itinerary" loading="lazy">
             <figcaption>User story map</figcaption>
           </figure>
         </div>
 
-        <div class="research-note" data-reveal>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-          <p><strong>Scoped out for later:</strong> letting members shortlist preferences before a trip even exists, to ease the first vote.</p>
-        </div>
+      
       </div>
     </section>
 
@@ -328,10 +357,46 @@
     <!-- ============ SCREENS ============ -->
     <section class="section" id="screens">
       <div class="wrap">
-        <span class="tag-label">Tag 05 — The Screens</span>
+        <span class="tag-label">The Screens</span>
         <div class="section__head">
           <h2>The 11 screens, start to finish.</h2>
           <p class="section__lede">Scroll each row sideways on smaller screens. Tap any screen to see it larger.</p>
+        </div>
+
+                <div class="screen-group">
+          <div class="screen-group__head">
+            <h3>Wireframes</h3>
+            <p>Where these screens started, before hi-fi.</p>
+          </div>
+          <div class="shot-row">
+            <!-- TODO: placeholder set — swap src/alt/data-caption/figcaption for
+                 each of these 6 once the real wireframe exports are ready, at
+                 ../assets/images/case-studies/pinghub/ -->
+            <figure class="shot shot--mobile" data-shot data-caption="Low-fidelity wireframe 1">
+              <img src="../assets/images/case-studies/pinghub/wireframe-01.png" alt="Low-fidelity wireframe 1" loading="lazy">
+              <figcaption>Create Trip</figcaption>
+            </figure>
+            <figure class="shot shot--mobile" data-shot data-caption="Low-fidelity wireframe 2">
+              <img src="../assets/images/case-studies/pinghub/wireframe-02.png" alt="Low-fidelity wireframe 2" loading="lazy">
+              <figcaption>Trip Details Suggestion</figcaption>
+            </figure>
+            <figure class="shot shot--mobile" data-shot data-caption="Low-fidelity wireframe 3">
+              <img src="../assets/images/case-studies/pinghub/wireframe-03.png" alt="Low-fidelity wireframe 3" loading="lazy">
+              <figcaption>Available Dates</figcaption>
+            </figure>
+            <figure class="shot shot--mobile" data-shot data-caption="Low-fidelity wireframe 4">
+              <img src="../assets/images/case-studies/pinghub/wireframe-04.png" alt="Low-fidelity wireframe 4" loading="lazy">
+              <figcaption>Create Poll</figcaption>
+            </figure>
+            <figure class="shot shot--mobile" data-shot data-caption="Low-fidelity wireframe 5">
+              <img src="../assets/images/case-studies/pinghub/wireframe-05.png" alt="Low-fidelity wireframe 5" loading="lazy">
+              <figcaption>Trip Members</figcaption>
+            </figure>
+            <figure class="shot shot--mobile" data-shot data-caption="Low-fidelity wireframe 6">
+              <img src="../assets/images/case-studies/pinghub/wireframe-06.png" alt="Low-fidelity wireframe 6" loading="lazy">
+              <figcaption>Trip Details </figcaption>
+            </figure>
+          </div>
         </div>
 
         <div class="screen-group">
@@ -341,17 +406,21 @@
           </div>
           <div class="shot-row">
             <!-- placeholder: needs real screenshot — Create Trip -->
-            <figure class="shot" data-shot data-caption="Skip picking a date entirely — default to waiting for the group's vote">
-              <img src="../assets/images/case-studies/pinghub/06-create-trip.png" alt="Create Trip screen with fields for trip name, dates, trip type, members, destination, and notes" loading="lazy">
+            <figure class="shot shot--mobile" data-shot data-caption="Skip picking a date entirely — default to waiting for the group's vote">
+              <div class="mockup-scroll-frame">
+                <img src="../assets/images/case-studies/pinghub/06-create-trip.png" alt="Create Trip screen with fields for trip name, dates, trip type, members, destination, and notes" loading="lazy">
+              </div>
               <figcaption>Create Trip</figcaption>
             </figure>
             <!-- placeholder: needs real screenshot — Trip Detail -->
-            <figure class="shot" data-shot data-caption="The owner's home base: itinerary, budget, votes, one-tap edit/share">
-              <img src="../assets/images/case-studies/pinghub/07-trip-detail.png" alt="Trip Detail screen showing itinerary, destination, per-person budget, active votes, and shared notes" loading="lazy">
+            <figure class="shot shot--mobile" data-shot data-caption="The owner's home base: itinerary, budget, votes, one-tap edit/share">
+              <div class="mockup-scroll-frame">
+                <img src="../assets/images/case-studies/pinghub/07-trip-detail.png" alt="Trip Detail screen showing itinerary, destination, per-person budget, active votes, and shared notes" loading="lazy">
+              </div>
               <figcaption>Trip Detail</figcaption>
             </figure>
             <!-- placeholder: needs real screenshot — Trip Members drawer -->
-            <figure class="shot" data-shot data-caption="Who's joined, pending, or declined — with quick actions to invite more or leave">
+            <figure class="shot shot--mobile" data-shot data-caption="Who's joined, pending, or declined — with quick actions to invite more or leave">
               <img src="../assets/images/case-studies/pinghub/08-trip-members.png" alt="Trip Members drawer showing who has joined, is pending, or declined, with actions to invite more members or leave the trip" loading="lazy">
               <figcaption>Trip Members</figcaption>
             </figure>
@@ -365,23 +434,29 @@
           </div>
           <div class="shot-row">
             <!-- placeholder: needs real screenshot — Create Vote -->
-            <figure class="shot" data-shot data-caption="One builder for destinations and travel methods, with anonymous and open-option toggles">
-              <img src="../assets/images/case-studies/pinghub/09-create-vote.png" alt="Create Vote screen with topic, single or multiple choice options, anonymous voting toggle, and a deadline" loading="lazy">
+            <figure class="shot shot--mobile" data-shot data-caption="One builder for destinations and travel methods, with anonymous and open-option toggles">
+              <div class="mockup-scroll-frame">
+                <img src="../assets/images/case-studies/pinghub/09-create-vote.png" alt="Create Vote screen with topic, single or multiple choice options, anonymous voting toggle, and a deadline" loading="lazy">
+              </div>
               <figcaption>Create Vote</figcaption>
             </figure>
             <!-- placeholder: needs real screenshot — Select Free Day -->
-            <figure class="shot" data-shot data-caption="Availability as a heatmap — the best shared window at a glance">
-              <img src="../assets/images/case-studies/pinghub/10-select-free-day.png" alt="Select Free Day screen showing group availability as a calendar heatmap" loading="lazy">
+            <figure class="shot shot--mobile" data-shot data-caption="Availability as a heatmap — the best shared window at a glance">
+              <div class="mockup-scroll-frame">
+                <img src="../assets/images/case-studies/pinghub/10-select-free-day.png" alt="Select Free Day screen showing group availability as a calendar heatmap" loading="lazy">
+              </div>
               <figcaption>Select Free Day</figcaption>
             </figure>
             <!-- placeholder: needs real screenshot — Voting -->
-            <figure class="shot" data-shot data-caption="Live counts and a clear cutoff — no guessing whether it's closed">
+            <figure class="shot shot--mobile" data-shot data-caption="Live counts and a clear cutoff — no guessing whether it's closed">
               <img src="../assets/images/case-studies/pinghub/11-voting.png" alt="Voting screen showing live vote counts and a clear closing cutoff" loading="lazy">
               <figcaption>Voting</figcaption>
             </figure>
             <!-- placeholder: needs real screenshot — Recommended Route -->
-            <figure class="shot" data-shot data-caption="Auto-suggested route and day plan, sortable by price/reviews, one-tap regenerate">
-              <img src="../assets/images/case-studies/pinghub/12-recommended-route.png" alt="Recommended Route screen showing an auto-suggested route and day plan, sortable by price or reviews" loading="lazy">
+            <figure class="shot shot--mobile" data-shot data-caption="Auto-suggested route and day plan, sortable by price/reviews, one-tap regenerate">
+              <div class="mockup-scroll-frame">
+                <img src="../assets/images/case-studies/pinghub/12-recommended-route.png" alt="Recommended Route screen showing an auto-suggested route and day plan, sortable by price or reviews" loading="lazy">
+              </div>
               <figcaption>Recommended Route</figcaption>
             </figure>
           </div>
@@ -394,18 +469,22 @@
           </div>
           <div class="shot-row">
             <!-- placeholder: needs real screenshot — Invited User's Trip Detail -->
-            <figure class="shot" data-shot data-caption="Same screen, Accept/Decline instead of edit controls">
-              <img src="../assets/images/case-studies/pinghub/13-invited-trip-detail.png" alt="Invited user's Trip Detail screen with Accept and Decline options in place of edit controls" loading="lazy">
+            <figure class="shot shot--mobile" data-shot data-caption="Same screen, Accept/Decline instead of edit controls">
+              <div class="mockup-scroll-frame">
+                <img src="../assets/images/case-studies/pinghub/13-invited-trip-detail.png" alt="Invited user's Trip Detail screen with Accept and Decline options in place of edit controls" loading="lazy">
+              </div>
               <figcaption>Invited User's Trip Detail</figcaption>
             </figure>
             <!-- placeholder: needs real screenshot — Map -->
-            <figure class="shot" data-shot data-caption="Preview a destination's rating and reviews before adding it">
+            <figure class="shot shot--mobile" data-shot data-caption="Preview a destination's rating and reviews before adding it">
               <img src="../assets/images/case-studies/pinghub/14-map.png" alt="Map screen for previewing a destination's rating and reviews before adding it to a trip" loading="lazy">
               <figcaption>Map</figcaption>
             </figure>
             <!-- placeholder: needs real screenshot — Create Post -->
-            <figure class="shot" data-shot data-caption="Highlights and tips, with a shortcut to pull a route from trip history">
-              <img src="../assets/images/case-studies/pinghub/15-create-post.png" alt="Create Post screen for sharing highlights and tips, with a shortcut to pull a route from trip history" loading="lazy">
+            <figure class="shot shot--mobile" data-shot data-caption="Highlights and tips, with a shortcut to pull a route from trip history">
+              <div class="mockup-scroll-frame">
+                <img src="../assets/images/case-studies/pinghub/15-create-post.png" alt="Create Post screen for sharing highlights and tips, with a shortcut to pull a route from trip history" loading="lazy">
+              </div>
               <figcaption>Create Post</figcaption>
             </figure>
           </div>
@@ -418,12 +497,16 @@
           </div>
           <div class="shot-row">
             <!-- placeholder: needs real screenshot — Edit Route -->
-            <figure class="shot" data-shot data-caption="Add, remove, or re-time activities in place">
-              <img src="../assets/images/case-studies/pinghub/16-edit-route.png" alt="Edit Route screen for adding, removing, or re-timing itinerary activities in place" loading="lazy">
+            <figure class="shot shot--mobile" data-shot data-caption="Add, remove, or re-time activities in place">
+              <div class="mockup-scroll-frame">
+                <img src="../assets/images/case-studies/pinghub/16-edit-route.png" alt="Edit Route screen for adding, removing, or re-timing itinerary activities in place" loading="lazy">
+              </div>
               <figcaption>Edit Route</figcaption>
             </figure>
           </div>
         </div>
+
+
       </div>
     </section>
 

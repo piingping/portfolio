@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +9,14 @@
   <!-- Site chrome fonts: Plus Jakarta Sans (Latin) + Kanit (Latin + Thai) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
   <!-- Case-study content fonts (scoped to .case-study--pao only): Fraunces + Inter + JetBrains Mono
        Same type system as tooyenplus.html / pinghub.html, so every case study reads as one family of pages. -->
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
   <!-- Nav brand/signature font (Regular + Bold) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,14 +44,25 @@
       margin: 20px 0 24px;
       max-width: 560px;
     }
-    .role-table { width: 100%; border-collapse: collapse; background: var(--ty-surface); }
-    .role-table th, .role-table td {
+
+    .role-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--ty-surface);
+    }
+
+    .role-table th,
+    .role-table td {
       padding: 12px 18px;
       text-align: left;
       font-size: 0.9rem;
       border-bottom: 1px solid var(--ty-border);
     }
-    .role-table tr:last-child td { border-bottom: none; }
+
+    .role-table tr:last-child td {
+      border-bottom: none;
+    }
+
     .role-table th {
       font-family: var(--ty-font-mono);
       font-size: 0.68rem;
@@ -55,10 +71,18 @@
       color: var(--ty-text-sub);
       background: var(--ty-bg);
     }
-    .role-table td.yes { color: var(--ty-accent); font-weight: 700; }
-    .role-table td.no { color: var(--ty-text-disabled); }
+
+    .role-table td.yes {
+      color: var(--ty-accent);
+      font-weight: 700;
+    }
+
+    .role-table td.no {
+      color: var(--ty-text-disabled);
+    }
   </style>
 </head>
+
 <body>
   <!-- Copied from tooyenplus.html (case-studies/) — project: PAO.
        Structure/components/tokens/scripts reused from tooyenplus.html/pinghub.html;
@@ -124,21 +148,28 @@
         <div data-reveal>
           <p class="eyebrow">Case study — UX/UI Design &amp; Frontend</p>
           <h1>Chachoengsao <span class="accent">PAO</span></h1>
-          <p class="hero__tagline">A custom management website for the Chachoengsao Provincial Administrative Organization — replacing decentralized, manual workflows with a modern system, built directly from requirements gathered with the organization's own officials.</p>
+          <p class="hero__tagline">A custom management website for the Chachoengsao Provincial Administrative
+            Organization — replacing decentralized, manual workflows with a modern system, built directly from
+            requirements gathered with the organization's own officials.</p>
 
           <div class="factbox">
             <div class="factbox__head">Project Facts <span>NO. 03</span></div>
-            <div class="fact-row"><span class="label">Role</span><span class="leader"></span><span class="value">UX/UI &amp; Frontend, Meeting Module</span></div>
-            <div class="fact-row"><span class="label">Timeline</span><span class="leader"></span><span class="value">Aug – Sep 2025</span></div>
-            <div class="fact-row"><span class="label">Tools</span><span class="leader"></span><span class="value">Figma, React, Vite, Tailwind</span></div>
-            <div class="fact-row"><span class="label">Team</span><span class="leader"></span><span class="value">8, 3 on UX/UI &amp; Frontend</span></div>
+            <div class="fact-row"><span class="label">Role</span><span class="leader"></span><span class="value">UX/UI
+                &amp; Frontend, Meeting Module</span></div>
+            <div class="fact-row"><span class="label">Timeline</span><span class="leader"></span><span class="value">Aug
+                – Sep 2025</span></div>
+            <div class="fact-row"><span class="label">Tools</span><span class="leader"></span><span class="value">Figma,
+                React, Vite, Tailwind</span></div>
+            <div class="fact-row"><span class="label">Team</span><span class="leader"></span><span class="value">8, 3 on
+                UX/UI &amp; Frontend</span></div>
           </div>
         </div>
 
         <div class="hero__art" data-reveal>
           <div class="hero__phone">
             <!-- placeholder: needs real screenshot — Create Meeting screen -->
-            <img src="../assets/images/case-studies/pao/01-create-meeting.png" alt="Create Meeting screen with topic, time, and attendees pulled from the Personnel Database, showing the automatic SMS notification triggered on save">
+            <img src="../assets/images/case-studies/pao/01-create-meeting.png"
+              alt="Create Meeting screen with topic, time, and attendees pulled from the Personnel Database, showing the automatic SMS notification triggered on save">
           </div>
         </div>
       </div>
@@ -153,24 +184,30 @@
         </div>
 
         <div class="story__intro">
-          <p>Despite having a structured organization, the client faced operational inefficiencies caused by decentralized, manual processes. The system was designed for an internal user base of roughly 38 staff members, with 3 secretaries as the primary daily users.</p>
+          <p>Despite having a structured organization, the client faced operational inefficiencies caused by
+            decentralized, manual processes. The system was designed for an internal user base of roughly 38 staff
+            members, with 3 secretaries as the primary daily users.</p>
         </div>
 
         <div class="pain-grid">
           <div class="pain-card" data-reveal>
             <span class="pain-card__num">01 · Data</span>
             <h3>Complex data management</h3>
-            <p>Personnel records, including the history of Royal Decorations (เครื่องราชอิสริยาภรณ์), were tracked manually. There was no easy way to filter staff by Position or Group, making the process error-prone and slow.</p>
+            <p>Personnel records, including the history of Royal Decorations (เครื่องราชอิสริยาภรณ์), were tracked
+              manually. There was no easy way to filter staff by Position or Group, making the process error-prone and
+              slow.</p>
           </div>
           <div class="pain-card" data-reveal>
             <span class="pain-card__num">02 · Meetings</span>
             <h3>Meeting chaos</h3>
-            <p>Meeting coordination relied on informal channels like Line, which senior officials often overlooked. This led to missed meetings, scheduling conflicts, and no reliable way to audit past meeting evidence.</p>
+            <p>Meeting coordination relied on informal channels like Line, which senior officials often overlooked. This
+              led to missed meetings, scheduling conflicts, and no reliable way to audit past meeting evidence.</p>
           </div>
           <div class="pain-card" data-reveal>
             <span class="pain-card__num">03 · Approvals</span>
             <h3>Opaque approval process</h3>
-            <p>Document requests relied on physical paper trails. Staff had no way to check whether a request was "Pending" or "Rejected" without asking in person.</p>
+            <p>Document requests relied on physical paper trails. Staff had no way to check whether a request was
+              "Pending" or "Rejected" without asking in person.</p>
           </div>
         </div>
       </div>
@@ -182,31 +219,50 @@
         <span class="tag-label">Tag 02 — Role &amp; Responsibility</span>
         <div class="section__head">
           <h2>UX/UI Designer &amp; Frontend — Meeting Management Module</h2>
-          <p class="section__lede">This was a team project: an 8-person group split into PM+UX/UI (1), UX/UI &amp; Frontend (3), Backend (2), and Deploy &amp; Testing (2). Within the 3-person UX/UI &amp; Frontend team, each person owned a module end-to-end. I owned the Meeting Management Module — design and frontend implementation — while my two teammates owned Document Management and Personnel Data respectively.</p>
+          <p class="section__lede">This was a team project: an 8-person group split into PM+UX/UI (1), UX/UI &amp;
+            Frontend (3), Backend (2), and Deploy &amp; Testing (2). Within the 3-person UX/UI &amp; Frontend team, each
+            person owned a module end-to-end. I owned the Meeting Management Module — design and frontend implementation
+            — while my two teammates owned Document Management and Personnel Data respectively.</p>
         </div>
 
         <div class="role__grid">
           <div data-reveal>
             <ul class="scope-list">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>PM + UX/UI</strong> — 1 person</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>UX/UI &amp; Frontend</strong> — 3 people, one module each: Meeting (me), Document, Personnel</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Backend</strong> — 2 people</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Deploy &amp; Testing</strong> — 2 people</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg> <span><strong>PM + UX/UI</strong> — 1 person</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg> <span><strong>UX/UI &amp; Frontend</strong> — 3 people, one module each: Meeting (me), Document,
+                  Personnel</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg> <span><strong>Backend</strong> — 2 people</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg> <span><strong>Deploy &amp; Testing</strong> — 2 people</span></li>
             </ul>
           </div>
 
           <div data-reveal>
             <div class="responsibility">
               <h4>Design ownership</h4>
-              <p>Designed the full meeting workflow end-to-end, from creation to the "Meeting Evidence" upload flow, based on direct consultation with PAO staff.</p>
+              <p>Designed the full meeting workflow end-to-end, from creation to the "Meeting Evidence" upload flow,
+                based on direct consultation with PAO staff.</p>
             </div>
             <div class="responsibility">
               <h4>Cross-module collaboration</h4>
-              <p>Worked with my Personnel Data teammate to pull attendee lists from the Personnel Database, and with Backend to define notification and permission logic.</p>
+              <p>Worked with my Personnel Data teammate to pull attendee lists from the Personnel Database, and with
+                Backend to define notification and permission logic.</p>
             </div>
             <div class="responsibility">
               <h4>Frontend implementation</h4>
-              <p>Built the Meeting module's interface in React and Tailwind CSS, within the shared frontend codebase.</p>
+              <p>Built the Meeting module's interface in React and Tailwind CSS, within the shared frontend codebase.
+              </p>
             </div>
           </div>
         </div>
@@ -219,26 +275,34 @@
         <span class="tag-label">Tag 03 — Research</span>
         <div class="section__head">
           <h2>Two insights from talking to the people who'd actually use it.</h2>
-          <p class="section__lede">Since this is an internal system, my research focused on direct consultation with the client. I interviewed staff to understand their actual workflow, which surfaced two key pain points.</p>
+          <p class="section__lede">Since this is an internal system, my research focused on direct consultation with the
+            client. I interviewed staff to understand their actual workflow, which surfaced two key pain points.</p>
         </div>
 
         <div class="pain-grid pain-grid--2">
           <div class="pain-card" data-reveal>
             <span class="pain-card__num">Insight 01 · Channel trust</span>
             <h3>Senior officials don't check Line regularly</h3>
-            <p>Line invites sat unopened. Staff explained that this demographic pays far more attention to SMS, treating it as a direct and urgent alert, while Line notifications are easy to mute or ignore.</p>
+            <p>Line invites sat unopened. Staff explained that this demographic pays far more attention to SMS, treating
+              it as a direct and urgent alert, while Line notifications are easy to mute or ignore.</p>
           </div>
           <div class="pain-card" data-reveal>
             <span class="pain-card__num">Insight 02 · Audit trail</span>
             <h3>Meeting summaries lived on paper</h3>
-            <p>There was no centralized digital archive. During audits, staff wasted hours digging through physical folders to find evidence of past meetings.</p>
+            <p>There was no centralized digital archive. During audits, staff wasted hours digging through physical
+              folders to find evidence of past meetings.</p>
           </div>
         </div>
 
         <h3 class="subhead" style="margin-top:36px;">A design decision, not a default</h3>
         <div class="story__intro" style="margin-bottom:0;">
-          <p>My first instinct was to build notifications on Line — it's the tool everyone already uses, and the more "modern" integration. But the research pointed the other way: the tool people <em>use</em> daily wasn't the tool they <em>acted on</em> for anything official. I tested this assumption directly with the client before committing, and confirmed that senior officials treat SMS as the higher-priority channel.</p>
-          <p>This wasn't a free win, though. SMS has a real cost per message and no rich formatting, unlike a free Line message. I accepted that trade-off because the recipient group was small and well-defined (staff and officials), so guaranteed visibility mattered more than message richness or cost at that scale.</p>
+          <p>My first instinct was to build notifications on Line — it's the tool everyone already uses, and the more
+            "modern" integration. But the research pointed the other way: the tool people <em>use</em> daily wasn't the
+            tool they <em>acted on</em> for anything official. I tested this assumption directly with the client before
+            committing, and confirmed that senior officials treat SMS as the higher-priority channel.</p>
+          <p>This wasn't a free win, though. SMS has a real cost per message and no rich formatting, unlike a free Line
+            message. I accepted that trade-off because the recipient group was small and well-defined (staff and
+            officials), so guaranteed visibility mattered more than message richness or cost at that scale.</p>
         </div>
       </div>
     </section>
@@ -254,11 +318,13 @@
         <div class="iteration-notes" data-reveal>
           <div>
             <span class="tag-mini tag-mini--before">Before</span>
-            <p>A meeting got scheduled through an informal Line message to attendees — no confirmation, and no record kept anywhere once the message scrolled out of view.</p>
+            <p>A meeting got scheduled through an informal Line message to attendees — no confirmation, and no record
+              kept anywhere once the message scrolled out of view.</p>
           </div>
           <div>
             <span class="tag-mini tag-mini--after">After</span>
-            <p>The admin creates the meeting in the system → the system automatically sends an SMS to every attendee → attendance and evidence get logged and archived in one place.</p>
+            <p>The admin creates the meeting in the system → the system automatically sends an SMS to every attendee →
+              attendance and evidence get logged and archived in one place.</p>
           </div>
         </div>
       </div>
@@ -274,12 +340,20 @@
 
         <div class="solution-block" data-reveal>
           <h3>Appointment &amp; SMS dispatch</h3>
-          <p>I designed a comprehensive Meeting Creation Form that captures all essential details (Topic, Time, Attendees), with attendees pulled directly from the Personnel Database rather than typed manually. Upon submission, the system automatically triggers an SMS notification to all participants — ensuring high-priority invites reach senior officials immediately, bypassing the noise of chat apps.</p>
-          <p>The key design decision here was turning notification into a guaranteed side effect of saving a meeting, rather than a separate manual step. The admin doesn't send an invite — they create a meeting, and the system ensures everyone is notified as part of that single action.</p>
+          <p>I designed a comprehensive Meeting Creation Form that captures all essential details (Topic, Time,
+            Attendees), with attendees pulled directly from the Personnel Database rather than typed manually. Upon
+            submission, the system automatically triggers an SMS notification to all participants — ensuring
+            high-priority invites reach senior officials immediately, bypassing the noise of chat apps.</p>
+          <p>The key design decision here was turning notification into a guaranteed side effect of saving a meeting,
+            rather than a separate manual step. The admin doesn't send an invite — they create a meeting, and the system
+            ensures everyone is notified as part of that single action.</p>
           <div class="shot-row">
             <!-- placeholder: needs real screenshot — Create Meeting screen -->
-            <figure class="shot" data-shot data-caption="Meeting Creation Form — topic, time, and attendees pulled from the Personnel Database">
-              <img src="../assets/images/case-studies/pao/01-create-meeting.png" alt="Create Meeting screen with topic, time, and attendees pulled from the Personnel Database, showing the automatic SMS notification triggered on save" loading="lazy">
+            <figure class="shot" data-shot
+              data-caption="Meeting Creation Form — topic, time, and attendees pulled from the Personnel Database">
+              <img src="../assets/images/case-studies/pao/00-create-meeting-sms.png"
+                alt="Create Meeting screen with topic, time, and attendees pulled from the Personnel Database, showing the automatic SMS notification triggered on save"
+                loading="lazy">
               <figcaption>Create Meeting — form &amp; SMS trigger</figcaption>
             </figure>
           </div>
@@ -287,32 +361,48 @@
 
         <div class="solution-block" data-reveal>
           <h3>Meeting history function</h3>
-          <p>A centralized history log lets users view past meetings and retrieve evidence. To protect data integrity and prevent tampering, I designed a role-based permission structure.</p>
-          <p>Restricting Edit and Delete to Admins only was a deliberate design decision to preserve an accurate, tamper-proof audit trail — not just a technical access-control setting. If any staff member could alter a record after the fact, the archive couldn't function as real audit evidence — it would just be a file dump. This permission structure is what makes the archive trustworthy, not just searchable.</p>
+          <p>A centralized history log lets users view past meetings and retrieve evidence. To protect data integrity
+            and prevent tampering, I designed a role-based permission structure.</p>
+          <p>Restricting Edit and Delete to Admins only was a deliberate design decision to preserve an accurate,
+            tamper-proof audit trail — not just a technical access-control setting. If any staff member could alter a
+            record after the fact, the archive couldn't function as real audit evidence — it would just be a file dump.
+            This permission structure is what makes the archive trustworthy, not just searchable.</p>
 
-          <!-- TODO: รอผมยืนยันว่าจะใช้ 2 หรือ 3 tier — ระบบจริงที่ส่งมอบมี 3 ระดับสิทธิ์
-               (General User / Admin / senior-official tier ที่สิทธิ์สูงกว่า) แต่ draft
-               ต้นฉบับ (PAO_Case_Study_Draft.md) เขียนตารางไว้แค่ 2 tier (Staff/Admin)
-               ตารางด้านล่างคือเวอร์ชัน simplified 2 tier ตามที่ draft เขียนไว้ — ห้ามเปลี่ยน
-               เป็น 3 tier เองจนกว่าจะได้รับการยืนยัน -->
+
           <div class="role-table-wrap">
             <table class="role-table">
               <thead>
-                <tr><th>Role</th><th>View History</th><th>Create Meeting</th><th>Edit / Delete Records</th></tr>
+                <tr>
+                  <th>Role</th>
+                  <th>View History</th>
+                  <th>Create Meeting</th>
+                  <th>Edit / Delete Records</th>
+                </tr>
               </thead>
               <tbody>
-                <tr><td>Staff</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td></tr>
-                <tr><td>Admin</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+                <tr>
+                  <td>Staff</td>
+                  <td class="yes">Yes</td>
+                  <td class="no">No</td>
+                  <td class="no">No</td>
+                </tr>
+                <tr>
+                  <td>Admin</td>
+                  <td class="yes">Yes</td>
+                  <td class="yes">Yes</td>
+                  <td class="yes">Yes</td>
+                </tr>
               </tbody>
             </table>
           </div>
 
           <div class="shot-row">
             <!-- placeholder: needs real screenshot — Meeting History Archive screen -->
-            <figure class="shot" data-shot data-caption="Meeting History Archive — filterable by status, date, or category">
-              <div class="mockup-scroll-frame">
-                <img src="../assets/images/case-studies/pao/02-meeting-history-archive.png" alt="Meeting History Archive screen listing past meetings, filterable by status, date, or category" loading="lazy">
-              </div>
+            <figure class="shot" data-shot
+              data-caption="Meeting History Archive — filterable by status, date, or category">
+              <img src="../assets/images/case-studies/pao/02-meeting-history-archive.png"
+                alt="Meeting History Archive screen listing past meetings, filterable by status, date, or category"
+                loading="lazy">
               <figcaption>Meeting History Archive</figcaption>
             </figure>
           </div>
@@ -331,16 +421,39 @@
 
         <div class="screen-group">
           <div class="screen-group__head">
-            <h3>Meeting Overview &amp; History Archive</h3>
-            <p>Users can view a complete list of upcoming meetings and access the history of past sessions. A filter system lets users sort meetings by status, date, or category.</p>
+            <h3>Wireframe</h3>
+            <p>How I plan and design the user interface for the Meeting Overview, Create Meeting &amp; Meeting Details page.</p>
           </div>
           <div class="shot-row">
-            <!-- placeholder: needs real screenshot — Meeting Overview & History Archive -->
-            <figure class="shot" data-shot data-caption="Upcoming meetings and a filterable history of past sessions">
-              <div class="mockup-scroll-frame">
-                <img src="../assets/images/case-studies/pao/02-meeting-history-archive.png" alt="Meeting History Archive screen listing past meetings, filterable by status, date, or category" loading="lazy">
-              </div>
-              <figcaption>Meeting Overview &amp; History</figcaption>
+            <figure class="shot  " data-shot data-caption="Wireframe board for the Meeting Overview, Create Meeting, and Meeting Details pages">
+              <img src="../assets/images/case-studies/pao/wireframe.png"
+                alt="Wireframe board for the Meeting Overview, Create Meeting, and Meeting Details pages"
+                loading="lazy">
+              <figcaption>Wireframe</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="screen-group">
+          <div class="screen-group__head">
+            <h3>Meeting Overview &amp; History Archive</h3>
+            <p>Users can view a complete list of upcoming meetings and access the history of past sessions. A filter
+              system lets users sort meetings by status, date, or category.</p>
+          </div>
+          <div class="shot-row">
+            <!-- TODO: needs real screenshot — Meeting Overview (upcoming meetings list),
+                 distinct from the History Archive shot beside it -->
+            <figure class="shot" data-shot data-caption="Upcoming meetings, at a glance">
+              <img src="../assets/images/case-studies/pao/meeting-overview.png"
+                alt="Meeting Overview screen listing upcoming meetings"
+                loading="lazy">
+              <figcaption>Meeting Overview</figcaption>
+            </figure>
+            <figure class="shot" data-shot data-caption="A filterable history of past sessions">
+              <img src="../assets/images/case-studies/pao/02-meeting-history-archive.png"
+                alt="Meeting History Archive screen listing past meetings, filterable by status, date, or category"
+                loading="lazy">
+              <figcaption>History Archive</figcaption>
             </figure>
           </div>
         </div>
@@ -348,13 +461,24 @@
         <div class="screen-group">
           <div class="screen-group__head">
             <h3>Create Meeting &amp; Meeting Details Page</h3>
-            <p>Admins can easily create new meetings and select participants from the database. Once saved, the system automatically sends an instant SMS notification to all selected members.</p>
+            <p>Admins can easily create new meetings and select participants from the database. Once saved, the system
+              automatically sends an instant SMS notification to all selected members.</p>
           </div>
           <div class="shot-row">
-            <!-- placeholder: needs real screenshot — Create Meeting / Meeting Details -->
-            <figure class="shot" data-shot data-caption="Creating a meeting and selecting participants from the Personnel Database">
-              <img src="../assets/images/case-studies/pao/01-create-meeting.png" alt="Create Meeting screen with topic, time, and attendees pulled from the Personnel Database, showing the automatic SMS notification triggered on save" loading="lazy">
-              <figcaption>Create Meeting &amp; Details</figcaption>
+            <figure class="shot" data-shot
+              data-caption="Creating a meeting and selecting participants from the Personnel Database">
+              <img src="../assets/images/case-studies/pao/01-create-meeting.png"
+                alt="Create Meeting screen with topic, time, and attendees pulled from the Personnel Database, showing the automatic SMS notification triggered on save"
+                loading="lazy">
+              <figcaption>Create Meeting</figcaption>
+            </figure>
+            <!-- TODO: needs real screenshot — Meeting Details page, distinct from
+                 the Create Meeting form beside it -->
+            <figure class="shot" data-shot data-caption="Meeting details, once created">
+              <img src="../assets/images/case-studies/pao/meeting-details.png"
+                alt="Meeting Details page"
+                loading="lazy">
+              <figcaption>Meeting Details</figcaption>
             </figure>
           </div>
         </div>
@@ -362,12 +486,16 @@
         <div class="screen-group">
           <div class="screen-group__head">
             <h3>Meeting Record Page</h3>
-            <p>After the meeting concludes, staff finalize the record on this page — verifying actual attendance against the invited list and uploading meeting minutes or summary documents.</p>
+            <p>After the meeting concludes, staff finalize the record on this page — verifying actual attendance against
+              the invited list and uploading meeting minutes or summary documents.</p>
           </div>
           <div class="shot-row">
             <!-- placeholder: needs real screenshot — Meeting Record page -->
-            <figure class="shot" data-shot data-caption="Verifying attendance and uploading meeting minutes after the meeting concludes">
-              <img src="../assets/images/case-studies/pao/03-meeting-record.png" alt="Meeting Record page for verifying attendance against the invited list and uploading meeting minutes or summary documents" loading="lazy">
+            <figure class="shot" data-shot
+              data-caption="Verifying attendance and uploading meeting minutes after the meeting concludes">
+              <img src="../assets/images/case-studies/pao/03-meeting-record.png"
+                alt="Meeting Record page for verifying attendance against the invited list and uploading meeting minutes or summary documents"
+                loading="lazy">
               <figcaption>Meeting Record</figcaption>
             </figure>
           </div>
@@ -381,13 +509,30 @@
         <span class="tag-label">Tag 07 — Anticipated Impact</span>
         <div class="section__head">
           <h2>What each feature was designed to fix.</h2>
-          <p class="section__lede">This project was completed and handed off, and I wasn't able to follow up on real usage data afterward — so rather than claim results I can't verify, here's what each feature was specifically designed to address.</p>
+          <p class="section__lede">This project was completed and handed off, and I wasn't able to follow up on real
+            usage data afterward — so rather than claim results I can't verify, here's what each feature was
+            specifically designed to address.</p>
         </div>
 
         <ul class="checklist">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> The <strong>SMS dispatch</strong> was designed to close the gap where senior officials missed invites sent through Line — guaranteeing visibility regardless of chat app fatigue.</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> The <strong>Meeting History Archive</strong> was designed to remove the audit bottleneck of manually searching paper folders, turning a multi-hour physical search into a single filtered lookup.</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> The <strong>RBAC permission structure</strong> was designed to make the archive usable as trustworthy audit evidence, not just a searchable file store.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="9 11 12 14 22 4" />
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+            </svg> The <strong>SMS dispatch</strong> was designed to close the gap where senior officials missed invites
+            sent through Line — guaranteeing visibility regardless of chat app fatigue.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="9 11 12 14 22 4" />
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+            </svg> The <strong>Meeting History Archive</strong> was designed to remove the audit bottleneck of manually
+            searching paper folders, turning a multi-hour physical search into a single filtered lookup.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <polyline points="9 11 12 14 22 4" />
+              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+            </svg> The <strong>RBAC permission structure</strong> was designed to make the archive usable as trustworthy
+            audit evidence, not just a searchable file store.</li>
         </ul>
       </div>
     </section>
@@ -403,15 +548,21 @@
         <div data-reveal>
           <div class="lesson-card">
             <span class="tag-label">Clarity &amp; agreement</span>
-            <p>Working with a real client highlighted the importance of scope definition. I learned that verbal discussions aren't enough — both the developer and the client need to agree on every detail explicitly. This ensures a shared vision and prevents scope creep.</p>
+            <p>Working with a real client highlighted the importance of scope definition. I learned that verbal
+              discussions aren't enough — both the developer and the client need to agree on every detail explicitly.
+              This ensures a shared vision and prevents scope creep.</p>
           </div>
           <div class="lesson-card">
             <span class="tag-label">Technology must fit the user</span>
-            <p>I initially wanted to use Line because it's modern, but the reality was that senior users respond better to SMS. I learned that the "best" technology isn't always the most modern one — it's the one that fits actual user behavior.</p>
+            <p>I initially wanted to use Line because it's modern, but the reality was that senior users respond better
+              to SMS. I learned that the "best" technology isn't always the most modern one — it's the one that fits
+              actual user behavior.</p>
           </div>
           <div class="lesson-card">
             <span class="tag-label">Feedback loops matter</span>
-            <p>I delivered this project but didn't have a way to check back on real usage afterward. In hindsight, I'd want to define a simple follow-up point or success metric with the client before the project wraps, so future case studies can speak to actual outcomes, not just design intent.</p>
+            <p>I delivered this project but didn't have a way to check back on real usage afterward. In hindsight, I'd
+              want to define a simple follow-up point or success metric with the client before the project wraps, so
+              future case studies can speak to actual outcomes, not just design intent.</p>
           </div>
         </div>
       </div>
@@ -426,15 +577,18 @@
         </div>
         <div class="explore-more__grid">
           <a class="explore-card" href="nextgen-ai.html">
-            <img class="explore-card__img" src="../assets/images/home/nextgen-ai-thumbnail.png" alt="NextGen AI case study thumbnail" loading="lazy">
+            <img class="explore-card__img" src="../assets/images/home/nextgen-ai-thumbnail.png"
+              alt="NextGen AI case study thumbnail" loading="lazy">
             <span class="explore-card__title">NextGen AI</span>
           </a>
           <a class="explore-card" href="pinghub.html">
-            <img class="explore-card__img" src="../assets/images/home/pinghub-thumbnail.png" alt="PingHub case study thumbnail" loading="lazy">
+            <img class="explore-card__img" src="../assets/images/home/pinghub-thumbnail.png"
+              alt="PingHub case study thumbnail" loading="lazy">
             <span class="explore-card__title">PingHub</span>
           </a>
           <a class="explore-card" href="tooyenplus.html">
-            <img class="explore-card__img" src="../assets/images/home/tooyenplus-thumbnail.png" alt="Tooyen+ case study thumbnail" loading="lazy">
+            <img class="explore-card__img" src="../assets/images/home/tooyenplus-thumbnail.png"
+              alt="Tooyen+ case study thumbnail" loading="lazy">
             <span class="explore-card__title">Tooyen+</span>
           </a>
         </div>
@@ -444,7 +598,11 @@
     <!-- ============ LIGHTBOX ============ -->
     <div class="ty-lightbox" id="tyLightbox">
       <button class="ty-lightbox__close" id="tyLightboxClose" aria-label="Close">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
       </button>
       <div class="ty-lightbox__frame">
         <img id="tyLightboxImg" src="" alt="">
@@ -454,7 +612,11 @@
 
     <!-- ============ BACK TO TOP (fixed, bottom-right) ============ -->
     <a href="#top" class="back-to-top" id="backToTop" aria-label="Back to top">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <line x1="12" y1="19" x2="12" y2="5" />
+        <polyline points="5 12 12 5 19 12" />
+      </svg>
     </a>
 
   </main>
@@ -468,14 +630,17 @@
         <span class="site-footer-mini__label">Contact</span>
         <div class="site-footer-mini__icons">
           <a class="site-footer-mini__icon" href="mailto:sasiyakorn.chansiri@gmail.com" aria-label="Email Sasiyakorn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
               <rect x="3" y="5" width="18" height="14" rx="1"></rect>
               <path d="M3 7l9 6 9-6"></path>
             </svg>
           </a>
-          <a class="site-footer-mini__icon" href="https://github.com/piingping" target="_blank" rel="noopener" aria-label="GitHub profile">
+          <a class="site-footer-mini__icon" href="https://github.com/piingping" target="_blank" rel="noopener"
+            aria-label="GitHub profile">
             <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.84 1.238 1.84 1.238 1.07 1.834 2.807 1.304 3.492.997.108-.775.42-1.305.763-1.605-2.665-.305-5.466-1.334-5.466-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+              <path
+                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.84 1.238 1.84 1.238 1.07 1.834 2.807 1.304 3.492.997.108-.775.42-1.305.763-1.605-2.665-.305-5.466-1.334-5.466-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
             </svg>
           </a>
         </div>
@@ -567,4 +732,5 @@
   </script>
 
 </body>
+
 </html>

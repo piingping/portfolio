@@ -962,6 +962,14 @@
       }
 
       .hero-photo-wrap {
+        /* Without an explicit width, this grid item doesn't stretch to
+           fill its column on this single-column layout — and since its
+           only child (.photo-frame) contains nothing but an absolutely
+           positioned <img> (excluded from intrinsic-size calculations),
+           it was collapsing to ~2px (just its own border) instead of
+           showing the photo at all. width:100% + max-width below is what
+           actually sizes it responsively. */
+        width: 100%;
         order: -1;
         max-width: 280px;
         margin: 0 auto 12px;

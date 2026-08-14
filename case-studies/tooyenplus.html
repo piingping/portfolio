@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +9,13 @@
   <!-- Site chrome fonts: Plus Jakarta Sans (Latin) + Kanit (Latin + Thai) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
   <!-- Case-study content fonts (scoped to .case-study--tooyen only): Fraunces + Inter + JetBrains Mono -->
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
   <!-- Nav brand/signature font (Regular + Bold) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,7 +38,8 @@
        and a rotated phone mockup, unlike the other 3 pages' plain hero. */
     .hero__blob {
       position: absolute;
-      width: 340px; height: 340px;
+      width: 340px;
+      height: 340px;
       background: var(--ty-accent-2);
       opacity: 0.35;
       border-radius: 44% 56% 62% 38% / 45% 40% 60% 55%;
@@ -41,20 +47,26 @@
       top: 10%;
       z-index: 0;
     }
+
     .hero__phone {
       width: 240px;
       border-radius: 30px;
       transform: rotate(-4deg);
     }
+
     .hero__magnet {
       position: absolute;
       z-index: 2;
-      top: -14px; right: 34%;
-      width: 40px; height: 40px;
+      top: -14px;
+      right: 34%;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       background: var(--ty-accent);
       color: #fff;
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-family: var(--ty-font-mono);
       font-size: 0.65rem;
       font-weight: 700;
@@ -63,47 +75,194 @@
     }
 
     /* Caveat note under the Role scope list — only this page uses it. */
-    .not-in-scope { margin-top: 24px; font-size: 0.85rem; color: var(--ty-text-sub); font-style: italic; }
+    .not-in-scope {
+      margin-top: 24px;
+      font-size: 0.85rem;
+      color: var(--ty-text-sub);
+      font-style: italic;
+    }
 
     /* Process — numbered stepper, only used on this page. */
-    .stepper { position: relative; }
-    .step { display: grid; grid-template-columns: 56px 1fr; gap: 20px; padding-bottom: 40px; position: relative; }
-    .step:last-child { padding-bottom: 0; }
-    .step__line { position: absolute; left: 27px; top: 56px; bottom: -4px; width: 2px; background: var(--ty-border); }
-    .step:last-child .step__line { display: none; }
+    .stepper {
+      position: relative;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 20px;
+      padding-bottom: 40px;
+      position: relative;
+    }
+
+    .step:last-child {
+      padding-bottom: 0;
+    }
+
+    .step__line {
+      position: absolute;
+      left: 27px;
+      top: 56px;
+      bottom: -4px;
+      width: 2px;
+      background: var(--ty-border);
+    }
+
+    .step:last-child .step__line {
+      display: none;
+    }
+
     .step__num {
-      width: 54px; height: 54px;
+      width: 54px;
+      height: 54px;
       border-radius: 50%;
       background: var(--ty-surface);
       border: 2px solid var(--ty-accent);
       color: var(--ty-accent);
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-family: var(--ty-font-mono);
-      font-weight: 700; font-size: 1rem;
-      flex-shrink: 0; z-index: 1;
+      font-weight: 700;
+      font-size: 1rem;
+      flex-shrink: 0;
+      z-index: 1;
     }
-    .step__body h3 { font-size: 1.1rem; margin-bottom: 6px; }
-    .step__body p { font-size: 0.92rem; margin: 0; max-width: 62ch; }
 
-    /* Iteration — side-by-side before/after image compare, only used here. */
-    .iteration-compare { display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: center; margin-bottom: 36px; }
-    @media (max-width: 760px) {
-      .iteration-compare { grid-template-columns: 1fr; }
-      .iteration-compare__arrow { transform: rotate(90deg); margin: 0 auto; }
+    .step__body h3 {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
     }
-    .iteration-pane { text-align: center; }
-    .iteration-pane img { border-radius: var(--ty-radius-sm); border: 1px solid var(--ty-border); box-shadow: var(--ty-shadow-card); max-width: 230px; margin: 0 auto; min-height: 180px; background: var(--ty-bg); }
-    .iteration-compare__arrow svg { width: 30px; height: 30px; color: var(--ty-accent-2); }
+
+    .step__body p {
+      font-size: 0.92rem;
+      margin: 0;
+      max-width: 62ch;
+    }
+
+    /* Iteration — side-by-side before/after image compare, only used here.
+       The before/after images are wildly different heights once scaled to
+       the same 230px width (e.g. the recipe editor's before is ~624px tall,
+       its after ~1095px) — align-items:end (was center) bottom-aligns the
+       two panes instead of centering them, and since the tag is now the
+       LAST element in each pane (moved below its image in the markup,
+       instead of above it), that bottom-alignment is what puts "First
+       draft" and "Final" on the same line regardless of how short the
+       before image is. */
+    .iteration-compare {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 20px;
+      align-items: Top;
+      margin-bottom: 36px;
+    }
+
+    @media (max-width: 760px) {
+      .iteration-compare {
+        grid-template-columns: 1fr;
+      }
+
+      .iteration-compare__arrow {
+        transform: rotate(90deg);
+        margin: 0 auto;
+      }
+    }
+
+    .iteration-pane {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 12px;
+    }
+
+    .iteration-pane img {
+      border-radius: var(--ty-radius-sm);
+      border: 1px solid var(--ty-border);
+      box-shadow: var(--ty-shadow-card);
+      max-width: 230px;
+      margin: 0 auto;
+      min-height: 180px;
+      background: var(--ty-bg);
+    }
+
+    /* Tag sits below its image now, not above — shared .tag-mini's
+       margin-bottom (spacing for when it led) is dead weight down here;
+       swap it for margin-top instead. */
+    .iteration-pane .tag-mini {
+      margin-bottom: 0;
+      margin-top: 10px;
+    }
+
+    /* Give the "after" result its own presence instead of reusing the same
+       flat accent fill as every other tag-mini--after on the site — a warm
+       gradient + soft glow (the site's established hover-accent look,
+       reused here) makes the finished result read as the highlight next to
+       the plain neutral "before" pill beside it. */
+    .iteration-pane .tag-mini--after {
+      background: linear-gradient(135deg, var(--ty-accent), var(--ty-accent-2));
+      box-shadow: 0 4px 14px rgba(214, 91, 62, 0.4);
+    }
+
+    .iteration-compare__arrow svg {
+      width: 30px;
+      height: 30px;
+      color: var(--ty-accent-2);
+    }
 
     /* Needs more room before the honesty-note that follows it, unlike the
        shared default (tuned for PingHub/PAO, where nothing follows). */
-    .iteration-notes { margin-bottom: 28px; }
+    .iteration-notes .note-highlight {
+      background: linear-gradient(135deg, #ffffff, #FFF5E5);
+      border: 1.5px solid var(--ty-accent);
+      box-shadow: 0 12px 24px rgba(214, 91, 62, 0.12);
+      position: relative;
+      transform: scale(1.02);
+      /* ขยายขนาดขึ้นมานิดนึงเพื่อให้เด่น */
+      z-index: 1;
+    }
+
+    /* เพิ่มลูกเล่นไอคอนประกายแสง (Sparkle) ที่มุมขวาบน */
+.iteration-notes .note-highlight::before {
+      content: ''; /* เปลี่ยนเป็นค่าว่าง */
+      position: absolute;
+      top: -14px;
+      right: -10px;
+      
+      /* กำหนดขนาดของไอคอน (ปรับให้ใหญ่หรือเล็กลงได้ที่นี่) */
+      width: 24px;  
+      height: 24px; 
+      
+      /* ใช้ background-image แทน และใส่ ../ นำหน้า path */
+      background-image: url('../assets/images/about/doodle-star.png');
+      background-size: contain; /* บังคับให้รูปย่อพอดีกรอบ */
+      background-position: center;
+      background-repeat: no-repeat;
+      
+      /* ตกแต่งกรอบวงกลมและเงา */
+
+      
+      /* สร้างพื้นที่สีขาวรอบๆ รูป (คล้ายๆ กรอบ) */
+      padding: 6px; 
+      
+      /* ให้ตัวกล่องขยับตามขนาด content อย่างถูกต้อง */
+      display: inline-block; 
+      box-sizing: content-box;
+    }
+
+    .iteration-notes .note-highlight h4 {
+      color: var(--ty-accent);
+      font-weight: 700;
+    }
 
     /* Lightbox image cap is narrower on this page (its screenshots are
        already smaller), vs. the shared 560px default. */
-    .ty-lightbox img { max-width: min(420px, 90vw); }
+    .ty-lightbox img {
+      max-width: min(420px, 90vw);
+    }
   </style>
 </head>
+
 <body>
   <!-- Copied from template.html (case-studies/) — project: Tooyen+
        Content/structure adapted from reference/tooyen-plus.html.
@@ -179,14 +338,19 @@
         <div data-reveal>
           <p class="eyebrow">Case study — UX/UI &amp; Frontend</p>
           <h1>Too<span class="accent">Yen+</span></h1>
-          <p class="hero__tagline">An app that helps families keep track of what's actually in the fridge — so groceries get cooked before they get thrown away.</p>
+          <p class="hero__tagline">An app that helps families keep track of what's actually in the fridge — so groceries
+            get cooked before they get thrown away.</p>
 
           <div class="factbox">
             <div class="factbox__head">Project Facts <span>NO. 27</span></div>
-            <div class="fact-row"><span class="label">Role</span><span class="leader"></span><span class="value">UX/UI &amp; Frontend</span></div>
-            <div class="fact-row"><span class="label">Timeline</span><span class="leader"></span><span class="value">Oct – Nov 2025</span></div>
-            <div class="fact-row"><span class="label">Tools</span><span class="leader"></span><span class="value">Figma, React Native</span></div>
-            <div class="fact-row"><span class="label">Team</span><span class="leader"></span><span class="value">6, course project</span></div>
+            <div class="fact-row"><span class="label">Role</span><span class="leader"></span><span class="value">UX/UI
+                &amp; Frontend</span></div>
+            <div class="fact-row"><span class="label">Timeline</span><span class="leader"></span><span class="value">Oct
+                – Nov 2025</span></div>
+            <div class="fact-row"><span class="label">Tools</span><span class="leader"></span><span class="value">Figma,
+                React Native</span></div>
+            <div class="fact-row"><span class="label">Team</span><span class="leader"></span><span class="value">6,
+                course project</span></div>
           </div>
         </div>
 
@@ -195,7 +359,8 @@
           <div class="hero__magnet">FRESH</div>
           <div class="hero__phone">
             <!-- placeholder: needs real screenshot — landing/login screen -->
-            <img src="../assets/images/tooyenplus/13-landing-login-hifi.png" alt="TooYen+ landing screen with logo and login/register buttons">
+            <img src="../assets/images/tooyenplus/13-landing-login-hifi.png"
+              alt="TooYen+ landing screen with logo and login/register buttons">
           </div>
         </div>
       </div>
@@ -210,54 +375,80 @@
         </div>
 
         <div class="story__intro">
-          <p>Living in a dorm, I kept buying groceries to cook with — and kept throwing half of them away. Expired, forgotten, wasted. Talking it through with <strong>friends, family, and my own habits</strong> (informal, unstructured conversations, not a formal study), I realised it wasn't just me. Three things kept coming up.</p>
+          <p>Living in a dorm, I kept buying groceries to cook with — and kept throwing half of them away. Expired,
+            forgotten, wasted. Talking it through with <strong>friends, family, and my own habits</strong> (informal,
+            unstructured conversations, not a formal study), I realised it wasn't just me. Three things kept coming up.
+          </p>
         </div>
 
         <div class="pain-grid">
           <div class="pain-card" data-reveal>
             <span class="pain-card__num">01 · Out of sight</span>
             <h3>Out of sight, out of mind</h3>
-            <p>People buy groceries but forget about them until they expire — food waste from losing visual contact, not from not caring.</p>
+            <p>People buy groceries but forget about them until they expire — food waste from losing visual contact, not
+              from not caring.</p>
           </div>
           <div class="pain-card" data-reveal>
             <span class="pain-card__num">02 · Decision fatigue</span>
             <h3>"What do I even cook?"</h3>
-            <p>Even with fresh ingredients on hand, deciding what to make is a small mental tax — one that usually loses to ordering food instead.</p>
+            <p>Even with fresh ingredients on hand, deciding what to make is a small mental tax — one that usually loses
+              to ordering food instead.</p>
           </div>
           <div class="pain-card" data-reveal>
             <span class="pain-card__num">03 · Shared spaces</span>
             <h3>Nobody knows whose it is</h3>
-            <p>In a shared kitchen — a dorm, a family fridge — it's unclear what belongs to whom, so things get used by accident, or wasted out of caution.</p>
+            <p>In a shared kitchen — a dorm, a family fridge — it's unclear what belongs to whom, so things get used by
+              accident, or wasted out of caution.</p>
           </div>
         </div>
 
-        <div class="research-note" data-reveal>
+        <!-- <div class="research-note" data-reveal>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
           <p><strong>How I found this out:</strong> conversational, unstructured conversations with people around me — not a formal research study. It shaped what problem the app was solving, though it's a different thing from testing the finished screens with real users — more on that gap under Reflection.</p>
-        </div>
+        </div> -->
       </div>
     </section>
 
     <!-- ============ ROLE ============ -->
     <section class="section" id="role">
       <div class="wrap">
-        <span class="tag-label">Tag 02 — My Role</span>
+        <span class="tag-label">My Role</span>
         <div class="section__head">
           <h2>UX/UI Designer &amp; Frontend Developer</h2>
-          <p class="section__lede">On a 6-person course team, I paired with one teammate on design and frontend. Everything below is a screen I designed and built myself.</p>
+          <p class="section__lede">On a 6-person course team, I paired with one teammate on design and frontend.
+            Everything below is a screen I designed and built myself.</p>
         </div>
 
         <div class="role__grid">
           <div data-reveal>
             <ul class="scope-list">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Authentication — login &amp; register</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Fridge &amp; ingredient management</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Menu search, filtering &amp; recommendations</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Recipe detail, creation &amp; editing</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Cooking confirmation flow</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Profile &amp; notifications</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg> Authentication — login &amp; register</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg> Fridge &amp; ingredient management</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg> Menu search, filtering &amp; recommendations</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg> Recipe detail, creation &amp; editing</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg> Cooking confirmation flow</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg> Profile &amp; notifications</li>
             </ul>
-            <p class="not-in-scope">Not pictured here: the app's main/landing surface (built by my teammate), and the database/ERD, owned by teammates on the backend side.</p>
+            <p class="not-in-scope">Not pictured here: the app's main/landing surface (built by my teammate), and the
+              database/ERD, owned by teammates on the backend side.</p>
           </div>
 
           <div data-reveal>
@@ -267,7 +458,8 @@
             </div>
             <div class="responsibility">
               <h4>Facilitation</h4>
-              <p>Reviewed designs with the developers building my flows, to catch constraints early rather than after the fact.</p>
+              <p>Reviewed designs with the developers building my flows, to catch constraints early rather than after
+                the fact.</p>
             </div>
             <div class="responsibility">
               <h4>Frontend development</h4>
@@ -292,31 +484,46 @@
 
         <div class="stepper">
           <div class="step" data-reveal>
-            <div><div class="step__num">1</div><div class="step__line"></div></div>
+            <div>
+              <div class="step__num">1</div>
+              <div class="step__line"></div>
+            </div>
             <div class="step__body">
               <h3>Requirements gathering</h3>
-              <p>As a team, we documented 42 requirements using MoSCoW prioritisation — Must / Should / Could / Won't have — across Functional, Technical, Operational, KPI and Transitional categories.</p>
+              <p>As a team, we documented 42 requirements using MoSCoW prioritisation — Must / Should / Could / Won't
+                have — across Functional, Technical, Operational, KPI and Transitional categories.</p>
             </div>
           </div>
           <div class="step" data-reveal>
-            <div><div class="step__num">2</div><div class="step__line"></div></div>
+            <div>
+              <div class="step__num">2</div>
+              <div class="step__line"></div>
+            </div>
             <div class="step__body">
               <h3>Use case mapping</h3>
-              <p>Requirements became a use case diagram across three actor types — Admin, Guest, User — covering fridge membership, ingredient filtering, and recipe search.</p>
+              <p>Requirements became a use case diagram across three actor types — Admin, Guest, User — covering fridge
+                membership, ingredient filtering, and recipe search.</p>
             </div>
           </div>
           <div class="step" data-reveal>
-            <div><div class="step__num">3</div><div class="step__line"></div></div>
+            <div>
+              <div class="step__num">3</div>
+              <div class="step__line"></div>
+            </div>
             <div class="step__body">
               <h3>Process flows (BPMN)</h3>
-              <p>Every feature I owned was modelled step-by-step across User and Application swimlanes before a single screen was drawn — sign up, fridge membership, ingredient ownership, recommendations, reminders.</p>
+              <p>Every feature I owned was modelled step-by-step across User and Application swimlanes before a single
+                screen was drawn — sign up, fridge membership, ingredient ownership, recommendations, reminders.</p>
             </div>
           </div>
           <div class="step" data-reveal>
-            <div><div class="step__num">4</div></div>
+            <div>
+              <div class="step__num">4</div>
+            </div>
             <div class="step__body">
               <h3>Wireframes → high-fidelity UI</h3>
-              <p>Low-fidelity first, to settle structure and hierarchy — then the final interface: a warm orange identity, card-based browsing, tabbed ingredient/instruction views.</p>
+              <p>Low-fidelity first, to settle structure and hierarchy — then the final interface: a warm orange
+                identity, card-based browsing, tabbed ingredient/instruction views.</p>
             </div>
           </div>
         </div>
@@ -333,19 +540,37 @@
 
         <div class="feature-grid">
           <div class="feature-card" data-reveal>
-            <div class="feature-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div class="feature-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg></div>
             <h3>Expiration tracker</h3>
-            <p>Automatically calculates days remaining on each ingredient, and sends timely notifications nudging users to cook it before it spoils.</p>
+            <p>Automatically calculates days remaining on each ingredient, and sends timely notifications nudging users
+              to cook it before it spoils.</p>
           </div>
           <div class="feature-card" data-reveal>
-            <div class="feature-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
+            <div class="feature-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="17 1 21 5 17 9" />
+                <path d="M3 11V9a4 4 0 0 1 4-4h14" />
+                <polyline points="7 23 3 19 7 15" />
+                <path d="M21 13v2a4 4 0 0 1-4 4H3" />
+              </svg></div>
             <h3>Household sync</h3>
-            <p>A real-time, shared inventory so every household member sees the same fridge contents — fewer duplicate purchases, clearer ownership.</p>
+            <p>A real-time, shared inventory so every household member sees the same fridge contents — fewer duplicate
+              purchases, clearer ownership.</p>
           </div>
           <div class="feature-card" data-reveal>
-            <div class="feature-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg></div>
+            <div class="feature-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <line x1="9" y1="3" x2="9" y2="21" />
+                <line x1="15" y1="3" x2="15" y2="21" />
+              </svg></div>
             <h3>What's next: less typing</h3>
-            <p>This build focused on getting manual entry right. The natural next step is a barcode/OCR receipt scan, so users type in far less by hand.</p>
+            <p>This build focused on getting manual entry right. The natural next step is a barcode/OCR receipt scan, so
+              users type in far less by hand.</p>
           </div>
         </div>
       </div>
@@ -367,18 +592,22 @@
           </div>
           <div class="shot-row">
             <!-- placeholder: needs real screenshot — final landing screen -->
-            <figure class="shot" data-shot data-caption="Final landing screen — straight into the fridge or a recipe search, no friction">
-              <img src="../assets/images/tooyenplus/13-landing-login-hifi.png" alt="Final landing screen with TooYen+ logo and login, register, and browse buttons" loading="lazy">
+            <figure class="shot" data-shot
+              data-caption="Final landing screen — straight into the fridge or a recipe search, no friction">
+              <img src="../assets/images/tooyenplus/13-landing-login-hifi.png"
+                alt="Final landing screen with TooYen+ logo and login, register, and browse buttons" loading="lazy">
               <figcaption>Final — Landing screen</figcaption>
             </figure>
             <!-- placeholder: needs real screenshot — login lo-fi -->
             <figure class="shot" data-shot data-caption="Low-fi — Login">
-              <img src="../assets/images/tooyenplus/01-login-lofi.png" alt="Low-fidelity wireframe of the login screen" loading="lazy">
+              <img src="../assets/images/tooyenplus/01-login-lofi.png" alt="Low-fidelity wireframe of the login screen"
+                loading="lazy">
               <figcaption>Low-fi — Login</figcaption>
             </figure>
             <!-- placeholder: needs real screenshot — register lo-fi -->
             <figure class="shot" data-shot data-caption="Low-fi — Register">
-              <img src="../assets/images/tooyenplus/02-register-lofi.png" alt="Low-fidelity wireframe of the register screen" loading="lazy">
+              <img src="../assets/images/tooyenplus/02-register-lofi.png"
+                alt="Low-fidelity wireframe of the register screen" loading="lazy">
               <figcaption>Low-fi — Register</figcaption>
             </figure>
             <!-- placeholder: needs real screenshot — final register screen -->
@@ -397,12 +626,14 @@
           <div class="shot-row">
             <!-- placeholder: needs real screenshot — my fridges list -->
             <figure class="shot" data-shot data-caption="Fridges a user belongs to">
-              <img src="../assets/images/tooyenplus/14-my-fridge-hifi.png" alt="My Fridges screen showing multiple fridges a user belongs to" loading="lazy">
+              <img src="../assets/images/tooyenplus/14-my-fridge-hifi.png"
+                alt="My Fridges screen showing multiple fridges a user belongs to" loading="lazy">
               <figcaption>My Fridges</figcaption>
             </figure>
             <!-- placeholder: needs real screenshot — select fridge -->
             <figure class="shot" data-shot data-caption="Picking which fridge to manage">
-              <img src="../assets/images/tooyenplus/15-fridge-select-hifi.png" alt="Select Fridge screen for picking which fridge to manage" loading="lazy">
+              <img src="../assets/images/tooyenplus/15-fridge-select-hifi.png"
+                alt="Select Fridge screen for picking which fridge to manage" loading="lazy">
               <figcaption>Select Fridge</figcaption>
             </figure>
           </div>
@@ -416,17 +647,20 @@
           <div class="shot-row">
             <!-- placeholder: needs real screenshot — filter picker lo-fi -->
             <figure class="shot" data-shot data-caption="Low-fi filter picker for narrowing a search">
-              <img src="../assets/images/tooyenplus/05-search-filter-lofi.png" alt="Low-fidelity wireframe of the search filter modal" loading="lazy">
+              <img src="../assets/images/tooyenplus/05-search-filter-lofi.png"
+                alt="Low-fidelity wireframe of the search filter modal" loading="lazy">
               <figcaption>Low-fi — Filter picker</figcaption>
             </figure>
             <!-- placeholder: needs real screenshot — search results -->
             <figure class="shot" data-shot data-caption="Search results with time-to-cook visible at a glance">
-              <img src="../assets/images/tooyenplus/12-search-results-hifi.png" alt="Search results screen listing recipes with photos and cook time" loading="lazy">
+              <img src="../assets/images/tooyenplus/12-search-results-hifi.png"
+                alt="Search results screen listing recipes with photos and cook time" loading="lazy">
               <figcaption>Final — Search results</figcaption>
             </figure>
             <!-- placeholder: needs real screenshot — recommendations -->
             <figure class="shot" data-shot data-caption="Recommendations built from ingredients already in the fridge">
-              <img src="../assets/images/tooyenplus/11-recommend-results-hifi.png" alt="Recommended menu screen based on available fridge ingredients" loading="lazy">
+              <img src="../assets/images/tooyenplus/11-recommend-results-hifi.png"
+                alt="Recommended menu screen based on available fridge ingredients" loading="lazy">
               <figcaption>Final — Recommended for you</figcaption>
             </figure>
           </div>
@@ -438,19 +672,42 @@
             <p>Two states by design: browsing someone else's recipe (no edit access) vs. viewing your own.</p>
           </div>
           <div class="shot-row">
+
+            <!-- placeholder: needs real screenshot — recipe ingredients, owner view -->
+            <figure class="shot" data-shot
+              data-caption="Viewing your own recipe — with a favorite star and an Edit Recipes entry point">
+              <img src="../assets/images/tooyenplus/21-menu-details-ingredients-lofi.png"
+                alt="Recipe ingredients tab as seen by the recipe's owner, with a favorite star and an Edit Recipes entry point"
+                loading="lazy">
+              <figcaption>Ingredients — lofi</figcaption>
+            </figure>
+            <!-- placeholder: needs real screenshot — instructions tab final -->
+            <figure class="shot" data-shot data-caption="Final — Instructions tab, numbered steps with cook time">
+              <img src="../assets/images/tooyenplus/22-menu-details-instructions-lofi.png"
+                alt="Final recipe screen showing the numbered instructions tab" loading="lazy">
+              <figcaption>Instructions - lofi</figcaption>
+            </figure>
+          </div>
+          <div class="shot-row">
             <!-- placeholder: needs real screenshot — recipe ingredients, guest view -->
             <figure class="shot" data-shot data-caption="Browsing someone else's recipe — no edit access">
-              <img src="../assets/images/tooyenplus/19-recipe-ingredients-guest-hifi.png" alt="Recipe ingredients tab as seen by a guest browsing someone else's recipe, with no edit access" loading="lazy">
+              <img src="../assets/images/tooyenplus/19-recipe-ingredients-guest-hifi.png"
+                alt="Recipe ingredients tab as seen by a guest browsing someone else's recipe, with no edit access"
+                loading="lazy">
               <figcaption>Ingredients — Guest view</figcaption>
             </figure>
             <!-- placeholder: needs real screenshot — recipe ingredients, owner view -->
-            <figure class="shot" data-shot data-caption="Viewing your own recipe — with a favorite star and an Edit Recipes entry point">
-              <img src="../assets/images/tooyenplus/10-menu-details-ingredients-hifi.png" alt="Recipe ingredients tab as seen by the recipe's owner, with a favorite star and an Edit Recipes entry point" loading="lazy">
+            <figure class="shot" data-shot
+              data-caption="Viewing your own recipe — with a favorite star and an Edit Recipes entry point">
+              <img src="../assets/images/tooyenplus/10-menu-details-ingredients-hifi.png"
+                alt="Recipe ingredients tab as seen by the recipe's owner, with a favorite star and an Edit Recipes entry point"
+                loading="lazy">
               <figcaption>Ingredients — Owner view</figcaption>
             </figure>
             <!-- placeholder: needs real screenshot — instructions tab final -->
             <figure class="shot" data-shot data-caption="Final — Instructions tab, numbered steps with cook time">
-              <img src="../assets/images/tooyenplus/09-menu-details-instructions-hifi.png" alt="Final recipe screen showing the numbered instructions tab" loading="lazy">
+              <img src="../assets/images/tooyenplus/09-menu-details-instructions-hifi.png"
+                alt="Final recipe screen showing the numbered instructions tab" loading="lazy">
               <figcaption>Instructions</figcaption>
             </figure>
           </div>
@@ -459,12 +716,16 @@
         <div class="screen-group">
           <div class="screen-group__head">
             <h3>Cooking with what you have</h3>
-            <p>Before committing to cook, the app checks the fridge against the recipe — and is upfront about what's missing.</p>
+            <p>Before committing to cook, the app checks the fridge against the recipe — and is upfront about what's
+              missing.</p>
           </div>
           <div class="shot-row">
             <!-- placeholder: needs real screenshot — confirm cooking modal -->
-            <figure class="shot" data-shot data-caption="7 of 10 ingredients on hand — with a &quot;Where to Buy?&quot; shortcut for what's missing">
-              <img src="../assets/images/tooyenplus/08-confirm-cooking-hifi.png" alt="Confirm cooking modal showing 7 of 10 ingredients available and a Where to Buy shortcut" loading="lazy">
+            <figure class="shot" data-shot
+              data-caption="7 of 10 ingredients on hand — with a &quot;Where to Buy?&quot; shortcut for what's missing">
+              <img src="../assets/images/tooyenplus/08-confirm-cooking-hifi.png"
+                alt="Confirm cooking modal showing 7 of 10 ingredients available and a Where to Buy shortcut"
+                loading="lazy">
               <figcaption>Confirm cooking</figcaption>
             </figure>
           </div>
@@ -477,13 +738,18 @@
           </div>
           <div class="shot-row">
             <!-- placeholder: needs real screenshot — profile screen -->
-            <figure class="shot" data-shot data-caption="Dietary toggles (Intermittent Fasting, Halal, Vegetarian), favorites, and unwanted-ingredient filters">
-              <img src="../assets/images/tooyenplus/16-profile-hifi.png" alt="Profile screen with favorite menus, dietary toggles for Intermittent Fasting, Halal, and Vegetarian, and unwanted ingredients" loading="lazy">
+            <figure class="shot" data-shot
+              data-caption="Dietary toggles (Intermittent Fasting, Halal, Vegetarian), favorites, and unwanted-ingredient filters">
+              <img src="../assets/images/tooyenplus/16-profile-hifi.png"
+                alt="Profile screen with favorite menus, dietary toggles for Intermittent Fasting, Halal, and Vegetarian, and unwanted ingredients"
+                loading="lazy">
               <figcaption>Profile &amp; preferences</figcaption>
             </figure>
             <!-- placeholder: needs real screenshot — notifications screen -->
             <figure class="shot" data-shot data-caption="Reminders grouped by Today / This Week / Earlier">
-              <img src="../assets/images/tooyenplus/17-notification-hifi.png" alt="Notifications screen with expiration alerts and meal reminders grouped by Today, This Week, and Earlier" loading="lazy">
+              <img src="../assets/images/tooyenplus/17-notification-hifi.png"
+                alt="Notifications screen with expiration alerts and meal reminders grouped by Today, This Week, and Earlier"
+                loading="lazy">
               <figcaption>Notifications</figcaption>
             </figure>
           </div>
@@ -501,67 +767,85 @@
         </div>
 
         <h3 style="font-size:1.1rem; margin-bottom: 6px;">Rebuilding the recipe editor — self-critique</h3>
-        <p style="font-size:0.92rem; margin-bottom:20px; max-width:62ch;">This screen went through several full redesigns before I landed on a version I was satisfied with.</p>
+        <p style="font-size:0.92rem; margin-bottom:20px; max-width:62ch;">This screen went through several full
+          redesigns before I landed on a version I was satisfied with.</p>
 
         <div class="iteration-compare" data-reveal>
           <div class="iteration-pane">
-            <span class="tag-mini tag-mini--before">First draft</span>
             <!-- placeholder: needs real screenshot — early add menu draft -->
-            <img src="../assets/images/tooyenplus/06-add-menu-before.png" alt="Early Add Menu screen with a single flat form">
+            <span class="tag-mini tag-mini--before">First draft</span>
+            <img src="../assets/images/tooyenplus/06-add-menu-before.png"
+              alt="Early Add Menu screen with a single flat form">
+
+            <div class="iteration-notes" data-reveal>
+              <div>
+                <h4>Before</h4>
+                <p>One flat form — name, a single ingredients field, one large instructions box. It worked, but it
+                  treated a
+                  recipe like a generic data-entry form, not something meant to be followed step-by-step while actually
+                  cooking.</p>
+              </div>
+              <div class="note-highlight">
+                <h4>After</h4>
+                <p>Instructions broken into numbered, individually-editable steps, each carrying only the ingredients
+                  relevant to that step. The visual language shifted to the app's warm orange identity — so it reads as
+                  a
+                  cooking screen, not a settings form.</p>
+              </div>
+            </div>
           </div>
           <div class="iteration-compare__arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
           </div>
           <div class="iteration-pane">
-            <span class="tag-mini tag-mini--after">Final</span>
             <!-- placeholder: needs real screenshot — final edit recipe screen -->
-            <img src="../assets/images/tooyenplus/07-edit-recipe-after.png" alt="Final Edit Recipe screen with numbered, step-based instructions">
+            <span class="tag-mini tag-mini--after">Final</span>
+            <img src="../assets/images/tooyenplus/07-edit-recipe-after.png"
+              alt="Final Edit Recipe screen with numbered, step-based instructions">
           </div>
-        </div>
-
-        <div class="iteration-notes" data-reveal>
-          <div>
-            <h4>Before</h4>
-            <p>One flat form — name, a single ingredients field, one large instructions box. It worked, but it treated a recipe like a generic data-entry form, not something meant to be followed step-by-step while actually cooking.</p>
-          </div>
-          <div>
-            <h4>After</h4>
-            <p>Instructions broken into numbered, individually-editable steps, each carrying only the ingredients relevant to that step. The visual language shifted to the app's warm orange identity — so it reads as a cooking screen, not a settings form.</p>
-          </div>
-        </div>
-
-        <div class="honesty-note" data-reveal>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v2m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
-          <p>Being upfront about how this happened: it wasn't driven by user testing — it was self-critique. I wasn't happy with the earlier structure and kept rebuilding until the step-by-step logic matched how someone actually follows a recipe. A real before/after — but the "researcher" giving feedback here was me, not a tested user.</p>
         </div>
 
         <h3 style="font-size:1.1rem; margin: 44px 0 6px;">Redesigning Notifications — inherited, then rebuilt</h3>
-        <p style="font-size:0.92rem; margin-bottom:20px; max-width:62ch;">The original notifications screen was a teammate's design. I took it over and rebuilt it — grouping alerts by Today / This Week / Earlier instead of one flat list, and restyling it to match the rest of the app rather than sit apart from it.</p>
+        <p style="font-size:0.92rem; margin-bottom:20px; max-width:62ch;">The original notifications screen was a
+          teammate's design. I took it over and rebuilt it — grouping alerts by Today / This Week / Earlier instead of
+          one flat list, and restyling it to match the rest of the app rather than sit apart from it.</p>
 
         <div class="iteration-compare" data-reveal>
           <div class="iteration-pane">
-            <span class="tag-mini tag-mini--before">Before</span>
             <!-- placeholder: needs real screenshot — teammate's original Notifications design -->
-            <img src="../assets/images/tooyenplus/20-notification-before.png" alt="Original Notifications screen designed by a teammate, shown as one flat list with no grouping">
+            <span class="tag-mini tag-mini--before">Before</span>
+            <img src="../assets/images/tooyenplus/20-notification-before.png"
+              alt="Original Notifications screen designed by a teammate, shown as one flat list with no grouping">
           </div>
           <div class="iteration-compare__arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
           </div>
           <div class="iteration-pane">
-            <span class="tag-mini tag-mini--after">After</span>
             <!-- placeholder: needs real screenshot — rebuilt Notifications screen -->
-            <img src="../assets/images/tooyenplus/17-notification-hifi.png" alt="Rebuilt Notifications screen with alerts grouped by Today, This Week, and Earlier">
+            <span class="tag-mini tag-mini--after">After</span>
+            <img src="../assets/images/tooyenplus/17-notification-hifi.png"
+              alt="Rebuilt Notifications screen with alerts grouped by Today, This Week, and Earlier">
           </div>
         </div>
 
         <div class="iteration-notes" data-reveal>
           <div>
             <h4>Before</h4>
-            <p>A teammate's original design — one flat list of alerts, with no grouping by urgency or time, and a visual style that sat apart from the rest of the app.</p>
+            <p>A teammate's original design — one flat list of alerts, with no grouping by urgency or time, and a visual
+              style that sat apart from the rest of the app.</p>
           </div>
-          <div>
-            <h4>After</h4>
-            <p>Alerts grouped by Today / This Week / Earlier, restyled to match the rest of the app's identity instead of standing apart from it.</p>
+          <div class="note-highlight">
+            <h4 >After</h4>
+            <p>Alerts grouped by Today / This Week / Earlier, restyled to match the rest of the app's identity instead
+              of standing apart from it.</p>
           </div>
         </div>
       </div>
@@ -578,29 +862,55 @@
         <div class="split-2">
           <div data-reveal>
             <h3 style="font-size:1.1rem; margin-bottom: 6px;">Testing</h3>
-            <p style="font-size:0.92rem;">The upfront conversations shaped the <em>problem</em> and the <em>design decisions</em>. What I didn't do was test the <em>finished interface</em> with real users. Testing here was QA-style functional verification — 20 test cases covering:</p>
+            <p style="font-size:0.92rem;">The upfront conversations shaped the <em>problem</em> and the <em>design
+                decisions</em>. What I didn't do was test the <em>finished interface</em> with real users. Testing here
+              was QA-style functional verification — 20 test cases covering:</p>
             <ul class="checklist">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> Registration edge cases — duplicate username, invalid email, weak password</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> Fridge member management — valid/invalid or duplicate members</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> Ingredient-based search — with/without filters, empty fridge</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> Recipe creation validation — missing fields, duplicate names</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <polyline points="9 11 12 14 22 4" />
+                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+                </svg> Registration edge cases — duplicate username, invalid email, weak password</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <polyline points="9 11 12 14 22 4" />
+                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+                </svg> Fridge member management — valid/invalid or duplicate members</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <polyline points="9 11 12 14 22 4" />
+                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+                </svg> Ingredient-based search — with/without filters, empty fridge</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <polyline points="9 11 12 14 22 4" />
+                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+                </svg> Recipe creation validation — missing fields, duplicate names</li>
             </ul>
-            <p style="font-size:0.88rem; margin-top:14px;">This confirmed the logic held up under bad input — but it's a real gap: no usability validation on whether decisions like the recipe editor rebuild actually worked better for someone cooking dinner, versus just working better to me.</p>
+            <p style="font-size:0.88rem; margin-top:14px;">This confirmed the logic held up under bad input — but it's a
+              real gap: no usability validation on whether decisions like the recipe editor rebuild actually worked
+              better for someone cooking dinner, versus just working better to me.</p>
           </div>
 
           <div data-reveal>
             <h3 style="font-size:1.1rem; margin-bottom: 6px;">Lessons learned</h3>
             <div class="lesson-card">
               <span class="tag-label">Planning</span>
-              <p>Planning is just as important as coding. An unstructured workflow quietly extended the timeline — next project, I want clear milestones and weekly sprints set up front, so effort stays focused instead of drifting.</p>
+              <p>Planning is just as important as coding. An unstructured workflow quietly extended the timeline — next
+                project, I want clear milestones and weekly sprints set up front, so effort stays focused instead of
+                drifting.</p>
             </div>
             <div class="lesson-card">
               <span class="tag-label">Design × Code</span>
-              <p>Being both designer and developer let me catch technical blockers early, during design rather than after. Understanding code helped me design UI that was not just good-looking, but actually feasible to build on time.</p>
+              <p>Being both designer and developer let me catch technical blockers early, during design rather than
+                after. Understanding code helped me design UI that was not just good-looking, but actually feasible to
+                build on time.</p>
             </div>
             <div class="lesson-card">
               <span class="tag-label">Self-critique's ceiling</span>
-              <p>Rebuilding the recipe editor got the structure right, but without another person's eyes on it, I was guessing at what "felt done." It's the clearest gap here — and exactly what real usability testing is for.</p>
+              <p>Rebuilding the recipe editor got the structure right, but without another person's eyes on it, I was
+                guessing at what "felt done." It's the clearest gap here — and exactly what real usability testing is
+                for.</p>
             </div>
           </div>
         </div>
@@ -616,15 +926,18 @@
         </div>
         <div class="explore-more__grid">
           <a class="explore-card" href="nextgen-ai.html">
-            <img class="explore-card__img" src="../assets/images/home/nextgen-ai-thumbnail.png" alt="NextGen AI case study thumbnail" loading="lazy">
+            <img class="explore-card__img" src="../assets/images/home/nextgen-ai-thumbnail.png"
+              alt="NextGen AI case study thumbnail" loading="lazy">
             <span class="explore-card__title">NextGen AI</span>
           </a>
           <a class="explore-card" href="pinghub.html">
-            <img class="explore-card__img" src="../assets/images/home/pinghub-thumbnail.png" alt="PingHub case study thumbnail" loading="lazy">
+            <img class="explore-card__img" src="../assets/images/home/pinghub-thumbnail.png"
+              alt="PingHub case study thumbnail" loading="lazy">
             <span class="explore-card__title">PingHub</span>
           </a>
           <a class="explore-card" href="pao.html">
-            <img class="explore-card__img" src="../assets/images/home/pao-thumbnail.png" alt="ChaChoengSao PAO case study thumbnail" loading="lazy">
+            <img class="explore-card__img" src="../assets/images/home/pao-thumbnail.png"
+              alt="ChaChoengSao PAO case study thumbnail" loading="lazy">
             <span class="explore-card__title">ChaChoengSao PAO</span>
           </a>
         </div>
@@ -634,7 +947,11 @@
     <!-- ============ LIGHTBOX ============ -->
     <div class="ty-lightbox" id="tyLightbox">
       <button class="ty-lightbox__close" id="tyLightboxClose" aria-label="Close">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
       </button>
       <div class="ty-lightbox__frame">
         <img id="tyLightboxImg" src="" alt="">
@@ -644,7 +961,11 @@
 
     <!-- ============ BACK TO TOP (fixed, bottom-right) ============ -->
     <a href="#top" class="back-to-top" id="backToTop" aria-label="Back to top">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <line x1="12" y1="19" x2="12" y2="5" />
+        <polyline points="5 12 12 5 19 12" />
+      </svg>
     </a>
 
   </main>
@@ -658,14 +979,17 @@
         <span class="site-footer-mini__label">Contact</span>
         <div class="site-footer-mini__icons">
           <a class="site-footer-mini__icon" href="mailto:sasiyakorn.chansiri@gmail.com" aria-label="Email Sasiyakorn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
               <rect x="3" y="5" width="18" height="14" rx="1"></rect>
               <path d="M3 7l9 6 9-6"></path>
             </svg>
           </a>
-          <a class="site-footer-mini__icon" href="https://github.com/piingping" target="_blank" rel="noopener" aria-label="GitHub profile">
+          <a class="site-footer-mini__icon" href="https://github.com/piingping" target="_blank" rel="noopener"
+            aria-label="GitHub profile">
             <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.84 1.238 1.84 1.238 1.07 1.834 2.807 1.304 3.492.997.108-.775.42-1.305.763-1.605-2.665-.305-5.466-1.334-5.466-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+              <path
+                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.84 1.238 1.84 1.238 1.07 1.834 2.807 1.304 3.492.997.108-.775.42-1.305.763-1.605-2.665-.305-5.466-1.334-5.466-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
             </svg>
           </a>
         </div>
@@ -757,4 +1081,5 @@
   </script>
 
 </body>
+
 </html>
