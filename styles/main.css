@@ -3,7 +3,8 @@
    ========================================================================== */
 :root {
   /* --- Color Tokens --- */
-  --bg-primary: #FBF7EE;      /* Warm Beige / Soft Cream Background */
+  --bg-primary: #FBF7EE;      /* Warm Beige / Soft Cream Background — Hero only */
+  --bg-secondary: #FFFEFC;    /* NEW — background for every section other than the Hero */
   --surface: #FFFFFF;         /* White Surface for Cards & Containers */
   --border-color: #EBE0D0;    /* Soft Warm Sand Border */
 
@@ -452,9 +453,39 @@ label:focus-visible {
   box-shadow: var(--shadow-card);
 }
 
+/* --- Hero copy block (redesign) ------------------------------------------
+   Replaces the old hero-name / hero-intro / hero-skills-list trio with a
+   single stacked column: greeting -> role -> tagline -> meta -> CTAs.
+   Reuses the site's existing tokens (accent-primary, font-family,
+   font-mono, Gaegu) rather than the one-off colors/fonts in the Figma
+   export, so the hero stays consistent with the rest of the portfolio.
+--------------------------------------------------------------------------- */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-greeting {
+  font-family: 'Gaegu', cursive; /* reuses the nav-logo's signature font */
+  font-weight: 700;
+  font-size: clamp(2.25rem, 1.7rem + 2.2vw, 3rem);
+  line-height: 1.15;
+  color: var(--accent-primary);
+}
+
+.hero-role {
+  font-family: var(--font-mono);
+  font-size: var(--fs-body);
+  color: var(--accent-primary);
+}
+
 .hero-intro {
   max-width: 560px;
-  color: var(--text-secondary);
+  color: var(--text-primary);
+  font-size: 1.15rem;
+  line-height: var(--lh-body);
 }
 
 /* Full subline by default; short version swaps in on very small screens
@@ -465,49 +496,146 @@ label:focus-visible {
   .hero-intro-short { display: inline; }
 }
 
-.hero-skills-list {
+.hero-meta {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  color: var(--text-secondary);
+}
+
+.hero-cta-group {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 12px;
-  list-style: none;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.hero-btn-primary {
+  border-radius: 100px;
+  padding: 14px 32px;
+}
+
+.hero-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--accent-primary);
+  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: 100px;
+  border: 1.5px solid var(--accent-primary);
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.hero-btn-secondary:hover {
+  background-color: var(--accent-primary);
+  color: #FFFFFF;
 }
 
 @media (min-width: 768px) {
   .hero-section {
     grid-template-columns: auto 1fr;
-    grid-template-areas:
-      "image name"
-      "image intro"
-      "image skills";
     align-items: center;
     justify-items: start;
     text-align: left;
     column-gap: calc(var(--gap-grid) * 2);
-    row-gap: 16px;
   }
 
   .hero-profile-image {
-    grid-area: image;
     width: 400px;
     height: 400px;
   }
 
-  .hero-name {
-    grid-area: name;
+  .hero-content {
+    align-items: flex-start;
   }
 
   .hero-intro {
-    grid-area: intro;
+    font-size: 1.375rem;
   }
 
-  .hero-skills-list {
-    grid-area: skills;
+  .hero-cta-group {
     justify-content: flex-start;
   }
 }
 
+/* --- Skills marquee --------------------------------------------------------
+   Pure CSS infinite loop: the track holds two identical <ul> lists side by
+   side (the second is aria-hidden) and animates translateX(-50%), which is
+   exactly the width of one list — so it wraps seamlessly. No JS required.
+--------------------------------------------------------------------------- */
+.skills-marquee-section {
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  /* border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color); */
+  padding: 16px 0;
+}
+
+.skills-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: skills-marquee-scroll 60s linear infinite;
+}
+
+.skills-marquee-list {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 36px;
+  padding: 0 18px;
+  list-style: none;
+}
+
+.skills-marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  color: var(--accent-primary);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.95rem;
+  /* text-transform: uppercase; */
+  letter-spacing: 0.03em;
+}
+
+.skills-marquee-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+@keyframes skills-marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (min-width: 768px) {
+  .skills-marquee-item {
+    font-size: 1.15rem;
+  }
+
+  .skills-marquee-icon {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* Respect reduced-motion preference: freeze the marquee instead of animating */
+@media (prefers-reduced-motion: reduce) {
+  .skills-marquee-track {
+    animation: none;
+  }
+}
+
 /* Case study preview cards — built on top of .portfolio-grid + .card */
+.case-study-preview-section {
+  background-color: var(--bg-secondary); /* NEW — every non-hero section sits on this off-white */
+}
+
 .case-study-card {
   display: flex;
   flex-direction: column;
@@ -680,4 +808,3 @@ label:focus-visible {
   color: var(--text-secondary);
   font-size: var(--fs-small);
 }
-

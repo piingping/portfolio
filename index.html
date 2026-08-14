@@ -4,19 +4,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home | [Your Name] — UX/UI Designer Portfolio</title>
-
+  <title>Sasiyakorn — UX/UI Designer Portfolio</title>
+<link rel="icon" type="image/png" href="assets/my-logo.png">
   <!-- Google Fonts: Plus Jakarta Sans (Latin) + Kanit (Latin + Thai, for Thai body copy) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
     rel="stylesheet">
-  <!-- Nav brand/signature font (Regular + Bold) -->
+  <!-- Nav brand/signature font (Regular + Bold) — also reused for the hero greeting -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
-  <!-- Project tag pill chips (Case Study Preview cards) -->
+  <!-- Project tag pill chips (Case Study Preview cards) + hero meta line -->
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles/main.css">
@@ -51,7 +51,12 @@
 
     <!-- =========================================================
          SITEMAP 1. HOME > HERO SECTION
-         ชื่อ, ประโยคแนะนำตัวสั้นๆ 2-3 ประโยค, รูปโปรไฟล์, Skill list
+         REDESIGNED per Figma reference (image + pasted HTML).
+         Kept: profile video on the left, hero-intro-full/short
+         mobile-truncation pattern already in the codebase.
+         Changed: greeting-style H1, mono subtitle + meta line,
+         two pill CTAs, tag pill list removed. See main.css
+         section 8 for the matching style block.
     ========================================================== -->
     <section class="hero-section section container" id="hero">
       <div class="hero-profile-image">
@@ -62,28 +67,71 @@
         </video>
       </div>
 
-      <!-- <h1 class="hero-name hero-title">  <h1 class="hero-name hero-title">Hi there! I am Pingping</h1>
-</h1> -->
-  <h1 class="hero-name hero-title">I design, test, and redesign — until it actually works.</h1>
+      <div class="hero-content">
+        <h1 class="hero-greeting">Hi! I'm Pingping.</h1>
 
-      <p class="hero-intro">
-        <span class="hero-intro-full">UX/UI Designer and 4th-year student at KMITL who turns real user feedback into better products.</span>
-        <span class="hero-intro-short">UX/UI Designer · 4th-year student at KMITL</span>
-      </p>
+        <p class="hero-role">UX/UI Designer · 4th-Year Computer Engineering Student, KMITL</p>
 
-      <ul class="hero-skills-list">
-        <!-- placeholder: รายการ Skill ด้าน UX/UI -->
-        <li class="hero-skill-item tag">4 case studies</li>
-        <li class="hero-skill-item tag">Real usability testing</li>
-        <li class="hero-skill-item tag"><!-- e.g. Wireframing --></li>
-        <li class="hero-skill-item tag"><!-- e.g. Prototyping --></li>
-      </ul>
+        <p class="hero-intro">
+          <span class="hero-intro-full">I design digital products that make people smile, click, and stay.</span>
+          <span class="hero-intro-short">I design products people actually enjoy using.</span>
+        </p>
+
+        <p class="hero-meta">4 case studies · Real usability testing · Figma</p>
+
+        <div class="hero-cta-group">
+          <a href="#case-study-preview" class="btn-primary hero-btn-primary">View My Work</a>
+          <a href="resume.html" class="hero-btn-secondary">Download Resume</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         NEW: SKILLS MARQUEE
+         Infinite, responsive, pure-CSS scroll (no JS needed).
+         Keywords pulled from resume's "UX Research & Design
+         Process" line. Separated by ONE repeating placeholder
+         doodle — swap assets/images/marquee/marquee-doodle.svg
+         for your own drawn icon whenever it's ready; the file
+         name and size can stay the same.
+    ========================================================== -->
+    <section class="skills-marquee-section" aria-label="Design process skills">
+      <div class="skills-marquee-track">
+        <ul class="skills-marquee-list">
+          <li class="skills-marquee-item"><img class="skills-marquee-icon" src="assets/images/marquee/marquee-doodle.png" alt=""><span>User Research</span></li>
+          <li class="skills-marquee-item"><img class="skills-marquee-icon" src="assets/images/marquee/marquee-doodle.png" alt=""><span>Persona Development</span></li>
+          <li class="skills-marquee-item"><img class="skills-marquee-icon" src="assets/images/marquee/marquee-doodle.png" alt=""><span>Journey Mapping</span></li>
+          <li class="skills-marquee-item"><img class="skills-marquee-icon" src="assets/images/marquee/marquee-doodle.png" alt=""><span>Information Architecture</span></li>
+          <li class="skills-marquee-item"><img class="skills-marquee-icon" src="assets/images/marquee/marquee-doodle.png" alt=""><span>User Flow</span></li>
+          <li class="skills-marquee-item"><img class="skills-marquee-icon" src="assets/images/marquee/marquee-doodle.png" alt=""><span>Usability Testing</span></li>
+          <li class="skills-marquee-item"><img class="skills-marquee-icon" src="assets/images/marquee/marquee-doodle.png" alt=""><span>User Story Mapping</span></li>
+          <li class="skills-marquee-item"><img class="skills-marquee-icon" src="assets/images/marquee/marquee-doodle.png" alt=""><span>Wireframing</span></li>
+          <li class="skills-marquee-item"><img class="skills-marquee-icon" src="assets/images/marquee/marquee-doodle.png" alt=""><span>Prototyping</span></li>
+          <li class="skills-marquee-item"><img class="skills-marquee-icon" src="assets/images/marquee/marquee-doodle.png" alt=""><span>Design Systems</span></li>
+        </ul>
+        <!-- Exact duplicate, hidden from assistive tech: makes the 50% translateX loop seamless -->
+        <ul class="skills-marquee-list" aria-hidden="true">
+          <li class="skills-marquee-item"><img class="skills-marquee-icon" src="assets/images/marquee/marquee-doodle.png" alt=""><span>User Research</span></li>
+          <li class="skills-marquee-item"><img class="skills-marquee-icon" src="assets/images/marquee/marquee-doodle.png" alt=""><span>Persona Development</span></li>
+          <li class="skills-marquee-item"><img class="skills-marquee-icon" src="assets/images/marquee/marquee-doodle.png" alt=""><span>Journey Mapping</span></li>
+          <li class="skills-marquee-item"><img class="skills-marquee-icon" src="assets/images/marquee/marquee-doodle.png" alt=""><span>Information Architecture</span></li>
+          <li class="skills-marquee-item"><img class="skills-marquee-icon" src="assets/images/marquee/marquee-doodle.png" alt=""><span>User Flow</span></li>
+          <li class="skills-marquee-item"><img class="skills-marquee-icon" src="assets/images/marquee/marquee-doodle.png" alt=""><span>Usability Testing</span></li>
+          <li class="skills-marquee-item"><img class="skills-marquee-icon" src="assets/images/marquee/marquee-doodle.png" alt=""><span>User Story Mapping</span></li>
+          <li class="skills-marquee-item"><img class="skills-marquee-icon" src="assets/images/marquee/marquee-doodle.png" alt=""><span>Wireframing</span></li>
+          <li class="skills-marquee-item"><img class="skills-marquee-icon" src="assets/images/marquee/marquee-doodle.png" alt=""><span>Prototyping</span></li>
+          <li class="skills-marquee-item"><img class="skills-marquee-icon" src="assets/images/marquee/marquee-doodle.png" alt=""><span>Design Systems</span></li>
+        </ul>
+      </div>
     </section>
 
     <!-- =========================================================
          SITEMAP 1. HOME > CASE STUDY PREVIEW
          การ์ดลิงก์ไปยัง 4 โปรเจกต์: NextGen AI, PingHub, PAO, Tooyen+
          เข้าถึงได้ผ่านการ์ดในหน้านี้เท่านั้น (ไม่มีลิงก์ตรงจาก nav)
+         Descriptions rewritten to one short, connector-free line
+         each — see the response text for the other 3 options
+         considered for each project.
     ========================================================== -->
     <section class="case-study-preview-section section container" id="case-study-preview">
       <h2 class="section-title">Case Study Preview</h2>
@@ -93,8 +141,7 @@
         <a href="case-studies/nextgen-ai.html" class="case-study-card card">
           <img class="case-study-card-image" src="assets/images/home/nextgen-ai-thumbnail.png" alt="">
           <h3 class="case-study-card-title">NextGen AI</h3>
-          <p class="case-study-card-desc">Built the student experience from scratch for a 1,000+ participant AI education camp —
-            then proved it worked through three rounds of real-world iteration, not a single guess.</p>
+          <p class="case-study-card-desc">A Web Application for Educational Camp Management.</p>
           <ul class="case-study-card-tags">
             <li class="project-tag">User Research</li>
             <li class="project-tag">Data-Driven Decisions</li>
@@ -107,8 +154,7 @@
         <a href="case-studies/pinghub.html" class="case-study-card card">
           <img class="case-study-card-image" src="assets/images/home/pinghub-thumbnail.png" alt="">
           <h3 class="case-study-card-title">PingHub</h3>
-          <p class="case-study-card-desc">A trip-planning app for friend groups who can never agree — usability tested
-            end-to-end, with real fixes shipped before final delivery.</p>
+          <p class="case-study-card-desc">A Trip-Planning App for Indecisive Friend Groups.</p>
           <ul class="case-study-card-tags">
             <li class="project-tag">Persona &amp; Journey Mapping</li>
             <li class="project-tag">Usability Testing</li>
@@ -120,8 +166,7 @@
         <a href="case-studies/pao.html" class="case-study-card card">
           <img class="case-study-card-image" src="assets/images/home/pao-thumbnail.png" alt="">
           <h3 class="case-study-card-title">PAO</h3>
-          <p class="case-study-card-desc">A custom system for a provincial government office — built from real
-            stakeholder interviews and defensible trade-offs, not assumptions about what's "modern."</p>
+          <p class="case-study-card-desc">An Internal Management System for a Provincial Government Office.</p>
           <ul class="case-study-card-tags">
             <li class="project-tag">Stakeholder Research</li>
             <li class="project-tag">Design Rationale &amp; Trade-offs</li>
@@ -133,8 +178,7 @@
         <a href="case-studies/tooyenplus.html" class="case-study-card card">
           <img class="case-study-card-image" src="assets/images/home/tooyenplus-thumbnail.png" alt="">
           <h3 class="case-study-card-title">Tooyen+</h3>
-          <p class="case-study-card-desc">An app for cutting food waste and mealtime decision fatigue — born from my own
-            dorm-room grocery mistakes, refined through self-critique across multiple redesigns.</p>
+          <p class="case-study-card-desc">A Fridge &amp; Meal-Planning App to Cut Food Waste.</p>
           <ul class="case-study-card-tags">
             <li class="project-tag">Problem Framing</li>
             <li class="project-tag">Iterative Design</li>

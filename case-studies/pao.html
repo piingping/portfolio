@@ -18,313 +18,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="../styles/main.css">
+  <link rel="stylesheet" href="../styles/project-detail.css">
 
   <style>
     /* ---------------------------------------------------
-       Local tokens for this case study's content only.
-       Prefixed --ty- so nothing here can shadow main.css's
-       own :root tokens used by site-header/site-footer/etc.
-       (Same shared token/component set as tooyenplus.html / pinghub.html.)
+       PAO-only overrides on top of styles/project-detail.css
+       (the shared case-study design system). Everything that's
+       identical across nextgen-ai/pinghub/pao/tooyenplus now lives
+       in that one file instead of being copy-pasted 4 times.
+       PAO's own hero/factbox/tagline sizing already matched the
+       shared default, so the only thing genuinely specific to this
+       page is its permission table.
     --------------------------------------------------- */
-    :root {
-      --ty-bg: #FBF7EE;
-      --ty-surface: #FFFFFF;
-      --ty-border: #EBE0D0;
-      --ty-text: #3A231C;
-      --ty-text-sub: #6E5A51;
-      --ty-text-disabled: #AA9A90;
-      --ty-accent: #D65B3E;
-      --ty-accent-dark: #B8492F;
-      --ty-accent-2: #E5A754;
-      --ty-shadow-soft: 0 24px 48px -28px rgba(58, 35, 28, 0.35);
-      --ty-shadow-card: 0 10px 24px -16px rgba(58, 35, 28, 0.25);
-      --ty-radius-sm: 10px;
-      --ty-radius-md: 20px;
-      --ty-radius-lg: 32px;
-      --ty-font-display: "Fraunces", Georgia, serif;
-      --ty-font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-      --ty-font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
-      --ty-maxw: 1120px;
-      --ty-edge: clamp(20px, 5vw, 64px);
-    }
 
-    html { scroll-behavior: smooth; }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-
-    /* ---------------------------------------------------
-       Everything below is scoped under .case-study--pao
-       so it can't leak into the shared site-header/footer.
-    --------------------------------------------------- */
-    .case-study--pao {
-      background: var(--ty-bg);
-      color: var(--ty-text);
-      font-family: var(--ty-font-body);
-      font-size: 16px;
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-    }
-    .case-study--pao img { max-width: 100%; display: block; }
-    .case-study--pao a { color: inherit; text-decoration: none; }
-    .case-study--pao h1, .case-study--pao h2, .case-study--pao h3, .case-study--pao h4 {
-      font-family: var(--ty-font-display); margin: 0; font-weight: 600;
-    }
-    .case-study--pao p { margin: 0 0 1em; color: var(--ty-text-sub); }
-    .case-study--pao ul { margin: 0; padding: 0; list-style: none; }
-    .case-study--pao section { position: relative; }
-    .case-study--pao ::selection { background: var(--ty-accent-2); color: var(--ty-text); }
-
-    .wrap {
-      max-width: var(--ty-maxw);
-      margin: 0 auto;
-      padding-left: var(--ty-edge);
-      padding-right: var(--ty-edge);
-    }
-
-    .eyebrow {
-      font-family: var(--ty-font-mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ty-text-sub);
-    }
-
-    /* Signature: price-tag label */
-    .tag-label {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--ty-accent-2);
-      color: var(--ty-text);
-      font-family: var(--ty-font-mono);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 7px 16px 7px 22px;
-      clip-path: polygon(14px 0, 100% 0, 100% 100%, 14px 100%, 0 50%);
-      margin-bottom: 20px;
-    }
-    .tag-label::before {
-      content: '';
-      position: absolute;
-      left: 7px; top: 50%;
-      width: 4px; height: 4px;
-      background: var(--ty-bg);
-      border-radius: 50%;
-      transform: translateY(-50%);
-    }
-
-    /* ---------------------------------------------------
-       ON-THIS-PAGE SIDE TOC
-    --------------------------------------------------- */
-    .toc-side {
-      position: fixed;
-      top: 50%;
-      right: 20px;
-      transform: translateY(-50%);
-      z-index: 90;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .toc-side a {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 10px;
-      padding: 6px 4px;
-      font-family: var(--ty-font-mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--ty-text-disabled);
-      transition: color 0.2s ease;
-    }
-    .toc-side a::before {
-      content: '';
-      flex-shrink: 0;
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--ty-text-disabled);
-      transition: background 0.2s ease, transform 0.2s ease;
-    }
-    .toc-side a:hover { color: var(--ty-text); }
-    .toc-side a.is-active { color: var(--ty-accent); }
-    .toc-side a.is-active::before { background: var(--ty-accent); transform: scale(1.5); }
-    @media (max-width: 960px) {
-      .toc-side { display: none; }
-    }
-
-    /* ---------------------------------------------------
-       HERO
-    --------------------------------------------------- */
-    .case-study--pao .hero { padding: 56px 0 88px; overflow: hidden; }
-    .hero__grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 56px;
-      align-items: center;
-    }
-    @media (max-width: 860px) {
-      .hero__grid { grid-template-columns: 1fr; gap: 48px; }
-      .hero__art { order: -1; }
-    }
-    .hero h1 { font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.02; letter-spacing: -0.01em; }
-    .hero h1 .accent { color: var(--ty-accent); }
-    .hero__tagline { font-size: 1.1rem; max-width: 46ch; margin-top: 18px; }
-
-    .factbox {
-      margin-top: 34px;
-      background: var(--ty-surface);
-      border: 2px solid var(--ty-text);
-      border-radius: var(--ty-radius-sm);
-      max-width: 440px;
-      box-shadow: var(--ty-shadow-card);
-    }
-    .factbox__head {
-      font-family: var(--ty-font-display);
-      font-weight: 700;
-      font-size: 1.05rem;
-      padding: 12px 18px;
-      border-bottom: 6px solid var(--ty-text);
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-    }
-    .factbox__head span { font-family: var(--ty-font-mono); font-size: 0.65rem; color: var(--ty-text-sub); font-weight: 500; }
-    .fact-row {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-      padding: 9px 18px;
-      border-bottom: 1px dashed var(--ty-border);
-      font-size: 0.86rem;
-    }
-    .fact-row:last-child { border-bottom: none; }
-    .fact-row .label { white-space: nowrap; color: var(--ty-text-sub); font-family: var(--ty-font-mono); font-size: 0.72rem; letter-spacing: 0.04em; text-transform: uppercase; }
-    .fact-row .leader { flex: 1; border-bottom: 2px dotted var(--ty-border); margin-bottom: 5px; }
-    .fact-row .value { white-space: nowrap; font-weight: 600; text-align: right; }
-
-    .hero__art { position: relative; display: flex; justify-content: center; }
-    .hero__phone {
-      position: relative;
-      z-index: 1;
-      width: 260px;
-      border-radius: 24px;
-      box-shadow: var(--ty-shadow-soft);
-      border: 6px solid var(--ty-surface);
-      overflow: hidden;
-      background: var(--ty-surface);
-    }
-
-    /* ---------------------------------------------------
-       SECTION generic
-    --------------------------------------------------- */
-    .case-study--pao .section { padding: 80px 0; border-top: 1px solid var(--ty-border); }
-    .section__head { max-width: 62ch; margin-bottom: 44px; }
-    .section__head h2 { font-size: clamp(1.6rem, 3.4vw, 2.4rem); line-height: 1.12; }
-    .section__lede { font-size: 1.05rem; margin-top: 14px; }
-    .subhead { font-size: 1.15rem; margin: 0 0 12px; }
-
-    .case-study--pao [data-reveal] { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .case-study--pao [data-reveal].in-view { opacity: 1; transform: translateY(0); }
-    @media (prefers-reduced-motion: reduce) {
-      .case-study--pao [data-reveal] { opacity: 1; transform: none; transition: none; }
-    }
-
-    /* Intro copy */
-    .story__intro { max-width: 68ch; font-size: 1.02rem; margin-bottom: 40px; }
-    .story__intro strong { color: var(--ty-text); }
-
-    .research-note {
-      margin-top: 32px;
-      display: flex; gap: 14px; align-items: flex-start;
-      background: var(--ty-surface);
-      border: 1px dashed var(--ty-text-disabled);
-      border-radius: var(--ty-radius-sm);
-      padding: 16px 20px;
-      max-width: 68ch;
-    }
-    .research-note svg { flex-shrink: 0; width: 20px; height: 20px; color: var(--ty-accent); margin-top: 2px; }
-    .research-note p { margin: 0; font-size: 0.9rem; }
-
-    /* Pain / insight cards */
-    .pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-    .pain-grid--2 { grid-template-columns: repeat(2, 1fr); }
-    @media (max-width: 860px) { .pain-grid, .pain-grid--2 { grid-template-columns: 1fr; } }
-    .pain-card {
-      background: var(--ty-surface);
-      border: 1px solid var(--ty-border);
-      border-radius: var(--ty-radius-md);
-      padding: 26px 24px 24px;
-      box-shadow: var(--ty-shadow-card);
-    }
-    .pain-card__num { font-family: var(--ty-font-mono); font-size: 0.72rem; color: var(--ty-accent); font-weight: 700; letter-spacing: 0.06em; }
-    .pain-card h3 { font-size: 1.1rem; margin: 8px 0 10px; line-height: 1.3; }
-    .pain-card p { margin: 0; font-size: 0.92rem; }
-    .pain-card p:not(:last-child) { margin-bottom: 10px; }
-    .pain-card p strong { color: var(--ty-text); }
-
-    /* Role */
-    .role__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
-    @media (max-width: 860px) { .role__grid { grid-template-columns: 1fr; } }
-    .scope-list { display: flex; flex-direction: column; gap: 10px; }
-    .scope-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.95rem; color: var(--ty-text); }
-    .scope-list li strong { color: var(--ty-text); }
-    .scope-list svg { flex-shrink: 0; width: 18px; height: 18px; color: var(--ty-accent); margin-top: 3px; }
-    .responsibility { border-left: 3px solid var(--ty-accent-2); padding-left: 18px; margin-bottom: 20px; }
-    .responsibility:last-child { margin-bottom: 0; }
-    .responsibility h4 { font-size: 0.98rem; font-family: var(--ty-font-body); font-weight: 700; margin-bottom: 4px; }
-    .responsibility p { font-size: 0.9rem; margin: 0; }
-
-    /* Process — before/after (reuses the 2-card side-by-side layout) */
-    .iteration-notes { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 8px; }
-    @media (max-width: 760px) { .iteration-notes { grid-template-columns: 1fr; } }
-    .iteration-notes > div { background: var(--ty-surface); border: 1px solid var(--ty-border); border-radius: var(--ty-radius-sm); padding: 20px 22px; }
-    .iteration-notes h4 { font-size: 0.95rem; margin-bottom: 8px; }
-    .iteration-notes p { font-size: 0.9rem; margin: 0; }
-    .tag-mini {
-      display: inline-block;
-      font-family: var(--ty-font-mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 4px 12px;
-      border-radius: 100px;
-      margin-bottom: 10px;
-      font-weight: 700;
-    }
-    .tag-mini--before { background: var(--ty-border); color: var(--ty-text-sub); }
-    .tag-mini--after { background: var(--ty-accent); color: #fff; }
-
-    /* Solution */
-    .shot-row {
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: minmax(180px, 240px);
-      gap: 18px;
-      overflow-x: auto;
-      padding-bottom: 10px;
-      scrollbar-width: thin;
-    }
-    .shot {
-      background: var(--ty-surface);
-      border: 1px solid var(--ty-border);
-      border-radius: var(--ty-radius-sm);
-      padding: 10px 10px 12px;
-      cursor: zoom-in;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-    .shot:hover { transform: translateY(-4px); box-shadow: var(--ty-shadow-card); }
-    .shot img { border-radius: 8px; width: 100%; min-height: 160px; background: var(--ty-bg); }
-    .shot figcaption { font-size: 0.76rem; color: var(--ty-text-sub); margin-top: 8px; text-align: center; }
-
-    .solution-block { margin-bottom: 44px; }
-    .solution-block:last-child { margin-bottom: 0; }
-    .solution-block h3 { font-size: 1.2rem; margin-bottom: 12px; }
-
-    /* Role/Permission table */
+    /* Role/Permission table — only PAO's Solution section has this. */
     .role-table-wrap {
       border: 1px solid var(--ty-border);
       border-radius: var(--ty-radius-sm);
@@ -350,76 +57,14 @@
     }
     .role-table td.yes { color: var(--ty-accent); font-weight: 700; }
     .role-table td.no { color: var(--ty-text-disabled); }
-
-    /* Screens gallery (Pages) */
-    .screen-group { margin-bottom: 52px; }
-    .screen-group:last-child { margin-bottom: 0; }
-    .screen-group__head { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; margin-bottom: 18px; flex-wrap: wrap; }
-    .screen-group__head h3 { font-size: 1.15rem; }
-    .screen-group__head p { font-size: 0.88rem; margin: 0; max-width: 48ch; color: var(--ty-text-sub); }
-
-    /* Impact */
-    .checklist { display: flex; flex-direction: column; gap: 12px; margin-top: 18px; }
-    .checklist li {
-      display: flex; gap: 10px; align-items: flex-start;
-      font-size: 0.92rem;
-      background: var(--ty-surface);
-      border: 1px solid var(--ty-border);
-      border-radius: var(--ty-radius-sm);
-      padding: 12px 14px;
-    }
-    .checklist svg { width: 17px; height: 17px; color: var(--ty-accent); flex-shrink: 0; margin-top: 2px; }
-
-    /* Lesson Learned */
-    .lesson-card { padding: 20px 0; border-bottom: 1px solid var(--ty-border); }
-    .lesson-card:first-child { padding-top: 0; }
-    .lesson-card:last-child { border-bottom: none; padding-bottom: 0; }
-    .lesson-card .tag-label { margin-bottom: 10px; }
-    .lesson-card p { font-size: 0.94rem; margin: 0; }
-
-    /* Closing note inside the case study (real Contact footer follows after) */
-    .ty-close {
-      border-top: 1px solid var(--ty-border);
-      padding: 40px 0;
-      text-align: center;
-    }
-    .ty-close p { font-size: 0.85rem; color: var(--ty-text-sub); margin: 0 0 14px; }
-    .ty-close a.back {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-family: var(--ty-font-mono);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--ty-accent);
-      border: 1px solid var(--ty-accent);
-      padding: 9px 18px;
-      border-radius: 100px;
-      transition: background 0.2s ease, color 0.2s ease;
-    }
-    .ty-close a.back:hover { background: var(--ty-accent); color: #fff; }
-
-    /* Lightbox */
-    .ty-lightbox {
-      position: fixed; inset: 0; z-index: 1000;
-      background: rgba(58, 35, 28, 0.82);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 20px;
-      font-family: var(--ty-font-body);
-    }
-    .ty-lightbox.is-open { display: flex; }
-    .ty-lightbox img { max-width: min(560px, 90vw); max-height: 82vh; border-radius: var(--ty-radius-sm); box-shadow: 0 30px 60px rgba(0,0,0,0.4); }
-    .ty-lightbox figcaption { color: #fff; text-align: center; font-size: 0.85rem; margin-top: 14px; opacity: 0.85; }
-    .ty-lightbox__close { position: absolute; top: 24px; right: 28px; background: none; border: none; cursor: pointer; color: #fff; }
-    .ty-lightbox__close svg { width: 26px; height: 26px; }
-    .ty-lightbox__frame { display: flex; flex-direction: column; align-items: center; }
   </style>
 </head>
 <body>
   <!-- Copied from tooyenplus.html (case-studies/) — project: PAO.
        Structure/components/tokens/scripts reused from tooyenplus.html/pinghub.html;
        section set below follows PAO's own content instead of forcing a 1:1 section match.
+       Shared CSS for all 4 case-study pages now lives in ../styles/project-detail.css —
+       this file's own <style> block only has PAO-specific overrides.
 
        NOTE on source doc (PAO_Case_Study_Draft_2.md): two things were deliberately left OUT
        of this page because they read as notes-to-self rather than finished case study copy —
@@ -467,7 +112,7 @@
     <a href="#lessons" data-toc>Lessons</a>
   </nav>
 
-  <main class="case-study--pao">
+  <main class="case-study case-study--pao">
 
     <!-- ============ HERO ============ -->
     <header class="hero" id="top">
