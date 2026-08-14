@@ -310,7 +310,9 @@
           <div class="shot-row">
             <!-- placeholder: needs real screenshot — Meeting History Archive screen -->
             <figure class="shot" data-shot data-caption="Meeting History Archive — filterable by status, date, or category">
-              <img src="../assets/images/case-studies/pao/02-meeting-history-archive.png" alt="Meeting History Archive screen listing past meetings, filterable by status, date, or category" loading="lazy">
+              <div class="mockup-scroll-frame">
+                <img src="../assets/images/case-studies/pao/02-meeting-history-archive.png" alt="Meeting History Archive screen listing past meetings, filterable by status, date, or category" loading="lazy">
+              </div>
               <figcaption>Meeting History Archive</figcaption>
             </figure>
           </div>
@@ -335,7 +337,9 @@
           <div class="shot-row">
             <!-- placeholder: needs real screenshot — Meeting Overview & History Archive -->
             <figure class="shot" data-shot data-caption="Upcoming meetings and a filterable history of past sessions">
-              <img src="../assets/images/case-studies/pao/02-meeting-history-archive.png" alt="Meeting History Archive screen listing past meetings, filterable by status, date, or category" loading="lazy">
+              <div class="mockup-scroll-frame">
+                <img src="../assets/images/case-studies/pao/02-meeting-history-archive.png" alt="Meeting History Archive screen listing past meetings, filterable by status, date, or category" loading="lazy">
+              </div>
               <figcaption>Meeting Overview &amp; History</figcaption>
             </figure>
           </div>
@@ -527,12 +531,19 @@
       });
     });
 
+    // ---- lightbox deep zoom: click the image to toggle full-size ----
+    tyLightboxImg.addEventListener('click', function (e) {
+      e.stopPropagation(); // don't let the click bubble up and close the lightbox
+      this.classList.toggle('is-zoomed');
+    });
+
     function tyCloseLightbox() {
       tyLightbox.classList.remove('is-open');
       tyLightboxImg.src = '';
+      tyLightboxImg.classList.remove('is-zoomed'); // reset zoom state on close
     }
     tyLightboxClose.addEventListener('click', tyCloseLightbox);
-    tyLightbox.addEventListener('click', function (e) { if (e.target === tyLightbox) tyCloseLightbox(); });
+    tyLightbox.addEventListener('click', function (e) { if (e.target === tyLightbox || e.target.classList.contains('ty-lightbox__frame')) tyCloseLightbox(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') tyCloseLightbox(); });
 
     // ---- back-to-top: show once the reader scrolls past the hero ----

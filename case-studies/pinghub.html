@@ -56,9 +56,10 @@
     .persona-card p { font-size: 0.92rem; margin: 0 0 10px; }
     .persona-card p:last-child { margin-bottom: 0; }
 
-    /* Wide single-diagram figure — this page's journey/story-map shots use a
-       wider, unpadded range than the shared default (tuned for NextGen AI). */
-    .shot-row--wide { grid-auto-columns: minmax(280px, 640px); margin-top: 0; }
+    /* This page's journey/story-map shot-rows sit right under a heading with
+       no extra lede above them, so they don't need the shared default's
+       top margin (tuned for NextGen AI, where more copy precedes them). */
+    .shot-row--wide { margin-top: 0; }
 
     /* This page's checklist sits inside an already-white .iteration-notes
        card, so it needs the cream --ty-bg for contrast (shared default is
@@ -608,12 +609,19 @@
       });
     });
 
+    // ---- lightbox deep zoom: click the image to toggle full-size ----
+    tyLightboxImg.addEventListener('click', function (e) {
+      e.stopPropagation(); // don't let the click bubble up and close the lightbox
+      this.classList.toggle('is-zoomed');
+    });
+
     function tyCloseLightbox() {
       tyLightbox.classList.remove('is-open');
       tyLightboxImg.src = '';
+      tyLightboxImg.classList.remove('is-zoomed'); // reset zoom state on close
     }
     tyLightboxClose.addEventListener('click', tyCloseLightbox);
-    tyLightbox.addEventListener('click', function (e) { if (e.target === tyLightbox) tyCloseLightbox(); });
+    tyLightbox.addEventListener('click', function (e) { if (e.target === tyLightbox || e.target.classList.contains('ty-lightbox__frame')) tyCloseLightbox(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') tyCloseLightbox(); });
 
     // ---- back-to-top: show once the reader scrolls past the hero ----

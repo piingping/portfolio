@@ -64,23 +64,8 @@
     /* Inline pull-quote style, used inside .story__intro on this page only. */
     .story__intro em.quote { color: var(--ty-text); font-style: italic; }
 
-    /* Thin accent-2 top strip on every shot card, page-local only (not in
-       the shared project-detail.css) so it doesn't change PingHub/PAO/
-       TooYen+ — keeps a bit of color on the image cards now that the old
-       white padding-mat is gone, without a shared-file risk. */
-    .case-study--nextgen-ai .shot { position: relative; }
-    .case-study--nextgen-ai .shot::before {
-      content: '';
-      display: block;
-      height: 3px;
-      background: var(--ty-accent-2);
-    }
-
-    /* ---------------------------------------------------
-       Overrides for Borderless Screens & Lightbox Zoom
-    --------------------------------------------------- */
-    
-    /* Layout แบบ Grid สำหรับแสดงรูปทุกอันแทน Swiper */
+    /* Key Screens gallery — 2-column grid (this page's own layout, used
+       instead of the shared .shot-row for its two screen-set groups). */
     .screen-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -91,61 +76,6 @@
       .screen-grid {
         grid-template-columns: 1fr;
       }
-    }
-
-    /* สไตล์สำหรับรูปที่เอากรอบออก และแสดงรูปแบบยืดหยุ่น */
-    .shot--borderless {
-      width: 100% !important;
-      background: transparent !important;
-      border: none !important;
-      box-shadow: none !important;
-    }
-    .case-study--nextgen-ai .shot--borderless::before {
-      display: none !important; /* เอาเส้นสีเหลืองด้านบนออก */
-    }
-    .shot--borderless:hover {
-      transform: none !important;
-    }
-    .shot--borderless img {
-      width: 100%;
-      height: auto; /* ไม่ fix ขนาดรูป */
-      border-radius: 8px; /* ลบออกได้หากไม่ต้องการมุมโค้ง */
-      cursor: zoom-in;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      background: transparent !important;
-      aspect-ratio: auto !important;
-    }
-    /* เงาสี Accent เมื่อ Hover ที่รูป */
-    .shot--borderless:hover img {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 32px rgba(214, 91, 62, 0.25) !important; 
-    }
-    /* คำบรรยายใต้ภาพ */
-    .shot--borderless figcaption {
-      border-top: none !important;
-      padding: 16px 0 0 !important;
-      font-size: 0.95rem;
-      text-align: left !important;
-    }
-
-    /* ---------------------------------------------------
-       Lightbox Zoom Styles 
-    --------------------------------------------------- */
-    .ty-lightbox {
-      overflow-y: auto;
-      align-items: flex-start !important; /* ให้เริ่มจากด้านบนเพื่อรองรับการ scroll */
-    }
-    .ty-lightbox__frame {
-      margin: auto; /* จัดให้อยู่กึ่งกลางหากรูปเล็กกว่าหน้าจอ */
-      padding: 40px 20px;
-    }
-    .ty-lightbox img {
-      cursor: zoom-in;
-    }
-    .ty-lightbox img.is-zoomed {
-      max-width: none !important;
-      max-height: none !important;
-      cursor: zoom-out;
     }
   </style>
 </head>
@@ -446,8 +376,10 @@
 
           <div class="shot-row shot-row--wide">
             <!-- placeholder: needs real screenshot — Permission page -->
-            <figure class="shot shot--tall" data-shot data-caption="Permission page — Admin control over visibility and access per role">
-              <img src="../assets/images/case-studies/nextgen-ai/18-permission.png" alt="Permission page letting Admins control visibility and access per role" loading="lazy">
+            <figure class="shot" data-shot data-caption="Permission page — Admin control over visibility and access per role">
+              <div class="mockup-scroll-frame">
+                <img src="../assets/images/case-studies/nextgen-ai/18-permission.png" alt="Permission page letting Admins control visibility and access per role" loading="lazy">
+              </div>
               <figcaption>Permission — Admin access control</figcaption>
             </figure>
              <figure class="shot shot--desktop" data-shot data-caption="Member page — Admin view of user role management">
@@ -519,28 +451,30 @@
           
           <!-- เปลี่ยนจาก Swiper เป็น Grid -->
           <div class="screen-grid">
-            <figure class="shot shot--borderless" data-shot data-caption="Status at a glance">
+            <figure class="shot" data-shot data-caption="Status at a glance">
               <img src="../assets/images/case-studies/nextgen-ai/13-timeline.png" alt="Timeline screen showing explicit Pending, Passed, or Not Passed status with due dates" loading="lazy">
               <figcaption>Timeline</figcaption>
             </figure>
 
-            <figure class="shot shot--borderless" data-shot data-caption="Weekly accordion of course materials">
+            <figure class="shot" data-shot data-caption="Weekly accordion of course materials">
               <img src="../assets/images/case-studies/nextgen-ai/14-materials.png" alt="Materials screen organized as a weekly accordion" loading="lazy">
               <figcaption>Materials</figcaption>
             </figure>
 
-            <figure class="shot shot--borderless" data-shot data-caption="Public and Private scores">
+            <figure class="shot" data-shot data-caption="Public and Private scores">
               <img src="../assets/images/case-studies/nextgen-ai/15-workshop.png" alt="Workshop screen showing Public and Private scores" loading="lazy">
               <figcaption>Workshop</figcaption>
             </figure>
 
-            <figure class="shot shot--borderless" data-shot data-caption="Final Leaderboard — see Impact above for how this evolved across three rounds">
+            <figure class="shot" data-shot data-caption="Final Leaderboard — see Impact above for how this evolved across three rounds">
               <img src="../assets/images/case-studies/nextgen-ai/11-leaderboard-v3-final.png" alt="Final Leaderboard with period/date labels, defaulting automatically to the latest results" loading="lazy">
               <figcaption>Leaderboard</figcaption>
             </figure>
 
-            <figure class="shot shot--borderless" data-shot data-caption="Permission — Admin access control (designed by me)">
-              <img src="../assets/images/case-studies/nextgen-ai/18-permission.png" alt="Permission page letting Admins control visibility and access per role" loading="lazy">
+            <figure class="shot" data-shot data-caption="Permission — Admin access control (designed by me)">
+              <div class="mockup-scroll-frame">
+                <img src="../assets/images/case-studies/nextgen-ai/18-permission.png" alt="Permission page letting Admins control visibility and access per role" loading="lazy">
+              </div>
               <figcaption>Permission</figcaption>
             </figure>
           </div>
@@ -553,22 +487,24 @@
           </div>
           
           <div class="screen-grid">
-            <figure class="shot shot--borderless" data-shot data-caption="Landing screen">
-              <img src="../assets/images/case-studies/nextgen-ai/20-landing.png" alt="Landing screen for the NextGen AI Camp student experience" loading="lazy">
+            <figure class="shot" data-shot data-caption="Landing screen">
+              <div class="mockup-scroll-frame">
+                <img src="../assets/images/case-studies/nextgen-ai/20-landing.png" alt="Landing screen for the NextGen AI Camp student experience" loading="lazy">
+              </div>
               <figcaption>Landing</figcaption>
             </figure>
 
-            <figure class="shot shot--borderless" data-shot data-caption="Registration screen">
+            <figure class="shot" data-shot data-caption="Registration screen">
               <img src="../assets/images/case-studies/nextgen-ai/21-register.png" alt="Registration screen for the NextGen AI Camp student experience" loading="lazy">
               <figcaption>Register</figcaption>
             </figure>
 
-            <figure class="shot shot--borderless" data-shot data-caption="Profile screen">
+            <figure class="shot" data-shot data-caption="Profile screen">
               <img src="../assets/images/case-studies/nextgen-ai/22-profile.png" alt="Profile screen using the same design system as the rest of the student experience" loading="lazy">
               <figcaption>Profile</figcaption>
             </figure>
 
-            <figure class="shot shot--borderless" data-shot data-caption="Announcement screen">
+            <figure class="shot" data-shot data-caption="Announcement screen">
               <img src="../assets/images/case-studies/nextgen-ai/17-announcement.png" alt="Announcement screen using the same design system as the rest of the student experience" loading="lazy">
               <figcaption>Announcement</figcaption>
             </figure>
@@ -750,22 +686,22 @@
       });
     });
 
-    // **ส่วนที่เพิ่มใหม่: คลิกรูปใน lightbox เพื่อสลับการซูม**
-    tyLightboxImg.addEventListener('click', function(e) {
-      e.stopPropagation(); // ป้องกันไม่ให้ทะลุไปปิด lightbox
+    // ---- lightbox deep zoom: click the image to toggle full-size ----
+    tyLightboxImg.addEventListener('click', function (e) {
+      e.stopPropagation(); // don't let the click bubble up and close the lightbox
       this.classList.toggle('is-zoomed');
     });
 
     function tyCloseLightbox() {
       tyLightbox.classList.remove('is-open');
       tyLightboxImg.src = '';
-      tyLightboxImg.classList.remove('is-zoomed'); // รีเซ็ตการซูมกลับเมื่อปิด
+      tyLightboxImg.classList.remove('is-zoomed'); // reset zoom state on close
     }
 
     tyLightboxClose.addEventListener('click', tyCloseLightbox);
     tyLightbox.addEventListener('click', function (e) { if (e.target === tyLightbox || e.target.classList.contains('ty-lightbox__frame')) tyCloseLightbox(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') tyCloseLightbox(); });
-    
+
     // ---- back-to-top: show once the reader scrolls past the hero ----
     var tyBackToTop = document.getElementById('backToTop');
     var tyHero = document.getElementById('top');

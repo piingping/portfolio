@@ -349,64 +349,79 @@ html { scroll-behavior: smooth; }
 .pain-card p:not(:last-child) { margin-bottom: 10px; }
 .pain-card p strong { color: var(--ty-text); }
 
-/* Wide diagram figures (reuse .shot / lightbox, just wider, non-scrolling
-   pairs). Common value used on NextGen AI (6+ instances); PingHub overrides
-   locally to a wider single-diagram size for its 2 uses.
-
-   Rebuilt from CSS Grid to flex: grid's shared auto-column track forced
-   every item in a row to the same column width, which is wrong the moment
-   a row mixes a landscape screenshot with a portrait phone screenshot —
-   the phone either got starved of height or blown out to match the
-   desktop shot. Flex + per-item widths (via the --desktop/--mobile/
-   --diagram modifiers below) let each item claim the width its own
-   aspect ratio actually needs, while aspect-ratio on the <img> itself
-   (not just the card) is what fixes uneven row heights: every image in
-   view now renders inside a fixed-ratio box instead of its own native
-   proportions, so a tall screenshot next to a short one no longer looks
-   stretched or squashed relative to its neighbor. */
+/* Wide diagram figures (reuse .shot / lightbox). Grid-based, borderless
+   layout: repeat(auto-fit, minmax(280px, 1fr)) wraps to as many columns as
+   fit a row and stretches them evenly to fill it, so a row never needs
+   horizontal scrolling regardless of how many shots it holds. */
 .shot-row {
-  display: flex;
-  gap: 18px;
-  overflow-x: auto;
-  padding-bottom: 10px;
-  scrollbar-width: thin;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
 }
 .shot-row--wide { margin-top: 20px; }
 
-/* Card: was a 10px white "photo mat" padding around every image (the flat,
-   generic-frame look). Now the image bleeds to the card edge and the
-   border + caption strip alone carry the framing, so the warm border
-   color still reads instead of being buried under white padding. */
+/* Borderless: no card fill, no border, no box-shadow on the container —
+   images sit directly on the page background instead of looking like
+   they're inside a white/cream photo-mat card. The accent glow lives on
+   the image itself (on hover), so interactivity still reads without a
+   frame. Width is 100% so every shot fills its grid cell responsively;
+   aspect-ratio (set per type modifier below) is what keeps row heights
+   consistent when a landscape screenshot sits next to a portrait one.
+
+   flex column + margin-top:auto on the figcaption (below) is what keeps
+   captions on one baseline across a row even when a row mixes a capped
+   .mockup-scroll-frame with a normal-height shot: grid's align-items:
+   stretch already makes every figure in the row exactly as tall as the
+   tallest one, and the auto margin then pushes each figure's caption
+   down to consume whatever space its own media didn't use. */
 .shot {
-  flex: 0 0 auto;
-  width: min(300px, 82vw); /* fallback for any .shot without a type modifier */
-  background: var(--ty-surface);
-  border: 1px solid var(--ty-border);
-  border-radius: var(--ty-radius-sm);
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   cursor: zoom-in;
+}
+.shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  border-radius: var(--ty-radius-sm);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-.shot:hover { transform: translateY(-4px); box-shadow: var(--ty-shadow-card); }
-.shot img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: contain; background: var(--ty-bg); }
-.shot .tag-mini { margin: 10px 0 0 10px; }
-.shot figcaption { font-size: 0.76rem; color: var(--ty-text-sub); text-align: center; padding: 8px 10px 10px; border-top: 1px solid var(--ty-border); margin-top: 4px; }
+/* Glow spreads on all sides (not just a bottom drop-shadow), so it reads
+   as a highlight on the image rather than a card lifting off the page. */
+.shot:hover img { transform: translateY(-4px); box-shadow: 0 0 24px rgba(214, 91, 62, 0.45); }
+.shot .tag-mini { margin: 0 0 10px; }
+.shot figcaption { font-size: 0.76rem; color: var(--ty-text-sub); text-align: center; padding-top: 10px; margin-top: auto; }
 
 /* Type modifiers — pick the one matching what the screenshot actually is.
    Diagrams (canvases, maps, matrices) run close to landscape; desktop UI
-   screenshots run wider still; phone screenshots are tall and need to
-   stay narrow rather than being blown up to a desktop-width column. */
-.shot--diagram { width: min(320px, 82vw); }
-.shot--diagram img { aspect-ratio: 4 / 3; background: #fff; }
-.shot-row--wide .shot--diagram { width: min(460px, 85vw); }
-
-.shot--desktop { width: min(480px, 85vw); }
+   screenshots run wider still; phone screenshots are tall. Only the
+   aspect-ratio differs between them now — width comes from .shot above. */
+.shot--diagram img { aspect-ratio: 4 / 3; }
 .shot--desktop img { aspect-ratio: 16 / 10; }
-.shot-row--wide .shot--desktop,
-.shot-row--screens .shot--desktop { width: min(580px, 88vw); }
-
-.shot--mobile { width: min(220px, 62vw); }
 .shot--mobile img { aspect-ratio: 9 / 18.5; }
+
+/* Scrollable viewport for unusually long screenshots (full-page captures,
+   long lists) — caps the image at a fixed height and scrolls internally
+   instead of forcing the whole page to scroll past one giant image.
+   Must be placed after the type modifiers above: same specificity as
+   `.shot img`/`.shot--desktop img` etc., so source order is what lets it
+   win and cancel their aspect-ratio/object-fit for the wrapped image.
+   The <figcaption> stays OUTSIDE this frame (a sibling, not a child) so
+   captions across a grid row still land on the same baseline. */
+.mockup-scroll-frame {
+  max-height: 420px;
+  overflow-y: auto;
+  border-radius: var(--ty-radius-sm);
+  scrollbar-width: thin;
+  scrollbar-color: var(--ty-accent) var(--ty-border);
+}
+.mockup-scroll-frame img { aspect-ratio: auto; object-fit: unset; }
+.mockup-scroll-frame::-webkit-scrollbar { width: 6px; }
+.mockup-scroll-frame::-webkit-scrollbar-track { background: var(--ty-border); border-radius: 4px; }
+.mockup-scroll-frame::-webkit-scrollbar-thumb { background: var(--ty-accent); border-radius: 4px; }
 
 /* Feature cards — used by NextGen AI (Solution) and TooYen+ (Solution).
    NextGen AI's --4 modifier and TooYen+'s icon badge are both additive,
@@ -542,19 +557,28 @@ html { scroll-behavior: smooth; }
 }
 .explore-card:hover .explore-card__title { color: var(--ty-accent); }
 
-/* Lightbox — identical across all 4 pages */
+/* Lightbox — identical across all 4 pages. overflow-y + align-items:
+   flex-start (instead of center) + margin:auto on the frame let the
+   lightbox scroll once a zoomed image is taller than the viewport, while
+   still centering anything that fits without scrolling. */
 .ty-lightbox {
   position: fixed; inset: 0; z-index: 1000;
   background: rgba(58, 35, 28, 0.82);
   display: none;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  overflow-y: auto;
   padding: 40px 20px;
   font-family: var(--ty-font-body);
 }
 .ty-lightbox.is-open { display: flex; }
-.ty-lightbox img { max-width: min(560px, 90vw); max-height: 82vh; border-radius: var(--ty-radius-sm); box-shadow: 0 30px 60px rgba(0,0,0,0.4); }
+.ty-lightbox__frame { display: flex; flex-direction: column; align-items: center; margin: auto; }
+.ty-lightbox img { max-width: min(560px, 90vw); max-height: 82vh; border-radius: var(--ty-radius-sm); box-shadow: 0 30px 60px rgba(0,0,0,0.4); cursor: zoom-in; }
+/* Deep zoom — click the lightbox image to toggle full natural size; the
+   lightbox's own overflow-y:auto (above) is what lets you scroll/pan it. */
+.ty-lightbox img.is-zoomed { max-width: none; max-height: none; cursor: zoom-out; }
 .ty-lightbox figcaption { color: #fff; text-align: center; font-size: 0.85rem; margin-top: 14px; opacity: 0.85; }
-.ty-lightbox__close { position: absolute; top: 24px; right: 28px; background: none; border: none; cursor: pointer; color: #fff; }
+/* fixed, not absolute: .ty-lightbox itself scrolls now (for zoomed images),
+   and a merely-absolute close button would scroll away with that content. */
+.ty-lightbox__close { position: fixed; top: 24px; right: 28px; background: none; border: none; cursor: pointer; color: #fff; z-index: 1001; }
 .ty-lightbox__close svg { width: 26px; height: 26px; }
-.ty-lightbox__frame { display: flex; flex-direction: column; align-items: center; }
