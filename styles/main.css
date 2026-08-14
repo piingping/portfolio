@@ -518,7 +518,7 @@ label:focus-visible {
 
 .case-study-card-image {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: calc(var(--radius-card) - 8px);
   background-color: var(--bg-primary);
@@ -665,9 +665,19 @@ label:focus-visible {
   box-shadow: var(--shadow-hover);
 }
 
-.resume-preview-img {
+/* Live embed of the actual resume PDF (native browser PDF viewer) —
+   sized to an A4 portrait ratio so it stays responsive without JS. */
+.resume-preview-frame {
   display: block;
   width: 100%;
-  height: auto;
+  aspect-ratio: 1 / 1.414;
+  border: none;
+  background-color: var(--surface);
+}
+
+.resume-preview-fallback {
+  padding: 24px;
+  color: var(--text-secondary);
+  font-size: var(--fs-small);
 }
 
