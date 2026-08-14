@@ -873,20 +873,13 @@ body.page-home {
   border-radius: var(--radius-card);
   overflow: hidden;
   box-shadow: var(--shadow-hover);
+  cursor: zoom-in;
 }
 
-/* Live embed of the actual resume PDF (native browser PDF viewer) —
-   sized to an A4 portrait ratio so it stays responsive without JS. */
+/* Static image of the actual resume — natural aspect ratio, no PDF viewer
+   chrome, so it always fills the frame edge-to-edge on every browser/OS. */
 .resume-preview-frame {
   display: block;
   width: 100%;
-  aspect-ratio: 1 / 1.414;
-  border: none;
-  background-color: var(--surface);
-}
-
-.resume-preview-fallback {
-  padding: 24px;
-  color: var(--text-secondary);
-  font-size: var(--fs-small);
+  height: auto;
 }

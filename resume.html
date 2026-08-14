@@ -48,9 +48,9 @@
       <h1 class="resume-title">Resume</h1>
 
       <div class="resume-preview-image">
-        <iframe class="resume-preview-frame" src="assets/docs/Resume_Sasiyakorn_Chansiri.pdf#view=FitH&toolbar=0&navpanes=0" title="Sasiyakorn Chansiri's resume preview">
-          <p class="resume-preview-fallback">Your browser can't preview PDFs inline. <a href="assets/docs/Resume_Sasiyakorn_Chansiri.pdf">Open the resume PDF directly</a> instead.</p>
-        </iframe>
+        <a href="assets/images/resume/Resume_Sasiyakorn_Chansiri.jpg" target="_blank" rel="noopener" aria-label="Open full-size resume image">
+          <img class="resume-preview-frame" src="assets/images/resume/Resume_Sasiyakorn_Chansiri.jpg" alt="Sasiyakorn Chansiri's resume">
+        </a>
       </div>
 
       <a href="assets/docs/Resume_Sasiyakorn_Chansiri.pdf" class="resume-download-link btn-primary" download="Resume_Sasiyakorn_Chansiri.pdf">Download Resume (PDF)</a>
@@ -82,20 +82,6 @@
       <p class="site-footer-mini__credit">Designed and developed by Sasiyakorn.</p>
     </div>
   </footer>
-
-  <!-- Android Chrome caches this page in bfcache when you tap back from the
-       embedded PDF viewer, but restores it blank because the PDF plugin
-       inside the iframe doesn't repaint on bfcache restore (iOS Safari isn't
-       affected). Forcing the iframe to reassign its own src on restore makes
-       it repaint instead of showing white. -->
-  <script>
-    window.addEventListener('pageshow', function (event) {
-      if (event.persisted) {
-        var frame = document.querySelector('.resume-preview-frame');
-        if (frame) frame.src = frame.src;
-      }
-    });
-  </script>
 
   <!-- <script src="scripts/main.js" defer></script> Phase 2: script -->
 
