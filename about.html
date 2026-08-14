@@ -610,6 +610,211 @@
       animation: spin-slow 14s linear infinite;
     }
 
+    /* ---------------------------------------------------
+       Free Time: Drawing Slideshow
+    --------------------------------------------------- */
+    .slideshow-container {
+      position: relative;
+      background: var(--abt-surface);
+      border: 1px solid var(--abt-border);
+      border-radius: 16px;
+      padding: 18px;
+      text-align: center;
+      width: 100%;
+      box-shadow: 0 4px 16px rgba(58, 35, 28, 0.05);
+    }
+    .slide {
+      display: none;
+      animation: fade-slide 0.5s ease-in-out;
+    }
+    .slide.active {
+      display: block;
+    }
+    .slide img {
+      width: 100%;
+      border-radius: 12px;
+      aspect-ratio: 4/3;
+      object-fit: contain; /* ให้รูปไม่โดนตัด */
+    }
+    .slide-nav {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36px;
+      height: 36px;
+      background: var(--abt-surface);
+      color: var(--abt-text);
+      font-size: 16px;
+      border: 1px solid var(--abt-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(58, 35, 28, 0.1);
+      transition: all 0.3s ease;
+      z-index: 2;
+    }
+    .slide-nav:hover {
+      background: var(--abt-accent);
+      color: #fff;
+      border-color: var(--abt-accent);
+    }
+    .slide-nav.prev { left: -18px; }
+    .slide-nav.next { right: -18px; }
+
+    .slide-dots {
+      text-align: center;
+      margin-top: 16px;
+    }
+    .dot {
+      cursor: pointer;
+      height: 10px;
+      width: 10px;
+      margin: 0 4px;
+      background-color: var(--abt-border);
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+    }
+    .dot.active, .dot:hover {
+      background-color: var(--abt-accent);
+    }
+
+    @keyframes fade-slide {
+      from { opacity: 0.4; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* ---------------------------------------------------
+       Free Time: Video Bento Grid (16:9 & 9:16)
+    --------------------------------------------------- */
+    .video-bento {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      width: 100%;
+    }
+    .vid-card {
+      position: relative;
+      display: block;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--abt-border);
+      background: var(--abt-surface);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 12px rgba(58, 35, 28, 0.05);
+    }
+    .vid-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .vid-horiz {
+      grid-column: span 2;
+      aspect-ratio: 16/9; /* แนวนอน Youtube */
+    }
+    .vid-vert {
+      grid-column: span 1;
+      aspect-ratio: 9/16; /* แนวตั้ง Tiktok */
+    }
+    .vid-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px rgba(214, 91, 62, 0.25);
+      border-color: var(--abt-accent);
+    }
+    .vid-card:hover img {
+      transform: scale(1.05); /* รูปข้างในซูมเข้าเบาๆ */
+    }
+    .vid-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(58, 35, 28, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease;
+    }
+    .vid-card:hover .vid-overlay {
+      background: rgba(58, 35, 28, 0.4);
+    }
+    .play-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--abt-accent);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+    .vid-card:hover .play-icon {
+      transform: scale(1.1);
+      background: #fff;
+    }
+    .play-icon svg {
+      width: 20px;
+      height: 20px;
+      margin-left: 4px; /* ขยับสามเหลี่ยมให้ดูอยู่ตรงกลางสายตา */
+      fill: currentColor;
+    }
+
+    /* ---------------------------------------------------
+       Video Section: Stacked Layout (ข้อความอยู่บน รูปอยู่ล่าง)
+    --------------------------------------------------- */
+    .ft-block--stacked {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 32px;
+      margin-bottom: 72px;
+    }
+    .ft-block--stacked .ft-text {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .ft-block--stacked .ft-label {
+      display: inline-block; /* เพื่อให้อยู่กึ่งกลาง */
+    }
+    .ft-block--stacked .ft-visual {
+      width: 100%;
+      max-width: 860px; /* ควบคุมไม่ให้วิดีโอขยายใหญ่ทะลุจอเกินไปบน Desktop */
+    }
+
+    /* ---------------------------------------------------
+       Contact Cards Adjustments (ปรับขนาดช่องอีเมลและเบอร์โทร)
+    --------------------------------------------------- */
+    /* บังคับให้อีเมล (การ์ดใบแรก) กินพื้นที่มากกว่าเพื่อน */
+    .contact-card:nth-child(1) {
+      flex: 1.8; 
+    }
+    /* ลดขนาดเบอร์โทร (การ์ดใบที่สอง) ลง */
+    .contact-card:nth-child(2) {
+      flex: 0.8; 
+    }
+    .contact-card:nth-child(3) {
+      flex: 1; 
+    }
+    
+    /* หากหน้าจอเล็ก (มือถือ) ให้กลับมาแบ่งเท่าๆ กัน (เรียงแนวตั้ง) */
+    @media (max-width: 768px) {
+      .contact-card:nth-child(1),
+      .contact-card:nth-child(2),
+      .contact-card:nth-child(3) {
+        flex: 1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .slide-nav.prev { left: -10px; }
+      .slide-nav.next { right: -10px; }
+    }
+
     @keyframes spin-slow {
       to {
         transform: rotate(360deg);
@@ -783,9 +988,6 @@
 
 <body>
 
-  <!-- Mobile-only scroll progress bar; width driven by JS near </body> -->
-  <div class="scroll-progress" id="scrollProgress"></div>
-
   <!-- =========================================================
        GLOBAL NAVIGATION (same markup as index.html)
        Replaces this page's own bespoke <nav> from the source
@@ -808,6 +1010,12 @@
         <li class="nav-item"><a href="resume.html" class="nav-link">Resume</a></li>
       </ul>
     </nav>
+
+    <!-- Scroll progress bar; width driven by JS near </body>. Lives here
+         (last child of .site-header) so it stays pinned to the header's
+         bottom edge as the sticky header scrolls — same pattern as the
+         case-study pages. -->
+    <div class="scroll-progress" id="scrollProgress"></div>
   </header>
 
   <main class="about-page">
@@ -955,59 +1163,122 @@
         </div>
       </div>
     </section>
-
-    <!-- IN MY FREE TIME -->
+<!-- IN MY FREE TIME -->
     <section id="freetime">
       <div class="wrap">
         <p class="eyebrow reveal">In my free time</p>
 
-        <div class="ft-block reveal">
+        <!-- 1. Drawing (Slideshow) -->
+        <div class="ft-block  reveal">
           <div class="ft-text">
             <span class="ft-label">Drawing</span>
             <h3>I've loved drawing since I was young</h3>
             <p>It sharpens my eye for detail and composition, and shapes how I see visual design.</p>
           </div>
           <div class="ft-visual">
-            <div class="doodle-gallery">
-              <div class="doodle-card">
-                <img src="assets/images/about/boy.png" alt="Hand-drawn boy doodle by Sasiyakorn">
-               
+            <div class="slideshow-container">
+              <div class="slide active">
+                <img src="assets/images/about/drawing-1.png" alt="Drawing 1">
               </div>
-              <div class="doodle-card">
-                <img src="assets/images/about/girl.png"
-                  alt="Hand-drawn girl doodle by Sasiyakorn">
+              <div class="slide">
+                <img src="assets/images/about/drawing-2.png" alt="Drawing 2">
               </div>
-           
+              <div class="slide">
+                <img src="assets/images/about/drawing-3.png" alt="Drawing 3">
+              </div>
+              <div class="slide">
+                <img src="assets/images/about/drawing-4.png" alt="Drawing 4">
+              </div>
+              <div class="slide">
+                <img src="assets/images/about/drawing-5.png" alt="Drawing 5">
+              </div>
+              
+              <!-- Buttons -->
+              <button class="slide-nav prev" onclick="changeSlide(-1)" aria-label="Previous">❮</button>
+              <button class="slide-nav next" onclick="changeSlide(1)" aria-label="Next">❯</button>
+              
+              <!-- Dots -->
+              <div class="slide-dots">
+                <span class="dot active" onclick="setSlide(0)"></span>
+                <span class="dot" onclick="setSlide(1)"></span>
+                <span class="dot" onclick="setSlide(2)"></span>
+                <span class="dot" onclick="setSlide(3)"></span>
+                <span class="dot" onclick="setSlide(4)"></span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="ft-block reveal">
+        <!-- 2. Video Editing (CSS Bento Grid) -->
+<div class="ft-block ft-block--stacked reveal">
           <div class="ft-text">
             <span class="ft-label">Video Editing</span>
             <h3>I enjoy editing videos</h3>
             <p>It taught me pacing and storytelling — skills I carry into how I craft user experiences.</p>
           </div>
           <div class="ft-visual">
-            <div class="render-frame">🎬 clips coming soon</div>
-          </div>
-        </div>
+            <div class="video-bento">
+              
+              <!-- คลิป 1: YouTube (แนวนอน) -->
+              <a href="https://www.youtube.com/watch?v=RvNOBXjZrAY" target="_blank" class="vid-card vid-horiz">
+                <img src="assets/images/about/yt-1.png" alt="YouTube Video 1 Thumbnail">
+                <div class="vid-overlay">
+                  <div class="play-icon">
+                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
+              </a>
 
-        <div class="ft-block reveal">
-          <div class="ft-text">
-            <span class="ft-label">3D Modeling <span class="badge-new">new!</span></span>
-            <h3>Just started exploring Blender</h3>
-            <p>A new creative outlet I'm still getting the hang of. Still early days — one render in, many more to come.
-            </p>
-          </div>
-          <div class="ft-visual">
-            <div class="render-frame">
-              <img class="sticker sticker-spiral" src="assets/images/about/doodle-spiral.png"
-                alt="Hand-drawn spiral doodle">
-              first Blender render
+              <!-- คลิป 2: TikTok (แนวตั้ง) -->
+              <a href="https://www.tiktok.com/@cenextgen/video/7286816941124209921?is_from_webapp=1&sender_device=pc" target="_blank" class="vid-card vid-vert">
+                <img src="assets/images/about/tiktok-1.png" alt="TikTok Video 1 Thumbnail">
+                <div class="vid-overlay">
+                  <div class="play-icon">
+                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
+              </a>
+
+              <!-- คลิป 3: TikTok (แนวตั้ง) -->
+              <a href="https://www.tiktok.com/@cenextgen/video/7584724830163848466?is_from_webapp=1&sender_device=pc" target="_blank" class="vid-card vid-vert">
+                <img src="assets/images/about/tiktok-2.png" alt="TikTok Video 2 Thumbnail">
+                <div class="vid-overlay">
+                  <div class="play-icon">
+                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
+              </a>
+
+              <!-- คลิป 4: YouTube (แนวนอน) -->
+              <a href="https://www.youtube.com/watch?v=XlVoaiFDTWE" target="_blank" class="vid-card vid-horiz">
+                <img src="assets/images/about/yt-2.png" alt="YouTube Video 2 Thumbnail">
+                <div class="vid-overlay">
+                  <div class="play-icon">
+                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
+              </a>
+
             </div>
           </div>
         </div>
+
+        <!-- 3. 3D Modeling (Blender) -->
+        <div class="ft-block reveal">
+          <div class="ft-text">
+            <span class="ft-label">3D Modeling </span>
+            <h3>Just started exploring Blender</h3>
+            <p>A new creative outlet I'm still getting the hang of. Still early days — one render in, many more to come.</p>
+          </div>
+          <div class="ft-visual">
+            <img class="sticker sticker-spiral" src="assets/images/about/doodle-spiral.png" alt="Hand-drawn spiral doodle" style="z-index: 2;">
+            <div class="render-frame" style="padding: 0; overflow: hidden; border: none; box-shadow: 0 4px 12px rgba(58, 35, 28, 0.05);">
+              <!-- รูป Blender ปรับขนาดให้เต็มกรอบ -->
+              <img src="assets/images/about/tree-scene.png" alt="First Blender render" style="width: 100%; height: 100%; object-fit: cover; border-radius: 18px;">
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -1077,6 +1348,22 @@
   <!-- <script src="scripts/main.js" defer></script> Phase 2: script -->
 
   <script>
+    // Reading progress bar (hidden above 1400px via CSS, where there's
+    // enough room the reader doesn't need it).
+    (function () {
+      var bar = document.getElementById('scrollProgress');
+      if (!bar) return;
+      function updateProgress() {
+        var scrollTop = window.scrollY || document.documentElement.scrollTop;
+        var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        bar.style.width = (docHeight > 0 ? (scrollTop / docHeight) * 100 : 0) + '%';
+      }
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      window.addEventListener('resize', updateProgress);
+      updateProgress();
+    })();
+  </script>
+  <script>
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -1086,6 +1373,48 @@
       });
     }, { threshold: .15 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+<script>
+    // ---- Slideshow Logic with Autoplay ----
+    let currentSlideIndex = 0;
+    let slideInterval; // ตัวแปรเก็บเวลาเล่นอัตโนมัติ
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+
+    function showSlide(index) {
+      slides.forEach(slide => slide.classList.remove('active'));
+      dots.forEach(dot => dot.classList.remove('active'));
+      
+      currentSlideIndex = (index + slides.length) % slides.length;
+      
+      slides[currentSlideIndex].classList.add('active');
+      dots[currentSlideIndex].classList.add('active');
+    }
+
+    function changeSlide(n) {
+      showSlide(currentSlideIndex + n);
+      resetInterval(); // รีเซ็ตเวลาเมื่อกดเปลี่ยนเอง
+    }
+
+    function setSlide(n) {
+      showSlide(n);
+      resetInterval(); // รีเซ็ตเวลาเมื่อกดที่จุดไข่ปลา
+    }
+
+    function startInterval() {
+      // ตั้งเวลาเปลี่ยนภาพอัตโนมัติทุกๆ 3 วินาที (3000 มิลลิวินาที)
+      slideInterval = setInterval(() => {
+        showSlide(currentSlideIndex + 1);
+      }, 3000); 
+    }
+
+    function resetInterval() {
+      clearInterval(slideInterval); // หยุดเวลาเก่า
+      startInterval(); // เริ่มนับเวลาใหม่
+    }
+
+    // เริ่มเล่นอัตโนมัติทันทีที่หน้าเว็บโหลด
+    startInterval();
   </script>
 
 </body>

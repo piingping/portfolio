@@ -36,11 +36,6 @@
         <li class="nav-item"><a href="resume.html" class="nav-link" aria-current="page">Resume</a></li>
       </ul>
     </nav>
-
-    <!-- Mobile-only scroll progress bar; width driven by JS near </body>.
-         Lives here (last child of .site-header) so it stays pinned to the
-         header's bottom edge as the sticky header scrolls. -->
-    <div class="scroll-progress" id="scrollProgress"></div>
   </header>
 
   <main>
@@ -89,23 +84,6 @@
   </footer>
 
   <!-- <script src="scripts/main.js" defer></script> Phase 2: script -->
-
-  <script>
-    // Mobile-only reading progress bar (hidden on desktop via CSS,
-    // so this listener is harmless to leave running everywhere).
-    (function () {
-      var bar = document.getElementById('scrollProgress');
-      if (!bar) return;
-      function updateProgress() {
-        var scrollTop = window.scrollY || document.documentElement.scrollTop;
-        var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        bar.style.width = (docHeight > 0 ? (scrollTop / docHeight) * 100 : 0) + '%';
-      }
-      window.addEventListener('scroll', updateProgress, { passive: true });
-      window.addEventListener('resize', updateProgress);
-      updateProgress();
-    })();
-  </script>
 
 </body>
 </html>

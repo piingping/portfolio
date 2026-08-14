@@ -377,11 +377,19 @@ label:focus-visible {
   }
 }
 
-/* Scroll progress bar — mobile only; fills left-to-right as the reader
-   scrolls down the page. Lives inside .site-header (last child) so it's
-   pinned to the header's bottom edge and scrolls/sticks with it — no need
-   to track header height, since .site-header is already position: sticky
-   (a positioned element), which makes it the containing block here. */
+/* Scroll progress bar — fills left-to-right as the reader scrolls down the
+   page. Lives inside .site-header (last child) so it's pinned to the
+   header's bottom edge and scrolls/sticks with it — no need to track
+   header height, since .site-header is already position: sticky (a
+   positioned element), which makes it the containing block here.
+
+   Shown on the 4 case-study pages + About Me; index.html and resume.html
+   don't include the markup for it at all, so this rule is simply unused
+   there. Breakpoint is 1400px so it hands off to the case-study pages'
+   .toc-side (styles/project-detail.css) right where that becomes visible
+   — below 1400px there's no room for the side TOC, so this bar is the
+   wayfinding/progress cue instead; at 1400px+ the TOC takes over and this
+   hides. Keep these two breakpoints in sync if either one changes. */
 .scroll-progress {
   position: absolute;
   bottom: 0;
@@ -392,7 +400,7 @@ label:focus-visible {
   transition: width 0.1s ease-out;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1401px) {
   .scroll-progress {
     display: none;
   }

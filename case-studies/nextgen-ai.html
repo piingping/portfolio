@@ -40,14 +40,6 @@
     /* Longer tagline sentence needs more width than the shared 46ch default. */
     .hero__tagline { max-width: 48ch; }
 
-    /* Image-left / text-right hero, matching the PAO case study's layout.
-       Page-local only: the shared .hero__grid columns (1.1fr text-first /
-       0.9fr image-first) stay untouched so PingHub/PAO/TooYen+ don't shift —
-       this page alone now puts the image column first and gives it a touch
-       less width than the text+facts column beside it. */
-    .case-study--nextgen-ai .hero__grid { grid-template-columns: 0.95fr 1.05fr; }
-
-
     /* Used standalone (no card) as a label above Research/Impact headings —
        needs its own block-level spacing, unlike the shared in-card default. */
     .pain-card__num { display: inline-block; margin-bottom: 8px; }
@@ -148,7 +140,7 @@
 
         <div data-reveal>
           <p class="eyebrow">Senior Capstone Project — KMITL</p>
-          <h1>NextGen <span class="accent">AI</span> Camp</h1>
+          <h1>NextGen <span class="accent">AI</span> </h1>
           <p class="hero__subtitle">Educational Camp Management Platform</p>
           <p class="hero__tagline">Built from the ground up for a 1,000+ participant, multi-phase AI education camp — shaped by alumni feedback, past staff insight, and growing instructor requirements, then validated against real usage mid-camp.</p>
 

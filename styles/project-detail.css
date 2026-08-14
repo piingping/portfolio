@@ -124,10 +124,18 @@ html { scroll-behavior: smooth; }
 /* ---------------------------------------------------
    ON-THIS-PAGE SIDE TOC
 --------------------------------------------------- */
+/* left (not right) so its position tracks the content column's actual
+   right edge — .wrap centers at 50% and is capped at --ty-maxw, so its
+   right edge sits at "50% + maxw/2" once the viewport is wide enough to
+   stop clamping .wrap to 100%. A fixed `right: 20px` instead put the toc
+   a constant distance from the *viewport* edge regardless of where the
+   content edge actually was, which is what let it drift on top of hero
+   text at ~1000–1300px viewports (content edge and toc both live in that
+   same 20px-from-edge zone there). */
 .toc-side {
   position: fixed;
   top: 50%;
-  right: 20px;
+  left: calc(50% + (var(--ty-maxw) / 2) + 32px);
   transform: translateY(-50%);
   z-index: 90;
   display: flex;
@@ -158,7 +166,13 @@ html { scroll-behavior: smooth; }
 .toc-side a:hover { color: var(--ty-text); }
 .toc-side a.is-active { color: var(--ty-accent); }
 .toc-side a.is-active::before { background: var(--ty-accent); transform: scale(1.5); }
-@media (max-width: 960px) {
+/* Below this, the gutter to the right of the (now maxed-out at --ty-maxw)
+   content column is narrower than the toc's own ~95px + the 32px gap
+   above needs, so it would start overlapping content again — hide it
+   instead of letting it collide, same as the pre-existing mobile case.
+   Below 1401px, .scroll-progress (styles/main.css) is what shows instead
+   as the wayfinding/progress cue — keep the two breakpoints in sync. */
+@media (max-width: 1400px) {
   .toc-side { display: none; }
 }
 
@@ -166,15 +180,22 @@ html { scroll-behavior: smooth; }
    HERO
 --------------------------------------------------- */
 .case-study .hero { padding: 56px 0 88px; overflow: hidden; }
+/* Image-left / text-right on every page (order:-1 on .hero__art wins
+   regardless of each page's own DOM order — pinghub/pao/tooyenplus all
+   write text first, image second in HTML, same as before this changed;
+   only NextGen AI's markup already had the image first). Column ratio
+   (0.95fr/1.05fr, image slightly narrower than text) also matches
+   NextGen AI now, previously the shared default here (1.1fr/0.9fr) was
+   only used by pinghub/pao/tooyenplus while NextGen AI overrode it. */
 .hero__grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 0.95fr 1.05fr;
   gap: 56px;
   align-items: center;
 }
+.hero__art { order: -1; }
 @media (max-width: 860px) {
   .hero__grid { grid-template-columns: 1fr; gap: 48px; }
-  .hero__art { order: -1; }
 }
 /* Common value across pinghub/pao/tooyenplus (3 of 4 pages); NextGen AI's
    longer title needs a smaller clamp, overridden locally on that page. */
