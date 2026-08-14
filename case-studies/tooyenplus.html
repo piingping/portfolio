@@ -460,7 +460,22 @@
        Content/structure adapted from reference/tooyen-plus.html.
        The reference's own sticky top nav was dropped (it duplicated
        this shared site-header) and replaced with the fixed side TOC
-       further down (.toc-side). -->
+       further down (.toc-side).
+
+       NOTE on source doc (tooyen-plus-case-study_2.md): the leading
+       "<img src="images/logo.svg" .../>" at the top of the .md is a
+       doc-formatting artifact (the nav already carries the site's own
+       brand mark), not case-study content — not reproduced here. Every
+       other "*[...]*"-style caption line under Key Screens WAS treated
+       as real content (they're italic image captions, not TODOs) and is
+       reflected in the <figcaption>/data-caption text below.
+
+       The .md's "Two Rebuilds, Two Different Reasons" section is a real
+       narrative change from the prior draft — it adds a second rebuild
+       story (Notifications, inherited then reworked) alongside the
+       existing recipe-editor rebuild. Implemented below; flagged again
+       in the end-of-task summary since it needs a new "before" screenshot
+       that didn't exist as an asset slot before. -->
 
   <!-- =========================================================
        GLOBAL NAVIGATION (same markup as index.html)
@@ -550,7 +565,7 @@
             <p>People buy groceries but forget about them until they expire — food waste from losing visual contact, not from not caring.</p>
           </div>
           <div class="pain-card" data-reveal>
-            <span class="pain-card__num">02 · Decision cost</span>
+            <span class="pain-card__num">02 · Decision fatigue</span>
             <h3>"What do I even cook?"</h3>
             <p>Even with fresh ingredients on hand, deciding what to make is a small mental tax — one that usually loses to ordering food instead.</p>
           </div>
@@ -693,23 +708,28 @@
         <div class="screen-group">
           <div class="screen-group__head">
             <h3>Getting started</h3>
-            <p>Early low-fi wireframes for Login and Register, next to the final landing screen.</p>
+            <p>Early low-fi wireframes for Login and Register, next to the final landing and Register screens.</p>
           </div>
           <div class="shot-row">
+            <!-- placeholder: needs real screenshot — final landing screen -->
+            <figure class="shot" data-shot data-caption="Final landing screen — straight into the fridge or a recipe search, no friction">
+              <img src="../assets/images/tooyenplus/13-landing-login-hifi.png" alt="Final landing screen with TooYen+ logo and login, register, and browse buttons" loading="lazy">
+              <figcaption>Final — Landing screen</figcaption>
+            </figure>
             <!-- placeholder: needs real screenshot — login lo-fi -->
             <figure class="shot" data-shot data-caption="Low-fi — Login">
               <img src="../assets/images/tooyenplus/01-login-lofi.png" alt="Low-fidelity wireframe of the login screen" loading="lazy">
               <figcaption>Low-fi — Login</figcaption>
             </figure>
             <!-- placeholder: needs real screenshot — register lo-fi -->
-            <figure class="shot" data-shot data-caption="Low-fi — Register (red circles are my own note that these two actions weren't wired up by the backend yet)">
+            <figure class="shot" data-shot data-caption="Low-fi — Register">
               <img src="../assets/images/tooyenplus/02-register-lofi.png" alt="Low-fidelity wireframe of the register screen" loading="lazy">
               <figcaption>Low-fi — Register</figcaption>
             </figure>
-            <!-- placeholder: needs real screenshot — final landing screen -->
-            <figure class="shot" data-shot data-caption="Final — Landing / entry screen">
-              <img src="../assets/images/tooyenplus/13-landing-login-hifi.png" alt="Final landing screen with TooYen+ logo and login, register, and browse buttons" loading="lazy">
-              <figcaption>Final — Landing screen</figcaption>
+            <!-- placeholder: needs real screenshot — final register screen -->
+            <figure class="shot" data-shot data-caption="Final — Register screen">
+              <img src="../assets/images/tooyenplus/18-register-final.png" alt="Final Register screen" loading="lazy">
+              <figcaption>Final — Register screen</figcaption>
             </figure>
           </div>
         </div>
@@ -717,18 +737,18 @@
         <div class="screen-group">
           <div class="screen-group__head">
             <h3>Fridge &amp; ingredients</h3>
-            <p>Switching between fridges a user belongs to, and browsing what's inside one.</p>
+            <p>Fridges a user belongs to, and picking which one to manage.</p>
           </div>
           <div class="shot-row">
             <!-- placeholder: needs real screenshot — my fridges list -->
-            <figure class="shot" data-shot data-caption="Selecting which shared fridge to manage">
+            <figure class="shot" data-shot data-caption="Fridges a user belongs to">
               <img src="../assets/images/tooyenplus/14-my-fridge-hifi.png" alt="My Fridges screen showing multiple fridges a user belongs to" loading="lazy">
               <figcaption>My Fridges</figcaption>
             </figure>
-            <!-- placeholder: needs real screenshot — inside a fridge -->
-            <figure class="shot" data-shot data-caption="Inside a fridge: available recipes based on what's inside">
-              <img src="../assets/images/tooyenplus/15-fridge-select-hifi.png" alt="Selected fridge screen with recipe recommendations based on its contents" loading="lazy">
-              <figcaption>Inside a fridge</figcaption>
+            <!-- placeholder: needs real screenshot — select fridge -->
+            <figure class="shot" data-shot data-caption="Picking which fridge to manage">
+              <img src="../assets/images/tooyenplus/15-fridge-select-hifi.png" alt="Select Fridge screen for picking which fridge to manage" loading="lazy">
+              <figcaption>Select Fridge</figcaption>
             </figure>
           </div>
         </div>
@@ -760,28 +780,23 @@
         <div class="screen-group">
           <div class="screen-group__head">
             <h3>Recipe detail</h3>
-            <p>Ingredients and instructions split into tabs, so a user can check "do I have everything?" first.</p>
+            <p>Two states by design: browsing someone else's recipe (no edit access) vs. viewing your own.</p>
           </div>
           <div class="shot-row">
-            <!-- placeholder: needs real screenshot — ingredients tab lo-fi -->
-            <figure class="shot" data-shot data-caption="Low-fi — Ingredients tab">
-              <img src="../assets/images/tooyenplus/03-menu-details-ingredients-lofi.png" alt="Low-fidelity wireframe of the recipe ingredients tab" loading="lazy">
-              <figcaption>Low-fi — Ingredients tab</figcaption>
+            <!-- placeholder: needs real screenshot — recipe ingredients, guest view -->
+            <figure class="shot" data-shot data-caption="Browsing someone else's recipe — no edit access">
+              <img src="../assets/images/tooyenplus/19-recipe-ingredients-guest-hifi.png" alt="Recipe ingredients tab as seen by a guest browsing someone else's recipe, with no edit access" loading="lazy">
+              <figcaption>Ingredients — Guest view</figcaption>
             </figure>
-            <!-- placeholder: needs real screenshot — instructions tab lo-fi -->
-            <figure class="shot" data-shot data-caption="Low-fi — Instructions tab">
-              <img src="../assets/images/tooyenplus/04-menu-details-instructions-lofi.png" alt="Low-fidelity wireframe of the recipe instructions tab" loading="lazy">
-              <figcaption>Low-fi — Instructions tab</figcaption>
-            </figure>
-            <!-- placeholder: needs real screenshot — ingredients tab final -->
-            <figure class="shot" data-shot data-caption="Final — Ingredients tab, with an edit entry point for the recipe's owner">
-              <img src="../assets/images/tooyenplus/10-menu-details-ingredients-hifi.png" alt="Final recipe screen showing the ingredients tab" loading="lazy">
-              <figcaption>Final — Ingredients tab</figcaption>
+            <!-- placeholder: needs real screenshot — recipe ingredients, owner view -->
+            <figure class="shot" data-shot data-caption="Viewing your own recipe — with a favorite star and an Edit Recipes entry point">
+              <img src="../assets/images/tooyenplus/10-menu-details-ingredients-hifi.png" alt="Recipe ingredients tab as seen by the recipe's owner, with a favorite star and an Edit Recipes entry point" loading="lazy">
+              <figcaption>Ingredients — Owner view</figcaption>
             </figure>
             <!-- placeholder: needs real screenshot — instructions tab final -->
             <figure class="shot" data-shot data-caption="Final — Instructions tab, numbered steps with cook time">
               <img src="../assets/images/tooyenplus/09-menu-details-instructions-hifi.png" alt="Final recipe screen showing the numbered instructions tab" loading="lazy">
-              <figcaption>Final — Instructions tab</figcaption>
+              <figcaption>Instructions</figcaption>
             </figure>
           </div>
         </div>
@@ -793,8 +808,8 @@
           </div>
           <div class="shot-row">
             <!-- placeholder: needs real screenshot — confirm cooking modal -->
-            <figure class="shot" data-shot data-caption="7 of 10 ingredients on hand — with a shortcut to buy the rest">
-              <img src="../assets/images/tooyenplus/08-confirm-cooking-hifi.png" alt="Confirm cooking modal showing 7 of 10 ingredients available and a where to buy shortcut" loading="lazy">
+            <figure class="shot" data-shot data-caption="7 of 10 ingredients on hand — with a &quot;Where to Buy?&quot; shortcut for what's missing">
+              <img src="../assets/images/tooyenplus/08-confirm-cooking-hifi.png" alt="Confirm cooking modal showing 7 of 10 ingredients available and a Where to Buy shortcut" loading="lazy">
               <figcaption>Confirm cooking</figcaption>
             </figure>
           </div>
@@ -807,13 +822,13 @@
           </div>
           <div class="shot-row">
             <!-- placeholder: needs real screenshot — profile screen -->
-            <figure class="shot" data-shot data-caption="Dietary toggles and unwanted-ingredient filters">
-              <img src="../assets/images/tooyenplus/16-profile-hifi.png" alt="Profile screen with favorite menus, dietary toggles, and unwanted ingredients" loading="lazy">
+            <figure class="shot" data-shot data-caption="Dietary toggles (Intermittent Fasting, Halal, Vegetarian), favorites, and unwanted-ingredient filters">
+              <img src="../assets/images/tooyenplus/16-profile-hifi.png" alt="Profile screen with favorite menus, dietary toggles for Intermittent Fasting, Halal, and Vegetarian, and unwanted ingredients" loading="lazy">
               <figcaption>Profile &amp; preferences</figcaption>
             </figure>
             <!-- placeholder: needs real screenshot — notifications screen -->
-            <figure class="shot" data-shot data-caption="Expiry alerts and meal-time reminders">
-              <img src="../assets/images/tooyenplus/17-notification-hifi.png" alt="Notifications screen with expiration alerts and meal reminders" loading="lazy">
+            <figure class="shot" data-shot data-caption="Reminders grouped by Today / This Week / Earlier">
+              <img src="../assets/images/tooyenplus/17-notification-hifi.png" alt="Notifications screen with expiration alerts and meal reminders grouped by Today, This Week, and Earlier" loading="lazy">
               <figcaption>Notifications</figcaption>
             </figure>
           </div>
@@ -824,11 +839,14 @@
     <!-- ============ ITERATION ============ -->
     <section class="section" id="iteration">
       <div class="wrap">
-        <span class="tag-label">Tag 06 — One Screen, Several Tries</span>
+        <span class="tag-label">Tag 06 — Two Rebuilds, Two Different Reasons</span>
         <div class="section__head">
-          <h2>Rebuilding the recipe editor.</h2>
-          <p class="section__lede">This screen went through several full redesigns before I landed on a version I was satisfied with.</p>
+          <h2>Two rebuilds, two different reasons.</h2>
+          <p class="section__lede">Two screens in this project got fully rebuilt — for very different reasons.</p>
         </div>
+
+        <h3 style="font-size:1.1rem; margin-bottom: 6px;">Rebuilding the recipe editor — self-critique</h3>
+        <p style="font-size:0.92rem; margin-bottom:20px; max-width:62ch;">This screen went through several full redesigns before I landed on a version I was satisfied with.</p>
 
         <div class="iteration-compare" data-reveal>
           <div class="iteration-pane">
@@ -860,6 +878,36 @@
         <div class="honesty-note" data-reveal>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v2m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
           <p>Being upfront about how this happened: it wasn't driven by user testing — it was self-critique. I wasn't happy with the earlier structure and kept rebuilding until the step-by-step logic matched how someone actually follows a recipe. A real before/after — but the "researcher" giving feedback here was me, not a tested user.</p>
+        </div>
+
+        <h3 style="font-size:1.1rem; margin: 44px 0 6px;">Redesigning Notifications — inherited, then rebuilt</h3>
+        <p style="font-size:0.92rem; margin-bottom:20px; max-width:62ch;">The original notifications screen was a teammate's design. I took it over and rebuilt it — grouping alerts by Today / This Week / Earlier instead of one flat list, and restyling it to match the rest of the app rather than sit apart from it.</p>
+
+        <div class="iteration-compare" data-reveal>
+          <div class="iteration-pane">
+            <span class="tag-mini tag-mini--before">Before</span>
+            <!-- placeholder: needs real screenshot — teammate's original Notifications design -->
+            <img src="../assets/images/tooyenplus/20-notification-before.png" alt="Original Notifications screen designed by a teammate, shown as one flat list with no grouping">
+          </div>
+          <div class="iteration-compare__arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+          <div class="iteration-pane">
+            <span class="tag-mini tag-mini--after">After</span>
+            <!-- placeholder: needs real screenshot — rebuilt Notifications screen -->
+            <img src="../assets/images/tooyenplus/17-notification-hifi.png" alt="Rebuilt Notifications screen with alerts grouped by Today, This Week, and Earlier">
+          </div>
+        </div>
+
+        <div class="iteration-notes" data-reveal>
+          <div>
+            <h4>Before</h4>
+            <p>A teammate's original design — one flat list of alerts, with no grouping by urgency or time, and a visual style that sat apart from the rest of the app.</p>
+          </div>
+          <div>
+            <h4>After</h4>
+            <p>Alerts grouped by Today / This Week / Earlier, restyled to match the rest of the app's identity instead of standing apart from it.</p>
+          </div>
         </div>
       </div>
     </section>

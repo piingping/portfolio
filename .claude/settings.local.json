@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p case-studies styles scripts)",
+      "Bash(mv case-study-template.html case-studies/template.html)",
+      "Bash(mv case-study-nextgen-ai.html case-studies/nextgen-ai.html)",
+      "Bash(mv case-study-pao.html case-studies/pao.html)",
+      "Bash(mv case-study-pinghub.html case-studies/pinghub.html)",
+      "Read(//c/Users/**)",
+      "Bash(npm ls *)",
+      "Bash(npx --yes playwright --version)",
+      "Bash(npx --yes playwright install chromium)",
+      "Bash(mkdir -p scratchpad)",
+      "Bash(npx --yes playwright@1.62.1 node \"C:\\\\Users\\\\sasiy\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\d--ComEngineering-student-uxui-intern-Portfolio\\\\8c4ce9b9-64f6-483b-9f58-67bb60971e8f\\\\scratchpad\\\\verify-tooyenplus.mjs\")",
+      "Bash(NODE_PATH=\"/c/Users/sasiy/AppData/Local/npm-cache/_npx/db89d7302a373f10/node_modules\" node \"C:\\\\Users\\\\sasiy\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\d--ComEngineering-student-uxui-intern-Portfolio\\\\8c4ce9b9-64f6-483b-9f58-67bb60971e8f\\\\scratchpad\\\\verify-tooyenplus.mjs\")",
+      "Bash(NODE_PATH=\"/c/Users/sasiy/AppData/Local/npm-cache/_npx/db89d7302a373f10/node_modules\" node \"C:\\\\Users\\\\sasiy\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\d--ComEngineering-student-uxui-intern-Portfolio\\\\8c4ce9b9-64f6-483b-9f58-67bb60971e8f\\\\scratchpad\\\\verify-tooyenplus.cjs\")"
+    ]
+  }
+}

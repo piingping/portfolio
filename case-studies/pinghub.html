@@ -172,6 +172,16 @@
     }
     .hero h1 { font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.02; letter-spacing: -0.01em; }
     .hero h1 .accent { color: var(--ty-accent); }
+    /* Descriptor line from the source doc's subtitle, kept separate from h1
+       so the product name stays the loudest thing in the hero. */
+    .hero__subtitle {
+      font-family: var(--ty-font-display);
+      font-size: clamp(1.05rem, 2vw, 1.3rem);
+      font-weight: 500;
+      color: var(--ty-text-sub);
+      margin: 10px 0 0;
+      max-width: 42ch;
+    }
     .hero__tagline { font-size: 1.1rem; max-width: 46ch; margin-top: 18px; }
 
     .factbox {
@@ -205,6 +215,9 @@
     .fact-row .label { white-space: nowrap; color: var(--ty-text-sub); font-family: var(--ty-font-mono); font-size: 0.72rem; letter-spacing: 0.04em; text-transform: uppercase; }
     .fact-row .leader { flex: 1; border-bottom: 2px dotted var(--ty-border); margin-bottom: 5px; }
     .fact-row .value { white-space: nowrap; font-weight: 600; text-align: right; }
+    /* Rows whose value is a phrase, not a short label — allowed to wrap so the
+       factbox can't overflow its 440px frame. */
+    .fact-row .value.is-long { white-space: normal; }
 
     .proto-link {
       display: inline-block;
@@ -261,9 +274,10 @@
     .research-note svg { flex-shrink: 0; width: 20px; height: 20px; color: var(--ty-accent); margin-top: 2px; }
     .research-note p { margin: 0; font-size: 0.9rem; }
 
-    /* Personas */
-    .persona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 28px; }
-    @media (max-width: 860px) { .persona-grid { grid-template-columns: 1fr; } }
+    /* Personas — three cards (Wa, Bam, Mind) */
+    .persona-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 28px; }
+    @media (max-width: 1000px) { .persona-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 700px) { .persona-grid { grid-template-columns: 1fr; } }
     .persona-card {
       background: var(--ty-surface);
       border: 1px solid var(--ty-border);
@@ -414,7 +428,12 @@
   <!-- Copied from tooyenplus.html (case-studies/) — project: PingHub.
        Structure/components/tokens/scripts reused from tooyenplus.html;
        section set below follows PingHub's own content instead of forcing
-       a 1:1 section match. -->
+       a 1:1 section match.
+
+       NOTE on source doc (PingHub_Case_Study_2.md): every "[...]" line in that file is
+       an image slot / note to the author, not case-study copy — none of them are
+       reproduced as text here. Each one became a real <img> under
+       assets/images/case-studies/pinghub/ instead. -->
 
   <!-- =========================================================
        GLOBAL NAVIGATION (same markup as index.html)
@@ -460,13 +479,14 @@
         <div data-reveal>
           <p class="eyebrow">Case study — UX/UI Design</p>
           <h1>Ping<span class="accent">Hub</span></h1>
-          <p class="hero__tagline">A trip-planning app for friend groups, designed and usability-tested end-to-end on the User side — testing validated that group-availability visualization and built-in voting were the two features that actually solved the "we can never agree" problem.</p>
+          <p class="hero__subtitle">An all-in-one trip planning app for friend groups who can't agree on where or when to go</p>
+          <p class="hero__tagline">A trip-planning app for friend groups. Testing confirmed two features actually solved the "we can never agree" problem: the group-availability heatmap and built-in voting.</p>
 
           <div class="factbox">
             <div class="factbox__head">Project Facts <span>NO. 08</span></div>
-            <div class="fact-row"><span class="label">Role</span><span class="leader"></span><span class="value">UX/UI Designer, User side</span></div>
-            <div class="fact-row"><span class="label">Timeline</span><span class="leader"></span><span class="value">One academic term</span></div>
-            <div class="fact-row"><span class="label">Tools</span><span class="leader"></span><span class="value">Figma</span></div>
+            <div class="fact-row"><span class="label">Role</span><span class="leader"></span><span class="value is-long">UX/UI Designer — owned the User-side experience across all 11 core screens</span></div>
+            <div class="fact-row"><span class="label">Timeline</span><span class="leader"></span><span class="value is-long">One academic term — UX/UI Design coursework</span></div>
+            <div class="fact-row"><span class="label">Tools</span><span class="leader"></span><span class="value is-long">Figma — wireframes, hi-fi mockups, interactive prototype</span></div>
             <div class="fact-row"><span class="label">Team</span><span class="leader"></span><span class="value">4, Group 8</span></div>
           </div>
 
@@ -477,7 +497,7 @@
         <div class="hero__art" data-reveal>
           <div class="hero__phone">
             <!-- placeholder: needs real screenshot — Trip Detail screen -->
-            <img src="../assets/images/case-studies/pinghub/06-trip-detail.png" alt="PingHub Trip Detail screen showing itinerary, destination, per-person budget, active votes, and shared notes">
+            <img src="../assets/images/case-studies/pinghub/07-trip-detail.png" alt="PingHub Trip Detail screen showing itinerary, destination, per-person budget, active votes, and shared notes">
           </div>
         </div>
       </div>
@@ -492,13 +512,13 @@
         </div>
 
         <div class="story__intro">
-          <p>Friend groups who want to travel together run into the same wall every time: schedules don't line up, nobody can agree on a destination, and the planning gets scattered across five different tools — a group chat for logistics, Instagram for destination ideas, separate review sites, a shared doc for the itinerary. The result is trips that get delayed, downsized, or quietly abandoned before anyone books anything.</p>
-          <p>Our team set out to design PingHub: a single platform where a group can invite friends, vote on free dates, agree on a destination, and build a shared itinerary together — solving the <strong>coordination</strong> problem, not just the itinerary problem.</p>
+          <p>Friend groups hit the same wall every time: schedules don't line up, nobody agrees on a place, and planning scatters across five tools — group chat, Instagram, review sites, a shared doc. Trips get delayed, downsized, or quietly die before anyone books.</p>
+          <p>PingHub is one platform for all of it: invite friends, vote on dates, agree on a place, build the itinerary together. The goal was solving <strong>coordination</strong>, not just the itinerary.</p>
         </div>
 
         <div class="research-note" data-reveal>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-          <p><strong>Context &amp; constraints:</strong> a one-term university project built by a four-person team, split across the User side (friend groups planning a trip) and the Owner side (local businesses promoting routes and deals). I owned the User side end-to-end. Everything was built and tested in Figma with no dev handoff — every decision had to hold up on its own, without an engineer catching gaps downstream.</p>
+          <p><strong>Context &amp; constraints:</strong> a one-term university project, four-person team. The product splits into a User side (friend groups) and an Owner side (local businesses). I owned the User side end-to-end — built and tested in Figma, no dev handoff, so every decision had to hold up on its own.</p>
         </div>
       </div>
     </section>
@@ -508,8 +528,8 @@
       <div class="wrap">
         <span class="tag-label">Tag 02 — Understanding the User</span>
         <div class="section__head">
-          <h2>Two personas, one shared tension.</h2>
-          <p class="section__lede">To ground the design in real behavior, the team built two personas representing opposite ends of the "friend group trip" spectrum.</p>
+          <h2>Three personas, one shared tension.</h2>
+          <p class="section__lede">To ground the design in real behavior, the team built three personas covering the different ways a friend-group trip falls apart.</p>
         </div>
 
         <div class="persona-grid">
@@ -519,52 +539,55 @@
             <div class="persona-card__body">
               <h3>Wa</h3>
               <span class="persona-meta">22 · University student · Group of 3</span>
-              <p>Plans quickly, and pulls destination ideas from YouTube, TikTok, and Google — favoring adventure activities over choice of accommodation.</p>
-              <p><strong>Pain points:</strong> coordinating everyone's free time is hard, and her preferences often clash with the group's.</p>
+              <p>Needs the trip to fit how her group actually explores — she plans fast and pulls destination ideas from YouTube, TikTok, and Google, favoring adventure activities over where they sleep.</p>
             </div>
           </div>
           <div class="persona-card" data-reveal>
-            <!-- placeholder: needs real screenshot — Kong persona sheet -->
-            <img class="persona-card__img" src="../assets/images/case-studies/pinghub/02-persona-kong.png" alt="Persona card for Kong, a 28-year-old office worker who travels with a larger group of 6 and plans about two weeks ahead">
+            <!-- placeholder: needs real screenshot — Bam persona sheet -->
+            <img class="persona-card__img" src="../assets/images/case-studies/pinghub/02-persona-bam.png" alt="Persona card for Bam, who is tired of chasing reviews across five separate apps">
             <div class="persona-card__body">
-              <h3>Kong</h3>
-              <span class="persona-meta">28 · Office worker · Group of 6</span>
-              <p>Plans roughly two weeks out, and cares more about budget and variety of activities.</p>
-              <p><strong>Pain points:</strong> consolidating input from many people is difficult, and the group struggles to actually settle on a decision.</p>
+              <h3>Bam</h3>
+              <!-- TODO: ผมต้องกรอกเอง — persona meta ของ Bam (อายุ · อาชีพ · ขนาดกลุ่ม) ไม่มีในไฟล์ .md ใหม่ -->
+              <p>Tired of chasing reviews across five different apps just to decide whether one place is worth the trip.</p>
+            </div>
+          </div>
+          <div class="persona-card" data-reveal>
+            <!-- placeholder: needs real screenshot — Mind persona sheet -->
+            <img class="persona-card__img" src="../assets/images/case-studies/pinghub/03-persona-mind.png" alt="Persona card for Mind, who can never get a straight answer from her group on who is free">
+            <div class="persona-card__body">
+              <h3>Mind</h3>
+              <!-- TODO: ผมต้องกรอกเอง — persona meta ของ Mind (อายุ · อาชีพ · ขนาดกลุ่ม) ไม่มีในไฟล์ .md ใหม่ -->
+              <p>Can never get a straight answer on who's free. Hers is the problem this case study follows end to end.</p>
             </div>
           </div>
         </div>
 
-        <p class="story__intro">Both point to the same tension PingHub is built to resolve: small groups need quick consensus tools; larger groups need structure for reconciling many opinions.</p>
-
         <h3 class="subhead">Journey Mapping</h3>
-        <p style="max-width:68ch;">As a team, we mapped the emotional journey of a friend trying to organize a trip — before, during, and after using PingHub.</p>
-        <p style="max-width:68ch;"><strong>Before:</strong> excitement at seeing a travel photo on social media quickly turns into frustration once the group tries to lock down a date and destination — the frustration that sends the user looking for a dedicated tool. <strong>On service:</strong> the emotional dip shifts to the moment of group decision-making — waiting on votes, reconciling free days — but recovers as the itinerary comes together. <strong>After:</strong> rating the trip, writing reviews, and reusing the itinerary for a future trip reinforce a positive "I'd use this again" note — also the moment users are most likely to recommend PingHub to another group.</p>
+        <p style="max-width:68ch;">We mapped Mind planning a trip with friends, twice: as-is, then to-be.</p>
+        <p style="max-width:68ch;">Same number of steps, opposite ending. <strong>As-is</strong> ends in breakdown — a friend cancels last-minute, and nobody had one place to check dates. <strong>To-be</strong> ends in confirmation — availability sits in one shared view instead of a scattered group chat.</p>
 
         <div class="shot-row shot-row--wide" data-reveal>
           <!-- placeholder: needs real screenshot — journey map diagram -->
-          <figure class="shot" data-shot data-caption="Emotional journey mapped before, during, and after using PingHub">
-            <img src="../assets/images/case-studies/pinghub/03-journey-map.png" alt="Journey map showing a friend group's emotional arc before, during, and after using PingHub" loading="lazy">
-            <figcaption>Journey map — before / on service / after</figcaption>
+          <figure class="shot" data-shot data-caption="Before → After journey map: Mind plans a trip with friends">
+            <img src="../assets/images/case-studies/pinghub/04-journey-map.png" alt="Journey map comparing Mind's before and after experience planning a trip with friends" loading="lazy">
+            <figcaption>Journey map — Before → After</figcaption>
           </figure>
         </div>
 
-        <p class="story__intro">This before/during/after arc directly shaped what we prioritized: reducing friction at the scheduling and voting stages, since that's where the emotional dip is steepest.</p>
-
         <h3 class="subhead">From Insights to Structure: User Story Mapping</h3>
-        <p style="max-width:68ch;">We translated the journey into a User Story Map covering the full flow: log in → create trip → invite friends → select free days → the trip owner locks in a date from the overlap → members confirm → propose and vote on places/activities → auto-estimate budget → plan the day-by-day itinerary → share the final plan.</p>
+        <p style="max-width:68ch;">The journey became a user story map covering the full flow, from login through to the shared itinerary.</p>
 
         <div class="shot-row shot-row--wide" data-reveal>
           <!-- placeholder: needs real screenshot — user story map diagram -->
-          <figure class="shot" data-shot data-caption="User story map covering the full trip-planning flow">
-            <img src="../assets/images/case-studies/pinghub/04-user-story-map.png" alt="User story map covering the full PingHub flow from login to sharing the final itinerary" loading="lazy">
+          <figure class="shot" data-shot data-caption="User story map: the full flow, login to shared itinerary">
+            <img src="../assets/images/case-studies/pinghub/05-user-story-map.png" alt="User story map covering the full PingHub flow from login to the shared itinerary" loading="lazy">
             <figcaption>User story map</figcaption>
           </figure>
         </div>
 
         <div class="research-note" data-reveal>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-          <p><strong>Flagged for later:</strong> letting members shortlist preferences before the trip is even created, so the first vote has less blank-page friction. Scoped out of this build.</p>
+          <p><strong>Scoped out for later:</strong> letting members shortlist preferences before a trip even exists, to ease the first vote.</p>
         </div>
       </div>
     </section>
@@ -575,33 +598,34 @@
         <span class="tag-label">Tag 03 — My Role</span>
         <div class="section__head">
           <h2>Designing the User-side experience</h2>
-          <p class="section__lede">I owned the front-end design for the User Role side — the 10 screens a friend group actually uses to plan a trip together.</p>
+          <p class="section__lede">I owned the front-end design for the User Role side — the 11 screens a friend group actually uses to plan a trip together.</p>
         </div>
 
         <div class="role__grid">
           <div data-reveal>
             <ul class="scope-list">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Create Trip</strong> — name, dates (fixed or wait for group vote), trip type, members, destination, notes</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Trip Detail</strong> — itinerary, destination, per-person budget, active votes, shared notes</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Create Vote</strong> — topic, single/multiple choice, options, deadline</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Recommended Route</strong> — suggested route, sortable by price or reviews, with a proposed schedule</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Select Free Day</strong> — availability overlap as a calendar heatmap, best shared range surfaced automatically</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Create Post</strong> — sharing a trip's highlights, tips, and photos</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Map</strong> — search and preview a destination's ratings and reviews</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Invited User's Trip Detail</strong> — same detail screen an invitee sees, with Accept/Decline</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Voting</strong> — live counts, days remaining, option to add a choice</span></li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Edit Route</strong> — add, remove, or re-time itinerary activities</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Create Trip</strong> — skip picking a date entirely; default to "wait for the group's vote"</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Trip Detail</strong> — the owner's home base: itinerary, budget, votes, one-tap edit/share</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Trip Members</strong> — a drawer from Trip Detail showing who's joined, pending, or declined, with quick actions to invite more or leave</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Create Vote</strong> — one builder reused for destinations and travel methods, with anonymous-voting and open-new-option toggles</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Recommended Route</strong> — auto-suggested route and day plan, sortable by price/reviews, one-tap regenerate</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Select Free Day</strong> — availability as a heatmap, so the best shared window is visible at a glance</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Create Post</strong> — highlights and tips, with a shortcut to pull a route straight from trip history</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Map</strong> — preview a destination's rating and reviews before adding it</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Invited User's Trip Detail</strong> — same screen, Accept/Decline instead of edit controls</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Voting</strong> — live counts, a clear cutoff — no guessing if it's closed</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> <span><strong>Edit Route</strong> — add, remove, or re-time activities in place</span></li>
             </ul>
           </div>
 
           <div data-reveal>
             <div class="responsibility">
               <h4>Full-team effort</h4>
-              <p>Research, scoping, and the user journey (personas, journey map, story map) were built together as a four-person team — Sasiyakorn Chansiri (me), Nakul Chalermchaikosol, Tanagorn Fukuhara, and Pongsapak Tatongjai.</p>
+              <p>Research and scoping were built together as a four-person team — Sasiyakorn Chansiri (me), Nakul Chalermchaikosol, Tanagorn Fukuhara, and Pongsapak Tatongjai.</p>
             </div>
             <div class="responsibility">
               <h4>Individual ownership</h4>
-              <p>My individual ownership was the User Role flow — the 10 screens above, designed and wired into an interactive prototype in Figma, with no dev handoff.</p>
+              <p>My individual ownership was the User Role flow — the 11 screens above, designed and wired into an interactive prototype in Figma, with no dev handoff.</p>
             </div>
             <div class="responsibility">
               <h4>How it connects</h4>
@@ -624,22 +648,22 @@
           <div class="pain-card" data-reveal>
             <span class="pain-card__num">Decision 01</span>
             <h3>Making group availability visible at a glance</h3>
-            <p><strong>Insight:</strong> both personas — Wa's tight-knit trio and Kong's larger crew — named the same top pain point: nobody can tell when everyone is actually free.</p>
-            <p><strong>Decision:</strong> instead of asking the trip owner to manually cross-reference five calendars, Select Free Day renders everyone's availability as a heatmap — darker means more people are free — so the best shared window is obvious without doing any math.</p>
+            <p><strong>Insight:</strong> friends' free time never lines up — Mind's persona and the journey map both show it.</p>
+            <p><strong>Decision:</strong> a heatmap of everyone's availability instead of checking calendars by hand — darker means more people are free — so the best shared window is obvious without doing any math.</p>
             <p><strong>Outcome:</strong> one of the two features usability testers specifically called out as most useful.</p>
           </div>
           <div class="pain-card" data-reveal>
             <span class="pain-card__num">Decision 02</span>
             <h3>Confirming before irreversible group actions</h3>
-            <p><strong>Insight:</strong> journey mapping showed the sharpest emotional dip happens right at group decision-making — the worst outcome in a shared-decision app is someone accidentally locking the group into something nobody agreed on.</p>
-            <p><strong>Decision:</strong> accepting or declining a trip invite triggers a lightweight confirmation modal before the action is final, applied consistently across every group-affecting action.</p>
+            <p><strong>Insight:</strong> the journey map's sharpest dip lands right at group decision-making — the worst outcome in a shared-decision app is someone accidentally locking the group into something nobody agreed on.</p>
+            <p><strong>Decision:</strong> accepting or declining an invite triggers a confirmation modal before the action is final, consistently, everywhere it matters.</p>
             <p><strong>Outcome:</strong> the pattern testers pointed to when describing the app as easy to trust.</p>
           </div>
           <div class="pain-card" data-reveal>
             <span class="pain-card__num">Decision 03</span>
             <h3>Preventing errors before they happen, not after</h3>
-            <p><strong>Insight:</strong> Create Trip is the very first thing a new user does — friction here risks losing the group before planning even starts.</p>
-            <p><strong>Decision:</strong> required fields validate inline with plain-language prompts, and the date section uses mutually exclusive choices (fixed dates <em>or</em> wait for the group's vote) so the form can't be filled out in a contradictory state.</p>
+            <p><strong>Insight:</strong> Create Trip is the first thing a new user does — friction here loses the group before planning starts.</p>
+            <p><strong>Decision:</strong> inline validation with plain-language prompts, plus mutually exclusive date choices (fixed dates <em>or</em> wait for the group's vote) so the form can't contradict itself.</p>
             <p><strong>Outcome:</strong> testers moved through trip creation with zero friction points — the cleanest part of the flow in testing.</p>
           </div>
         </div>
@@ -656,25 +680,30 @@
       <div class="wrap">
         <span class="tag-label">Tag 05 — The Screens</span>
         <div class="section__head">
-          <h2>The 10 screens, start to finish.</h2>
+          <h2>The 11 screens, start to finish.</h2>
           <p class="section__lede">Scroll each row sideways on smaller screens. Tap any screen to see it larger.</p>
         </div>
 
         <div class="screen-group">
           <div class="screen-group__head">
             <h3>Starting a trip</h3>
-            <p>Creating a trip, and the shared detail view everyone plans around.</p>
+            <p>Creating a trip, the shared detail view everyone plans around, and who's actually in.</p>
           </div>
           <div class="shot-row">
             <!-- placeholder: needs real screenshot — Create Trip -->
-            <figure class="shot" data-shot data-caption="Name, dates, trip type, members, destination, and notes">
-              <img src="../assets/images/case-studies/pinghub/05-create-trip.png" alt="Create Trip screen with fields for trip name, dates, trip type, members, destination, and notes" loading="lazy">
+            <figure class="shot" data-shot data-caption="Skip picking a date entirely — default to waiting for the group's vote">
+              <img src="../assets/images/case-studies/pinghub/06-create-trip.png" alt="Create Trip screen with fields for trip name, dates, trip type, members, destination, and notes" loading="lazy">
               <figcaption>Create Trip</figcaption>
             </figure>
             <!-- placeholder: needs real screenshot — Trip Detail -->
-            <figure class="shot" data-shot data-caption="Itinerary, destination, per-person budget, active votes, and shared notes">
-              <img src="../assets/images/case-studies/pinghub/06-trip-detail.png" alt="Trip Detail screen showing itinerary, destination, per-person budget, active votes, and shared notes" loading="lazy">
+            <figure class="shot" data-shot data-caption="The owner's home base: itinerary, budget, votes, one-tap edit/share">
+              <img src="../assets/images/case-studies/pinghub/07-trip-detail.png" alt="Trip Detail screen showing itinerary, destination, per-person budget, active votes, and shared notes" loading="lazy">
               <figcaption>Trip Detail</figcaption>
+            </figure>
+            <!-- placeholder: needs real screenshot — Trip Members drawer -->
+            <figure class="shot" data-shot data-caption="Who's joined, pending, or declined — with quick actions to invite more or leave">
+              <img src="../assets/images/case-studies/pinghub/08-trip-members.png" alt="Trip Members drawer showing who has joined, is pending, or declined, with actions to invite more members or leave the trip" loading="lazy">
+              <figcaption>Trip Members</figcaption>
             </figure>
           </div>
         </div>
@@ -686,23 +715,23 @@
           </div>
           <div class="shot-row">
             <!-- placeholder: needs real screenshot — Create Vote -->
-            <figure class="shot" data-shot data-caption="Topic, single/multiple choice, options, and deadline">
-              <img src="../assets/images/case-studies/pinghub/07-create-vote.png" alt="Create Vote screen with topic, single or multiple choice options, and a deadline" loading="lazy">
+            <figure class="shot" data-shot data-caption="One builder for destinations and travel methods, with anonymous and open-option toggles">
+              <img src="../assets/images/case-studies/pinghub/09-create-vote.png" alt="Create Vote screen with topic, single or multiple choice options, anonymous voting toggle, and a deadline" loading="lazy">
               <figcaption>Create Vote</figcaption>
             </figure>
             <!-- placeholder: needs real screenshot — Select Free Day -->
-            <figure class="shot" data-shot data-caption="Availability overlap rendered as a heatmap">
-              <img src="../assets/images/case-studies/pinghub/08-select-free-day.png" alt="Select Free Day screen showing group availability as a calendar heatmap" loading="lazy">
+            <figure class="shot" data-shot data-caption="Availability as a heatmap — the best shared window at a glance">
+              <img src="../assets/images/case-studies/pinghub/10-select-free-day.png" alt="Select Free Day screen showing group availability as a calendar heatmap" loading="lazy">
               <figcaption>Select Free Day</figcaption>
             </figure>
             <!-- placeholder: needs real screenshot — Voting -->
-            <figure class="shot" data-shot data-caption="Live vote counts, days remaining, option to add a choice">
-              <img src="../assets/images/case-studies/pinghub/09-voting.png" alt="Voting screen showing live vote counts, days remaining, and an option to add a choice" loading="lazy">
+            <figure class="shot" data-shot data-caption="Live counts and a clear cutoff — no guessing whether it's closed">
+              <img src="../assets/images/case-studies/pinghub/11-voting.png" alt="Voting screen showing live vote counts and a clear closing cutoff" loading="lazy">
               <figcaption>Voting</figcaption>
             </figure>
             <!-- placeholder: needs real screenshot — Recommended Route -->
-            <figure class="shot" data-shot data-caption="Suggested route, sortable by price or reviews">
-              <img src="../assets/images/case-studies/pinghub/10-recommended-route.png" alt="Recommended Route screen showing a suggested route sortable by price or reviews, with a proposed schedule" loading="lazy">
+            <figure class="shot" data-shot data-caption="Auto-suggested route and day plan, sortable by price/reviews, one-tap regenerate">
+              <img src="../assets/images/case-studies/pinghub/12-recommended-route.png" alt="Recommended Route screen showing an auto-suggested route and day plan, sortable by price or reviews" loading="lazy">
               <figcaption>Recommended Route</figcaption>
             </figure>
           </div>
@@ -715,18 +744,18 @@
           </div>
           <div class="shot-row">
             <!-- placeholder: needs real screenshot — Invited User's Trip Detail -->
-            <figure class="shot" data-shot data-caption="Same detail screen an invitee sees, with Accept/Decline">
-              <img src="../assets/images/case-studies/pinghub/11-invited-trip-detail.png" alt="Invited user's Trip Detail screen with Accept and Decline options" loading="lazy">
+            <figure class="shot" data-shot data-caption="Same screen, Accept/Decline instead of edit controls">
+              <img src="../assets/images/case-studies/pinghub/13-invited-trip-detail.png" alt="Invited user's Trip Detail screen with Accept and Decline options in place of edit controls" loading="lazy">
               <figcaption>Invited User's Trip Detail</figcaption>
             </figure>
             <!-- placeholder: needs real screenshot — Map -->
-            <figure class="shot" data-shot data-caption="Search and preview a destination's ratings and reviews">
-              <img src="../assets/images/case-studies/pinghub/12-map.png" alt="Map screen for searching and previewing a destination's ratings and reviews" loading="lazy">
+            <figure class="shot" data-shot data-caption="Preview a destination's rating and reviews before adding it">
+              <img src="../assets/images/case-studies/pinghub/14-map.png" alt="Map screen for previewing a destination's rating and reviews before adding it to a trip" loading="lazy">
               <figcaption>Map</figcaption>
             </figure>
             <!-- placeholder: needs real screenshot — Create Post -->
-            <figure class="shot" data-shot data-caption="Sharing a trip's highlights, tips, and photos">
-              <img src="../assets/images/case-studies/pinghub/13-create-post.png" alt="Create Post screen for sharing a trip's highlights, tips, and photos" loading="lazy">
+            <figure class="shot" data-shot data-caption="Highlights and tips, with a shortcut to pull a route from trip history">
+              <img src="../assets/images/case-studies/pinghub/15-create-post.png" alt="Create Post screen for sharing highlights and tips, with a shortcut to pull a route from trip history" loading="lazy">
               <figcaption>Create Post</figcaption>
             </figure>
           </div>
@@ -739,8 +768,8 @@
           </div>
           <div class="shot-row">
             <!-- placeholder: needs real screenshot — Edit Route -->
-            <figure class="shot" data-shot data-caption="Add, remove, or re-time itinerary activities">
-              <img src="../assets/images/case-studies/pinghub/14-edit-route.png" alt="Edit Route screen for adding, removing, or re-timing itinerary activities" loading="lazy">
+            <figure class="shot" data-shot data-caption="Add, remove, or re-time activities in place">
+              <img src="../assets/images/case-studies/pinghub/16-edit-route.png" alt="Edit Route screen for adding, removing, or re-timing itinerary activities in place" loading="lazy">
               <figcaption>Edit Route</figcaption>
             </figure>
           </div>
@@ -754,7 +783,7 @@
         <span class="tag-label">Tag 06 — Testing &amp; Impact</span>
         <div class="section__head">
           <h2>What testing actually confirmed.</h2>
-          <p class="section__lede">Since the whole premise of PingHub is "does this actually work for a group of people," we ran the prototype through its full real flow with test participants — create a trip, invite friends, select free dates, vote, build the itinerary, edit details, share the group link.</p>
+          <p class="section__lede">PingHub's core question is "does this work for a group of people." We tested the full flow with real participants — create, invite, select dates, vote, build the itinerary, edit, share. The three decisions above are why it held up.</p>
         </div>
 
         <div class="iteration-notes" data-reveal>
@@ -773,6 +802,11 @@
               <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> Two concrete UI issues were caught and fixed before final delivery</li>
             </ul>
           </div>
+        </div>
+
+        <div class="research-note" data-reveal>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <p><strong>On "impact":</strong> this was a course project, not a shipped product — so impact here means validated learning, not business metrics.</p>
         </div>
       </div>
     </section>
