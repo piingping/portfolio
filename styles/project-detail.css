@@ -447,27 +447,63 @@ html { scroll-behavior: smooth; }
 .lesson-card .tag-label { margin-bottom: 10px; }
 .lesson-card p { font-size: 0.94rem; margin: 0; }
 
-/* Closing note inside the case study (real Contact footer follows after) —
-   identical across all 4 pages */
-.ty-close {
-  border-top: 1px solid var(--ty-border);
-  padding: 40px 0;
-  text-align: center;
+/* Floating "back to top" button — fixed bottom-right, identical across all
+   4 pages. Hidden until the reader has scrolled past the hero (toggled via
+   .is-visible by the page's own scroll listener). */
+.back-to-top {
+  position: fixed;
+  right: clamp(16px, 4vw, 32px);
+  bottom: clamp(16px, 4vw, 32px);
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--ty-accent);
+  color: #fff;
+  box-shadow: var(--ty-shadow-card);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
-.ty-close p { font-size: 0.85rem; color: var(--ty-text-sub); margin: 0 0 14px; }
-.ty-close a.back {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-family: var(--ty-font-mono);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--ty-accent);
-  border: 1px solid var(--ty-accent);
-  padding: 9px 18px;
-  border-radius: 100px;
-  transition: background 0.2s ease, color 0.2s ease;
+.back-to-top.is-visible { opacity: 1; visibility: visible; transform: translateY(0); }
+.back-to-top:hover { background: var(--ty-accent-dark); box-shadow: var(--ty-shadow-soft); }
+.back-to-top svg { width: 20px; height: 20px; stroke: #fff; }
+@media (max-width: 600px) {
+  .back-to-top { width: 42px; height: 42px; }
+  .back-to-top svg { width: 18px; height: 18px; }
 }
-.ty-close a.back:hover { background: var(--ty-accent); color: #fff; }
+
+/* "Explore more" / other case studies — identical across all 4 pages.
+   Sits after the closing note, before the real Contact footer. */
+.explore-more { border-top: 1px solid var(--ty-border); padding: 72px 0; }
+.explore-more__head { margin-bottom: 32px; }
+.explore-more__head h2 { font-size: clamp(1.5rem, 2.6vw, 2rem); margin-top: 6px; }
+.explore-more__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+@media (max-width: 800px) { .explore-more__grid { grid-template-columns: 1fr; } }
+.explore-card { display: flex; flex-direction: column; gap: 14px; text-decoration: none; }
+.explore-card__img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--ty-radius-md);
+  border: 1px solid var(--ty-border);
+  box-shadow: var(--ty-shadow-card);
+  background: var(--ty-surface);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.explore-card:hover .explore-card__img { transform: translateY(-4px); box-shadow: var(--ty-shadow-soft); }
+.explore-card__title {
+  font-family: var(--ty-font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ty-text);
+  transition: color 0.2s ease;
+}
+.explore-card:hover .explore-card__title { color: var(--ty-accent); }
 
 /* Lightbox — identical across all 4 pages */
 .ty-lightbox {
