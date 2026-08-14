@@ -226,7 +226,7 @@ label:focus-visible {
    6. NAVIGATION
    ========================================================================== */
 .site-header {
-  background-color: var(--surface);
+  background-color: var(--bg-primary);
   border-bottom: 1px solid var(--border-color);
   position: sticky;
   top: 0;
@@ -329,7 +329,7 @@ label:focus-visible {
   top: 100%;
   left: 0;
   right: 0;
-  background-color: var(--surface);
+  background-color: var(--bg-primary);
   border-bottom: 1px solid var(--border-color);
   padding: 16px var(--container-padding-x);
   box-shadow: var(--shadow-card);
@@ -431,12 +431,20 @@ label:focus-visible {
 /* ==========================================================================
    8. HOME PAGE (index.html)
    ========================================================================== */
+/* Scoped to index.html only (via <body class="page-home">) — every other
+   page keeps the base body background from section 2. */
+body.page-home {
+  background: var(--bg-secondary);
+}
+
 .hero-section {
   display: grid;
   grid-template-columns: 1fr;
   justify-items: center;
   text-align: center;
+  
   gap: var(--gap-grid);
+  background-color: var(--bg-primary);
 }
 
 .hero-profile-image {
@@ -463,6 +471,7 @@ label:focus-visible {
 .hero-content {
   display: flex;
   flex-direction: column;
+  
   align-items: center;
   gap: 12px;
 }
@@ -486,6 +495,12 @@ label:focus-visible {
   color: var(--text-primary);
   font-size: 1.15rem;
   line-height: var(--lh-body);
+}
+
+.hero-bg-full {
+  width: 100%;
+  /* ย้ายคำสั่งพื้นหลัง หรือ linear-gradient มาใส่ที่กล่องนอกแทน */
+  background: var(--bg-primary);
 }
 
 /* Full subline by default; short version swaps in on very small screens
@@ -654,6 +669,9 @@ label:focus-visible {
 
 .case-study-card-title {
   margin-top: 4px;
+  color: var(--accent-primary);
+  font-weight: 700;
+  
 }
 
 .case-study-card-desc {
@@ -675,14 +693,15 @@ label:focus-visible {
 .project-tag {
   display: inline-flex;
   align-items: center;
-  background-color: var(--accent-secondary);
-  color: var(--text-primary);
+  /* background-color: var(--accent-secondary); */
+  color: var(--text-secondary);
   font-family: var(--font-mono);
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   padding: 5px 12px;
+  border: 1px solid var(--accent-secondary);
   border-radius: 100px;
   white-space: nowrap;
 }
