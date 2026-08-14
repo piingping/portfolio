@@ -359,6 +359,13 @@
       justify-content: center;
       color: var(--abt-accent);
       flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .edu-badge__img {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
     }
 
     .edu-card h3 {
@@ -615,13 +622,13 @@
     --------------------------------------------------- */
     .slideshow-container {
       position: relative;
-      background: var(--abt-surface);
-      border: 1px solid var(--abt-border);
+      /* background: var(--abt-surface); */
+      /* border: 1px solid var(--abt-border); */
       border-radius: 16px;
-      padding: 18px;
+      padding: 12px;
       text-align: center;
       width: 100%;
-      box-shadow: 0 4px 16px rgba(58, 35, 28, 0.05);
+      /* box-shadow: 0 4px 16px rgba(58, 35, 28, 0.05); */
     }
     .slide {
       display: none;
@@ -1070,10 +1077,7 @@
         <p class="eyebrow">Education</p>
         <div class="edu-card">
           <div class="edu-badge" aria-hidden="true">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-              <path d="M12 3 1 8l11 5 9-4.1V15" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M5 10.5V16c0 1.5 3 3 7 3s7-1.5 7-3v-5.5" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
+            <img src="assets/images/about/kmitl-logo.png" alt="" class="edu-badge__img">
           </div>
           <div>
             <h3>King Mongkut's Institute of Technology Ladkrabang</h3>

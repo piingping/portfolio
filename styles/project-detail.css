@@ -281,11 +281,11 @@ html { scroll-behavior: smooth; }
   position: relative;
   z-index: 1;
   /* width: 260px; */
-  border-radius: 24px;
-  box-shadow: var(--ty-shadow-soft);
-  border: 6px solid var(--ty-surface);
+  /* border-radius: 24px;
+  box-shadow: var(--ty-shadow-soft); */
+  /* border: 6px solid var(--ty-surface); */
   overflow: hidden;
-  background: var(--ty-surface);
+  /* background: var(--ty-surface); */
 }
 
 /* ---------------------------------------------------
