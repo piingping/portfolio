@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,14 +10,18 @@
        needed so the shared site-header/footer below render with the site's normal chrome typography. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
   <!-- Nav brand/signature font (Regular + Bold) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
   <!-- About-page content fonts (scoped to .about-page only): Fraunces (incl. italic — used by the
        hero's "Nice to meet you" and the italic pull-quote in Statement) + Inter + JetBrains Mono. -->
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
 
   <link rel="stylesheet" href="styles/main.css">
 
@@ -30,337 +35,630 @@
        --bg-primary/--accent-primary/etc., just locally scoped.)
     --------------------------------------------------- */
     :root {
-      --abt-bg:#FBF7EE;
-      --abt-surface:#FFFFFF;
-      --abt-border:#EBE0D0;
-      --abt-text:#3A231C;
-      --abt-text-2:#6E5A51;
-      --abt-text-3:#AA9A90;
-      --abt-accent:#D65B3E;
-      --abt-accent-2:#E5A754;
-      --abt-font-display:'Fraunces', serif;
-      --abt-font-body:'Inter', sans-serif;
-      --abt-font-mono:'JetBrains Mono', monospace;
-      --abt-maxw:1120px;
+      --abt-bg: #FBF7EE;
+      --abt-surface: #FFFFFF;
+      --abt-border: #EBE0D0;
+      --abt-text: #3A231C;
+      --abt-text-2: #6E5A51;
+      --abt-text-3: #AA9A90;
+      --abt-accent: #D65B3E;
+      --abt-accent-2: #E5A754;
+      --abt-font-display: 'Fraunces', serif;
+      --abt-font-body: 'Inter', sans-serif;
+      --abt-font-mono: 'JetBrains Mono', monospace;
+      --abt-maxw: 1120px;
     }
 
-    html{ scroll-behavior:smooth; }
-    @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
 
     /* overflow-x/positioning only — main.css already handles body's
        background/reset; color+font-family are scoped under .about-page
        below so they can't cascade into the shared site-header/footer. */
-    body{
-      position:relative;
-      overflow-x:hidden;
+    body {
+      position: relative;
+      overflow-x: hidden;
     }
 
     /* subtle paper grain */
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      z-index:0;
-      opacity:.35;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .35;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
     }
 
     /* ---------------------------------------------------
        Everything below is scoped under .about-page so it
        can't leak into the shared site-header/footer.
     --------------------------------------------------- */
-    .about-page{
-      color:var(--abt-text);
-      font-family:var(--abt-font-body);
-      line-height:1.6;
-    }
-    .about-page .wrap{ max-width:var(--abt-maxw); margin:0 auto; padding:0 32px; position:relative; z-index:1; }
-    .about-page a{ color:inherit; text-decoration:none; }
-    .about-page img{ display:block; max-width:100%; }
-
-    .about-page .eyebrow{
-      font-family:var(--abt-font-mono);
-      font-size:.72rem;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-      color:var(--abt-accent);
-      display:flex;
-      align-items:center;
-      gap:10px;
-      margin-bottom:18px;
-    }
-    .about-page .eyebrow::before{
-      content:"";
-      width:22px; height:1px;
-      background:var(--abt-accent-2);
-      display:inline-block;
+    .about-page {
+      color: var(--abt-text);
+      font-family: var(--abt-font-body);
+      line-height: 1.6;
     }
 
-    .about-page h1,.about-page h2,.about-page h3{ font-family:var(--abt-font-display); font-weight:600; color:var(--abt-text); }
+    .about-page .wrap {
+      max-width: var(--abt-maxw);
+      margin: 0 auto;
+      padding: 0 32px;
+      position: relative;
+      z-index: 1;
+    }
 
-    .about-page section{ padding:96px 0; position:relative; }
-    .about-page section + section{ border-top:1px solid var(--abt-border); }
+    .about-page a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .about-page img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .about-page .eyebrow {
+      font-family: var(--abt-font-mono);
+      font-size: .72rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--abt-accent);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .about-page .eyebrow::before {
+      content: "";
+      width: 22px;
+      height: 1px;
+      background: var(--abt-accent-2);
+      display: inline-block;
+    }
+
+    .about-page h1,
+    .about-page h2,
+    .about-page h3 {
+      font-family: var(--abt-font-display);
+      font-weight: 600;
+      color: var(--abt-text);
+    }
+
+    .about-page section {
+      padding: 96px 0;
+      position: relative;
+    }
+
+    .about-page section+section {
+      border-top: 1px solid var(--abt-border);
+    }
 
     /* ---------- HERO ---------- */
-    .about-page .hero{ padding-top:80px; }
-    .about-page .hero .wrap{
-      display:grid;
-      grid-template-columns:1.15fr .85fr;
-      gap:64px;
-      align-items:center;
-    }
-    .about-page .hero h1{
-      font-size:clamp(2.6rem, 5.2vw, 4.4rem);
-      line-height:1.05;
-      margin-bottom:28px;
-    }
-    .about-page .hero h1 em{ font-style:italic; color:var(--abt-accent); font-weight:400; }
-    .about-page .hero p{ color:var(--abt-text-2); font-size:1.02rem; max-width:46ch; margin-bottom:16px; }
-    .about-page .hero p:last-of-type{ margin-bottom:0; }
-
-    .status-pill{
-      display:inline-flex; align-items:center; gap:8px;
-      font-family:var(--abt-font-mono); font-size:.72rem; letter-spacing:.05em;
-      text-transform:uppercase;
-      background:var(--abt-surface); border:1px solid var(--abt-border);
-      padding:8px 14px; border-radius:999px;
-      margin-top:28px;
-      color:var(--abt-text-2);
-    }
-    .status-dot{
-      width:7px; height:7px; border-radius:50%;
-      background:#5C9E6E;
-      box-shadow:0 0 0 rgba(92,158,110,.5);
-      animation:pulse-dot 2.2s ease-in-out infinite;
-    }
-    @keyframes pulse-dot{
-      0%{ box-shadow:0 0 0 0 rgba(92,158,110,.5); }
-      70%{ box-shadow:0 0 0 7px rgba(92,158,110,0); }
-      100%{ box-shadow:0 0 0 0 rgba(92,158,110,0); }
+    .about-page .hero {
+      padding-top: 80px;
     }
 
-    .hero-photo-wrap{ position:relative; }
-    .photo-frame{
-      background:var(--abt-surface);
-      border:1.5px dashed var(--abt-border);
-      border-radius:32px 120px 32px 120px;
-      aspect-ratio:4/5;
-      display:flex; align-items:center; justify-content:center;
-      color:var(--abt-text-3);
-      font-family:var(--abt-font-mono);
-      font-size:.78rem;
-      letter-spacing:.06em;
-      text-align:center;
-      padding:24px;
-      position:relative;
-      overflow:hidden;
+    .about-page .hero .wrap {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 64px;
+      align-items: center;
     }
-    .sticker{
-      position:absolute;
-      pointer-events:none;
-      filter:drop-shadow(0 6px 10px rgba(58,35,28,.12));
+
+    .about-page .hero h1 {
+      font-size: clamp(2.6rem, 5.2vw, 4.4rem);
+      line-height: 1.05;
+      margin-bottom: 28px;
     }
-    .sticker-shootingstar{
-      width:96px; top:-34px; right:-22px;
-      animation:float-a 5.5s ease-in-out infinite;
+
+    .about-page .hero h1 em {
+      font-style: italic;
+      color: var(--abt-accent);
+      font-weight: 400;
     }
-    @keyframes float-a{
-      0%,100%{ transform:rotate(-6deg) translateY(0); }
-      50%{ transform:rotate(3deg) translateY(-10px); }
+
+    .about-page .hero p {
+      color: var(--abt-text-2);
+      font-size: 1.02rem;
+      max-width: 46ch;
+      margin-bottom: 16px;
+    }
+
+    .about-page .hero p:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--abt-font-mono);
+      font-size: .72rem;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      background: var(--abt-surface);
+      border: 1px solid var(--abt-border);
+      padding: 8px 14px;
+      border-radius: 999px;
+      margin-top: 28px;
+      color: var(--abt-text-2);
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #5C9E6E;
+      box-shadow: 0 0 0 rgba(92, 158, 110, .5);
+      animation: pulse-dot 2.2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0% {
+        box-shadow: 0 0 0 0 rgba(92, 158, 110, .5);
+      }
+
+      70% {
+        box-shadow: 0 0 0 7px rgba(92, 158, 110, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(92, 158, 110, 0);
+      }
+    }
+
+    .hero-photo-wrap {
+      position: relative;
+    }
+
+    /* CSS ที่แก้ไขแล้ว */
+
+    .photo-frame {
+      /* รักษาสไตล์กรอบและมุมโค้งมน */
+      background: var(--abt-surface);
+      border: 1.5px dashed var(--abt-border);
+      border-radius: 32px 120px 32px 120px;
+      aspect-ratio: 4/5;
+
+      /* เพิ่ม position: relative เพื่อให้รูปภาพที่อยู่ข้างใน (absolute) จัดตำแหน่งได้ */
+      position: relative;
+      overflow: hidden;
+
+      /* ลบ Flexbox ออก */
+      display: block;
+
+      /* ลบสไตล์ข้อความจำลองที่ไม่ได้ใช้แล้วออก */
+      color: transparent;
+      font-family: inherit;
+      font-size: inherit;
+      letter-spacing: inherit;
+      text-align: inherit;
+      padding: 0;
+    }
+
+    /* เพิ่มกฎ CSS ใหม่สำหรับรูปภาพภายในกรอบ */
+    .photo-frame img {
+      /* ทำให้รูปภาพขยายเต็มพื้นที่ของกรอบประ */
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+
+      /* สำคัญ: ครอบตัดรูปภาพให้พอดีกับกรอบโดยไม่เสียสัดส่วน */
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    .sticker {
+      position: absolute;
+      pointer-events: none;
+      filter: drop-shadow(0 6px 10px rgba(58, 35, 28, .12));
+    }
+
+    .sticker-shootingstar {
+      width: 96px;
+      top: -34px;
+      right: -22px;
+      animation: float-a 5.5s ease-in-out infinite;
+    }
+
+    @keyframes float-a {
+
+      0%,
+      100% {
+        transform: rotate(-6deg) translateY(0);
+      }
+
+      50% {
+        transform: rotate(3deg) translateY(-10px);
+      }
     }
 
     /* ---------- STATEMENT ---------- */
-    .statement{ background:var(--abt-surface); }
-    .statement .wrap{ max-width:820px; text-align:center; position:relative; }
-    .statement .eyebrow{ justify-content:center; }
-    .statement .eyebrow::before{ display:none; }
-    .statement p{
-      font-family:var(--abt-font-display);
-      font-style:italic;
-      font-weight:400;
-      font-size:clamp(1.35rem, 2.6vw, 2rem);
-      line-height:1.5;
-      color:var(--abt-text);
+    .statement {
+      background: var(--abt-surface);
     }
-    .statement p strong{ font-style:normal; font-weight:600; color:var(--abt-accent); }
-    .sticker-star{
-      width:58px;
-      top:-6px; left:calc(50% - 220px);
-      animation:float-b 6s ease-in-out infinite;
+
+    .statement .wrap {
+      max-width: 820px;
+      text-align: center;
+      position: relative;
     }
-    @keyframes float-b{
-      0%,100%{ transform:rotate(8deg) translateY(0); }
-      50%{ transform:rotate(-4deg) translateY(-8px); }
+
+    .statement .eyebrow {
+      justify-content: center;
+    }
+
+    .statement .eyebrow::before {
+      display: none;
+    }
+
+    .statement p {
+      font-family: var(--abt-font-display);
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.35rem, 2.6vw, 2rem);
+      line-height: 1.5;
+      color: var(--abt-text);
+    }
+
+    .statement p strong {
+      font-style: normal;
+      font-weight: 600;
+      color: var(--abt-accent);
+    }
+
+    .sticker-star {
+      width: 58px;
+      top: -6px;
+      left: calc(50% - 220px);
+      animation: float-b 6s ease-in-out infinite;
+    }
+
+    @keyframes float-b {
+
+      0%,
+      100% {
+        transform: rotate(8deg) translateY(0);
+      }
+
+      50% {
+        transform: rotate(-4deg) translateY(-8px);
+      }
     }
 
     /* ---------- EDUCATION ---------- */
-    .edu-card{
-      background:var(--abt-surface);
-      border:1px solid var(--abt-border);
-      border-radius:20px;
-      padding:40px;
-      display:grid;
-      grid-template-columns:auto 1fr;
-      gap:32px;
-      align-items:flex-start;
+    .edu-card {
+      background: var(--abt-surface);
+      border: 1px solid var(--abt-border);
+      border-radius: 20px;
+      padding: 40px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 32px;
+      align-items: flex-start;
     }
-    .edu-badge{
-      width:64px; height:64px;
-      border-radius:50%;
-      border:1.5px solid var(--abt-accent-2);
-      display:flex; align-items:center; justify-content:center;
-      color:var(--abt-accent);
-      flex-shrink:0;
+
+    .edu-badge {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 1.5px solid var(--abt-accent-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--abt-accent);
+      flex-shrink: 0;
     }
-    .edu-card h3{ font-size:1.3rem; margin-bottom:6px; }
-    .edu-card .degree{ color:var(--abt-text-2); margin-bottom:14px; }
-    .edu-meta{
-      display:flex; gap:22px; flex-wrap:wrap;
-      font-family:var(--abt-font-mono); font-size:.8rem;
-      color:var(--abt-text-2);
-      margin-bottom:20px;
+
+    .edu-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 6px;
     }
-    .edu-meta span{ display:flex; align-items:center; gap:8px; }
-    .edu-meta span::before{ content:"·"; color:var(--abt-accent-2); font-weight:700; }
-    .coursework{ display:flex; flex-wrap:wrap; gap:8px; }
-    .coursework span{
-      font-size:.76rem;
-      color:var(--abt-text-2);
-      background:var(--abt-bg);
-      border:1px solid var(--abt-border);
-      border-radius:999px;
-      padding:5px 12px;
+
+    .edu-card .degree {
+      color: var(--abt-text-2);
+      margin-bottom: 14px;
+    }
+
+    .edu-meta {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+      font-family: var(--abt-font-mono);
+      font-size: .8rem;
+      color: var(--abt-text-2);
+      margin-bottom: 20px;
+    }
+
+    .edu-meta span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .edu-meta span::before {
+      content: "·";
+      color: var(--abt-accent-2);
+      font-weight: 700;
+    }
+
+    .coursework {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .coursework span {
+      font-size: .76rem;
+      color: var(--abt-text-2);
+      background: var(--abt-bg);
+      border: 1px solid var(--abt-border);
+      border-radius: 999px;
+      padding: 5px 12px;
     }
 
     /* ---------- SKILLS ---------- */
-    .skill-group{ margin-bottom:34px; }
-    .skill-group:last-child{ margin-bottom:0; }
-    .skill-group h4{
-      font-family:var(--abt-font-mono);
-      font-size:.78rem;
-      letter-spacing:.05em;
-      text-transform:uppercase;
-      color:var(--abt-text-2);
-      margin-bottom:14px;
+    .skill-group {
+      margin-bottom: 34px;
     }
-    .pills{ display:flex; flex-wrap:wrap; gap:10px; }
-    .pills span{
-      font-size:.86rem;
-      padding:8px 16px;
-      border-radius:999px;
-      background:var(--abt-surface);
-      border:1px solid var(--abt-border);
-      color:var(--abt-text);
-      transition:transform .18s ease, border-color .18s ease, background .18s ease;
+
+    .skill-group:last-child {
+      margin-bottom: 0;
     }
-    .pills span:hover{
-      transform:translateY(-3px);
-      border-color:var(--abt-accent-2);
-      background:#FFF9EF;
+
+    .skill-group h4 {
+      font-family: var(--abt-font-mono);
+      font-size: .78rem;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: var(--abt-text-2);
+      margin-bottom: 14px;
+    }
+
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pills span {
+      font-size: .86rem;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: var(--abt-surface);
+      border: 1px solid var(--abt-border);
+      color: var(--abt-text);
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .pills span:hover {
+      transform: translateY(-3px);
+      border-color: var(--abt-accent-2);
+      background: #FFF9EF;
     }
 
     /* ---------- CERTIFICATES ---------- */
-    .cert-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
-    .cert-card{
-      background:var(--abt-surface);
-      border:1px solid var(--abt-border);
-      border-radius:18px;
-      padding:28px;
-      transition:transform .25s ease, box-shadow .25s ease;
+    .cert-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
     }
-    .cert-card:hover{
-      transform:rotate(-.6deg) translateY(-4px);
-      box-shadow:0 14px 28px rgba(58,35,28,.08);
+
+    .cert-card {
+      background: var(--abt-surface);
+      border: 1px solid var(--abt-border);
+      border-radius: 18px;
+      padding: 28px;
+      transition: transform .25s ease, box-shadow .25s ease;
     }
-    .cert-seal{ width:38px; height:38px; margin-bottom:16px; }
-    .cert-card h4{ font-family:var(--abt-font-display); font-size:1.08rem; font-weight:600; margin-bottom:4px; }
-    .cert-card .issuer{
-      font-family:var(--abt-font-mono); font-size:.74rem; letter-spacing:.03em;
-      color:var(--abt-accent); text-transform:uppercase; margin-bottom:14px; display:block;
+
+    .cert-card:hover {
+      transform: rotate(-.6deg) translateY(-4px);
+      box-shadow: 0 14px 28px rgba(58, 35, 28, .08);
     }
-    .cert-card p{ color:var(--abt-text-2); font-size:.92rem; }
+
+    .cert-seal {
+      width: 38px;
+      height: 38px;
+      margin-bottom: 16px;
+    }
+
+    .cert-card h4 {
+      font-family: var(--abt-font-display);
+      font-size: 1.08rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .cert-card .issuer {
+      font-family: var(--abt-font-mono);
+      font-size: .74rem;
+      letter-spacing: .03em;
+      color: var(--abt-accent);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .cert-card p {
+      color: var(--abt-text-2);
+      font-size: .92rem;
+    }
 
     /* ---------- FREE TIME ---------- */
-    .ft-block{
-      display:grid;
-      grid-template-columns:.9fr 1.1fr;
-      gap:48px;
-      align-items:center;
-      margin-bottom:72px;
-    }
-    .ft-block:last-child{ margin-bottom:0; }
-    .ft-block:nth-child(odd) .ft-visual{ order:2; }
-    .ft-label{
-      font-family:var(--abt-font-mono); font-size:.72rem; letter-spacing:.1em;
-      text-transform:uppercase; color:var(--abt-accent-2); margin-bottom:10px; display:block;
-    }
-    .ft-block h3{ font-size:1.5rem; margin-bottom:12px; }
-    .ft-block p{ color:var(--abt-text-2); }
-    .badge-new{
-      font-family:var(--abt-font-mono); font-size:.66rem;
-      background:var(--abt-accent); color:#fff;
-      padding:3px 9px; border-radius:999px;
-      margin-left:10px; vertical-align:middle;
-      letter-spacing:.04em;
+    .ft-block {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 48px;
+      align-items: center;
+      margin-bottom: 72px;
     }
 
-    .doodle-gallery{ display:flex; gap:20px; }
-    .doodle-card{
-      background:var(--abt-surface);
-      border:1px solid var(--abt-border);
-      border-radius:16px;
-      padding:18px;
-      flex:1;
-      text-align:center;
-      transition:transform .3s ease;
-    }
-    .doodle-card:nth-child(1){ transform:rotate(-3deg); }
-    .doodle-card:nth-child(2){ transform:rotate(2.5deg); }
-    .doodle-card:hover{ transform:rotate(0) translateY(-6px); }
-    .doodle-card img{ width:100%; max-width:110px; margin:0 auto 10px; }
-    .doodle-card span{
-      font-family:var(--abt-font-mono); font-size:.68rem; color:var(--abt-text-3);
+    .ft-block:last-child {
+      margin-bottom: 0;
     }
 
-    .render-frame{
-      background:var(--abt-surface);
-      border:1.5px dashed var(--abt-border);
-      border-radius:18px;
-      aspect-ratio:4/3;
-      display:flex; flex-direction:column; align-items:center; justify-content:center;
-      gap:10px;
-      color:var(--abt-text-3);
-      font-family:var(--abt-font-mono); font-size:.76rem;
-      position:relative;
+    .ft-block:nth-child(odd) .ft-visual {
+      order: 2;
     }
-    .sticker-spiral{
-      width:56px;
-      position:absolute; top:-20px; right:18px;
-      animation:spin-slow 14s linear infinite;
+
+    .ft-label {
+      font-family: var(--abt-font-mono);
+      font-size: .72rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--abt-accent-2);
+      margin-bottom: 10px;
+      display: block;
     }
-    @keyframes spin-slow{ to{ transform:rotate(360deg); } }
+
+    .ft-block h3 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+
+    .ft-block p {
+      color: var(--abt-text-2);
+    }
+
+    .badge-new {
+      font-family: var(--abt-font-mono);
+      font-size: .66rem;
+      background: var(--abt-accent);
+      color: #fff;
+      padding: 3px 9px;
+      border-radius: 999px;
+      margin-left: 10px;
+      vertical-align: middle;
+      letter-spacing: .04em;
+    }
+
+    .doodle-gallery {
+      display: flex;
+      gap: 20px;
+    }
+
+    .doodle-card {
+      background: var(--abt-surface);
+      border: 1px solid var(--abt-border);
+      border-radius: 16px;
+      padding: 18px;
+      flex: 1;
+      text-align: center;
+      transition: transform .3s ease;
+    }
+
+    .doodle-card:nth-child(1) {
+      transform: rotate(-3deg);
+    }
+
+    .doodle-card:nth-child(2) {
+      transform: rotate(2.5deg);
+    }
+
+    .doodle-card:hover {
+      transform: rotate(0) translateY(-6px);
+    }
+
+    .doodle-card img {
+      width: 100%;
+      max-width: 110px;
+      margin: 0 auto 10px;
+    }
+
+    .doodle-card span {
+      font-family: var(--abt-font-mono);
+      font-size: .68rem;
+      color: var(--abt-text-3);
+    }
+
+    .render-frame {
+      background: var(--abt-surface);
+      border: 1.5px dashed var(--abt-border);
+      border-radius: 18px;
+      aspect-ratio: 4/3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--abt-text-3);
+      font-family: var(--abt-font-mono);
+      font-size: .76rem;
+      position: relative;
+    }
+
+    .sticker-spiral {
+      width: 56px;
+      position: absolute;
+      top: -20px;
+      right: 18px;
+      animation: spin-slow 14s linear infinite;
+    }
+
+    @keyframes spin-slow {
+      to {
+        transform: rotate(360deg);
+      }
+    }
 
     /* ---------- GET IN TOUCH ----------
        This page's own rich contact block — separate from the shared
        site-footer-mini's Contact row further down (different id, so
        the two don't collide; the shared footer stays identical to
        every other page). */
-    .contact-grid{ display:flex; flex-wrap:wrap; gap:18px; }
-    .contact-card{
-      display:flex; align-items:center; gap:14px;
-      background:var(--abt-surface);
-      border:1px solid var(--abt-border);
-      border-radius:14px;
-      padding:16px 22px;
-      flex:1;
-      min-width:230px;
-      transition:transform .2s ease, border-color .2s ease;
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
     }
-    .contact-card:hover{ transform:translateY(-3px); border-color:var(--abt-accent-2); }
-    .contact-card svg{ color:var(--abt-accent); flex-shrink:0; }
-    .contact-card .label{ font-family:var(--abt-font-mono); font-size:.68rem; color:var(--abt-text-3); text-transform:uppercase; letter-spacing:.05em; }
-    .contact-card .value{ font-size:.94rem; color:var(--abt-text); }
+
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--abt-surface);
+      border: 1px solid var(--abt-border);
+      border-radius: 14px;
+      padding: 16px 22px;
+      flex: 1;
+      min-width: 230px;
+      transition: transform .2s ease, border-color .2s ease;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--abt-accent-2);
+    }
+
+    .contact-card svg {
+      color: var(--abt-accent);
+      flex-shrink: 0;
+    }
+
+    .contact-card .label {
+      font-family: var(--abt-font-mono);
+      font-size: .68rem;
+      color: var(--abt-text-3);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    .contact-card .value {
+      font-size: .94rem;
+      color: var(--abt-text);
+    }
 
     /* ---------- CLOSING CTA ----------
        Renamed from the source design's <footer class="cta"> to a plain
@@ -369,48 +667,121 @@
        every other page. .btn/.btn-primary/.btn-outline renamed to
        .cta-btn* to avoid colliding with main.css's own (differently-styled)
        .btn-primary component used elsewhere (e.g. resume.html). */
-    .cta-section{
-      background:linear-gradient(180deg, #F3E4CE, #EBD8BB);
-      text-align:center;
-      padding:90px 0 60px;
+    .cta-section {
+      background: linear-gradient(180deg, #F3E4CE, #EBD8BB);
+      text-align: center;
+      padding: 90px 0 60px;
     }
-    .cta-section h2{ font-size:clamp(1.8rem,3.6vw,2.6rem); margin-bottom:12px; }
-    .cta-section p{ color:var(--abt-text-2); margin-bottom:32px; }
-    .cta-buttons{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
-    .cta-btn{
-      font-family:var(--abt-font-mono); font-size:.82rem; letter-spacing:.03em;
-      padding:14px 28px; border-radius:999px;
-      display:inline-flex; align-items:center; gap:8px;
-      transition:transform .2s ease, box-shadow .2s ease;
+
+    .cta-section h2 {
+      font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+      margin-bottom: 12px;
     }
-    .cta-btn--primary{ background:var(--abt-accent); color:#fff; }
-    .cta-btn--outline{ background:transparent; border:1.5px solid var(--abt-text); color:var(--abt-text); }
-    .cta-btn:hover{ transform:translateY(-3px); box-shadow:0 10px 20px rgba(58,35,28,.15); }
-    .signature{
-      margin-top:56px;
-      font-family:var(--abt-font-mono); font-size:.72rem; color:var(--abt-text-3);
+
+    .cta-section p {
+      color: var(--abt-text-2);
+      margin-bottom: 32px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .cta-btn {
+      font-family: var(--abt-font-mono);
+      font-size: .82rem;
+      letter-spacing: .03em;
+      padding: 14px 28px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .cta-btn--primary {
+      background: var(--abt-accent);
+      color: #fff;
+    }
+
+    .cta-btn--outline {
+      background: transparent;
+      border: 1.5px solid var(--abt-text);
+      color: var(--abt-text);
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(58, 35, 28, .15);
+    }
+
+    .signature {
+      margin-top: 56px;
+      font-family: var(--abt-font-mono);
+      font-size: .72rem;
+      color: var(--abt-text-3);
     }
 
     /* ---------- reveal on scroll ---------- */
-    .reveal{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
-    .reveal.in-view{ opacity:1; transform:translateY(0); }
-
-    @media (prefers-reduced-motion: reduce){
-      *{ animation:none !important; transition:none !important; }
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s ease, transform .7s ease;
     }
 
-    @media (max-width:880px){
-      .about-page section{ padding:64px 0; }
-      .about-page .hero .wrap{ grid-template-columns:1fr; }
-      .hero-photo-wrap{ order:-1; max-width:280px; margin:0 auto 12px; }
-      .edu-card{ grid-template-columns:1fr; }
-      .cert-grid{ grid-template-columns:1fr; }
-      .ft-block{ grid-template-columns:1fr; }
-      .ft-block:nth-child(odd) .ft-visual{ order:0; }
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
+    @media (max-width:880px) {
+      .about-page section {
+        padding: 64px 0;
+      }
+
+      .about-page .hero .wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-photo-wrap {
+        order: -1;
+        max-width: 280px;
+        margin: 0 auto 12px;
+      }
+
+      .edu-card {
+        grid-template-columns: 1fr;
+      }
+
+      .cert-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ft-block {
+        grid-template-columns: 1fr;
+      }
+
+      .ft-block:nth-child(odd) .ft-visual {
+        order: 0;
+      }
     }
   </style>
 </head>
+
 <body>
+
+  <!-- Mobile-only scroll progress bar; width driven by JS near </body> -->
+  <div class="scroll-progress" id="scrollProgress"></div>
 
   <!-- =========================================================
        GLOBAL NAVIGATION (same markup as index.html)
@@ -434,11 +805,6 @@
         <li class="nav-item"><a href="resume.html" class="nav-link">Resume</a></li>
       </ul>
     </nav>
-
-    <!-- Mobile-only scroll progress bar; width driven by JS near </body>.
-         Lives here (last child of .site-header) so it stays pinned to the
-         header's bottom edge as the sticky header scrolls. -->
-    <div class="scroll-progress" id="scrollProgress"></div>
   </header>
 
   <main class="about-page">
@@ -449,15 +815,20 @@
         <div class="hero-text reveal">
           <p class="eyebrow">About me</p>
           <h1>Hello!<br><em>Nice to meet you.</em></h1>
-          <p>I'm a Computer Engineering student at KMITL who found UX/UI through building software — and realized great products need more than functional code. They need experiences that make sense to people.</p>
-          <p>I'm currently looking for an internship where I can keep growing as a UX/UI designer — testing with real users, and shipping work that holds up outside of Figma.</p>
+          <p>I'm a Computer Engineering student at KMITL who found UX/UI through building software — and realized great
+            products need more than functional code. They need experiences that make sense to people.</p>
+          <p>I'm currently looking for an internship where I can keep growing as a UX/UI designer — testing with real
+            users, and shipping work that holds up outside of Figma.</p>
           <div class="status-pill"><span class="status-dot"></span> Open for internship opportunities</div>
         </div>
         <div class="hero-photo-wrap reveal">
           <div class="photo-frame">
-            your photo here
-            <img class="sticker sticker-shootingstar" src="assets/images/about/doodle-shootingstar.png" alt="Hand-drawn shooting star doodle">
+            <img src="assets/images/about/photo-me.jpg"
+              alt="Sasiyakorn Chansiri smiling at the camera, wearing a black t-shirt and standing in front of a white wall with a window.">
+
           </div>
+          <img class="sticker sticker-shootingstar" src="assets/images/about/doodle-shootingstar.png"
+            alt="Hand-drawn shooting star doodle">
         </div>
       </div>
     </section>
@@ -467,8 +838,11 @@
       <div class="wrap reveal">
         <p class="eyebrow">My approach</p>
         <img class="sticker sticker-star" src="assets/images/about/doodle-star.png" alt="Hand-drawn star doodle">
-        <p>As a designer, I lead with <strong>empathy and usability</strong> — turning complex requirements into interfaces that make sense. My engineering background isn't separate from that: it's what lets me design with feasibility built in, so what ships doesn't lose what made it work in the first place.</p>
+        <p>As a designer, I lead with <strong>empathy and usability</strong> — turning complex requirements into
+          interfaces that make sense. My engineering background isn't separate from that: it's what lets me design with
+          feasibility built in, so what ships doesn't lose what made it work in the first place.</p>
       </div>
+
     </section>
 
     <!-- EDUCATION -->
@@ -477,7 +851,10 @@
         <p class="eyebrow">Education</p>
         <div class="edu-card">
           <div class="edu-badge" aria-hidden="true">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 1 8l11 5 9-4.1V15" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10.5V16c0 1.5 3 3 7 3s7-1.5 7-3v-5.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M12 3 1 8l11 5 9-4.1V15" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M5 10.5V16c0 1.5 3 3 7 3s7-1.5 7-3v-5.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
           </div>
           <div>
             <h3>King Mongkut's Institute of Technology Ladkrabang</h3>
@@ -530,21 +907,24 @@
         <div class="skill-group">
           <h4>Other Tools</h4>
           <div class="pills">
-            <span>Git</span><span>GitHub</span><span>Jira</span><span>Slack</span><span>VS Code</span><span>Postman</span>
+            <span>Git</span><span>GitHub</span><span>Jira</span><span>Slack</span><span>VS
+              Code</span><span>Postman</span>
           </div>
         </div>
 
         <div class="skill-group">
           <h4>Visual &amp; Multimedia</h4>
           <div class="pills">
-            <span>Digital Drawing</span><span>Video Editing</span><span>3D Modeling</span><span>Procreate</span><span>CapCut</span>
+            <span>Digital Drawing</span><span>Video Editing</span><span>3D
+              Modeling</span><span>Procreate</span><span>CapCut</span>
           </div>
         </div>
 
         <div class="skill-group">
           <h4>Soft Skills</h4>
           <div class="pills">
-            <span>Active Learning</span><span>Collaboration &amp; Teamwork</span><span>Time Management</span><span>Adaptability</span>
+            <span>Active Learning</span><span>Collaboration &amp; Teamwork</span><span>Time
+              Management</span><span>Adaptability</span>
           </div>
         </div>
       </div>
@@ -556,16 +936,24 @@
         <p class="eyebrow">Certificates</p>
         <div class="cert-grid">
           <div class="cert-card">
-            <svg class="cert-seal" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" stroke="#D65B3E" stroke-width="1.6"/><path d="M20 11l2.2 4.6 5 .7-3.6 3.6.9 5-4.5-2.4-4.5 2.4.9-5-3.6-3.6 5-.7L20 11z" fill="#E5A754"/></svg>
+            <svg class="cert-seal" viewBox="0 0 40 40" fill="none">
+              <circle cx="20" cy="20" r="16" stroke="#D65B3E" stroke-width="1.6" />
+              <path d="M20 11l2.2 4.6 5 .7-3.6 3.6.9 5-4.5-2.4-4.5 2.4.9-5-3.6-3.6 5-.7L20 11z" fill="#E5A754" />
+            </svg>
             <h4>Basic Web Development</h4>
             <span class="issuer">42 Bangkok · 2024</span>
-            <p>Built responsive web projects with HTML, CSS, and JavaScript through 42's peer-to-peer, self-learning curriculum.</p>
+            <p>Built responsive web projects with HTML, CSS, and JavaScript through 42's peer-to-peer, self-learning
+              curriculum.</p>
           </div>
           <div class="cert-card">
-            <svg class="cert-seal" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="16" stroke="#D65B3E" stroke-width="1.6"/><path d="M20 11l2.2 4.6 5 .7-3.6 3.6.9 5-4.5-2.4-4.5 2.4.9-5-3.6-3.6 5-.7L20 11z" fill="#E5A754"/></svg>
+            <svg class="cert-seal" viewBox="0 0 40 40" fill="none">
+              <circle cx="20" cy="20" r="16" stroke="#D65B3E" stroke-width="1.6" />
+              <path d="M20 11l2.2 4.6 5 .7-3.6 3.6.9 5-4.5-2.4-4.5 2.4.9-5-3.6-3.6 5-.7L20 11z" fill="#E5A754" />
+            </svg>
             <h4>Introduction to Python</h4>
             <span class="issuer">42 Bangkok · 2025</span>
-            <p>Strengthened Python fundamentals and algorithmic thinking through self-directed learning and peer code review.</p>
+            <p>Strengthened Python fundamentals and algorithmic thinking through self-directed learning and peer code
+              review.</p>
           </div>
         </div>
       </div>
@@ -589,7 +977,8 @@
                 <span>doodle no.1</span>
               </div>
               <div class="doodle-card">
-                <img src="assets/images/about/doodle-elephant.png" alt="Hand-drawn elephant with butterfly doodle by Sasiyakorn">
+                <img src="assets/images/about/doodle-elephant.png"
+                  alt="Hand-drawn elephant with butterfly doodle by Sasiyakorn">
                 <span>doodle no.2</span>
               </div>
             </div>
@@ -611,11 +1000,13 @@
           <div class="ft-text">
             <span class="ft-label">3D Modeling <span class="badge-new">new!</span></span>
             <h3>Just started exploring Blender</h3>
-            <p>A new creative outlet I'm still getting the hang of. Still early days — one render in, many more to come.</p>
+            <p>A new creative outlet I'm still getting the hang of. Still early days — one render in, many more to come.
+            </p>
           </div>
           <div class="ft-visual">
             <div class="render-frame">
-              <img class="sticker sticker-spiral" src="assets/images/about/doodle-spiral.png" alt="Hand-drawn spiral doodle">
+              <img class="sticker sticker-spiral" src="assets/images/about/doodle-spiral.png"
+                alt="Hand-drawn spiral doodle">
               first Blender render
             </div>
           </div>
@@ -631,15 +1022,24 @@
         <p class="eyebrow">Get in touch</p>
         <div class="contact-grid">
           <a class="contact-card" href="mailto:sasiyakorn.chansiri@gmail.com">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <path d="M3 7l9 6 9-6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
             <div><span class="label">Email</span><br><span class="value">sasiyakorn.chansiri@gmail.com</span></div>
           </a>
           <a class="contact-card" href="tel:0888102292">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h4l2 5-2.5 1.5a12 12 0 0 0 6 6L15 14l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 4 6a2 2 0 0 1 0-2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M4 4h4l2 5-2.5 1.5a12 12 0 0 0 6 6L15 14l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 4 6a2 2 0 0 1 0-2z"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
             <div><span class="label">Phone</span><br><span class="value">088 810 2292</span></div>
           </a>
           <a class="contact-card" href="https://github.com/piingping" target="_blank">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49v-1.9c-2.78.62-3.37-1.37-3.37-1.37-.46-1.19-1.11-1.51-1.11-1.51-.91-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.9 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.64-1.38-2.22-.26-4.56-1.14-4.56-5.05 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.9-1.32 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.92-2.34 4.79-4.57 5.04.36.32.68.94.68 1.9v2.82c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49v-1.9c-2.78.62-3.37-1.37-3.37-1.37-.46-1.19-1.11-1.51-1.11-1.51-.91-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.9 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.64-1.38-2.22-.26-4.56-1.14-4.56-5.05 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.73 0 0 .84-.27 2.75 1.05a9.3 9.3 0 0 1 5 0c1.9-1.32 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.63 1.03 2.75 0 3.92-2.34 4.79-4.57 5.04.36.32.68.94.68 1.9v2.82c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z" />
+            </svg>
             <div><span class="label">GitHub</span><br><span class="value">github.com/piingping</span></div>
           </a>
         </div>
@@ -653,7 +1053,8 @@
         <p>I'm ready to learn, contribute, and grow with your team.</p>
         <div class="cta-buttons">
           <a class="cta-btn cta-btn--primary" href="mailto:sasiyakorn.chansiri@gmail.com">Email Me</a>
-          <a class="cta-btn cta-btn--outline" href="assets/docs/Resume_Sasiyakorn_Chansiri.pdf" download="Resume_Sasiyakorn_Chansiri.pdf">Download Résumé</a>
+          <a class="cta-btn cta-btn--outline" href="assets/docs/Resume_Sasiyakorn_Chansiri.pdf"
+            download="Resume_Sasiyakorn_Chansiri.pdf">Download Résumé</a>
         </div>
         <p class="signature">Designed &amp; coded by Sasiyakorn</p>
       </div>
@@ -670,14 +1071,17 @@
         <span class="site-footer-mini__label">Contact</span>
         <div class="site-footer-mini__icons">
           <a class="site-footer-mini__icon" href="mailto:sasiyakorn.chansiri@gmail.com" aria-label="Email Sasiyakorn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+              stroke-linejoin="round">
               <rect x="3" y="5" width="18" height="14" rx="1"></rect>
               <path d="M3 7l9 6 9-6"></path>
             </svg>
           </a>
-          <a class="site-footer-mini__icon" href="https://github.com/piingping" target="_blank" rel="noopener" aria-label="GitHub profile">
+          <a class="site-footer-mini__icon" href="https://github.com/piingping" target="_blank" rel="noopener"
+            aria-label="GitHub profile">
             <svg viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.84 1.238 1.84 1.238 1.07 1.834 2.807 1.304 3.492.997.108-.775.42-1.305.763-1.605-2.665-.305-5.466-1.334-5.466-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+              <path
+                d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.84 1.238 1.84 1.238 1.07 1.834 2.807 1.304 3.492.997.108-.775.42-1.305.763-1.605-2.665-.305-5.466-1.334-5.466-5.93 0-1.31.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.29-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
             </svg>
           </a>
         </div>
@@ -689,33 +1093,17 @@
   <!-- <script src="scripts/main.js" defer></script> Phase 2: script -->
 
   <script>
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
           e.target.classList.add('in-view');
           io.unobserve(e.target);
         }
       });
-    },{ threshold:.15 });
-    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-  </script>
-
-  <script>
-    // Mobile-only reading progress bar (hidden on desktop via CSS,
-    // so this listener is harmless to leave running everywhere).
-    (function () {
-      var bar = document.getElementById('scrollProgress');
-      if (!bar) return;
-      function updateProgress() {
-        var scrollTop = window.scrollY || document.documentElement.scrollTop;
-        var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        bar.style.width = (docHeight > 0 ? (scrollTop / docHeight) * 100 : 0) + '%';
-      }
-      window.addEventListener('scroll', updateProgress, { passive: true });
-      window.addEventListener('resize', updateProgress);
-      updateProgress();
-    })();
+    }, { threshold: .15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   </script>
 
 </body>
+
 </html>

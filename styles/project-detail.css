@@ -199,15 +199,10 @@ html { scroll-behavior: smooth; }
 /* Common max-width across pinghub/pao/tooyenplus; NextGen AI overrides to
    460px locally (its Role/Status fact values wrap across more text). */
 .factbox {
-  margin-top: 34px;
-  /* background: var(--ty-surface); */
-  /* border: 2px solid var(--ty-text);
-  border-radius: var(--ty-radius-sm); */
-  /* max-width: 440px; */
-  /* box-shadow: var(--ty-shadow-card); */
+  margin-top: 24px;
+  border-top: 2px solid var(--ty-text);
   width: 100%;
   max-width: 100%;
-
 }
 .factbox__head {
   font-family: var(--ty-font-display);
@@ -250,6 +245,14 @@ html { scroll-behavior: smooth; }
 }
 .proto-link:hover { color: var(--ty-accent-dark); border-color: var(--ty-accent-dark); }
 
+/* Wraps .hero__art + .factbox as ONE column-2 grid item, stacked
+   vertically. Without this, a bare .factbox sitting as a 3rd direct
+   child of .hero__grid (which only defines 2 columns) falls through to
+   a new implicit row under column 1 instead of sitting beside/under the
+   image — that's what was producing the empty gap next to the phone
+   shot. Stacking factbox under the image inside one column also means
+   its width now matches the image's column width exactly. */
+.hero__side { display: flex; flex-direction: column; gap: 24px; }
 .hero__art { position: relative; display: flex; justify-content: center; }
 /* Common (non-rotated, 260px) version across nextgen-ai/pinghub/pao;
    TooYen+ overrides locally (rotated 240px phone + its own blob/magnet). */
@@ -348,28 +351,62 @@ html { scroll-behavior: smooth; }
 
 /* Wide diagram figures (reuse .shot / lightbox, just wider, non-scrolling
    pairs). Common value used on NextGen AI (6+ instances); PingHub overrides
-   locally to a wider single-diagram size for its 2 uses. */
+   locally to a wider single-diagram size for its 2 uses.
+
+   Rebuilt from CSS Grid to flex: grid's shared auto-column track forced
+   every item in a row to the same column width, which is wrong the moment
+   a row mixes a landscape screenshot with a portrait phone screenshot —
+   the phone either got starved of height or blown out to match the
+   desktop shot. Flex + per-item widths (via the --desktop/--mobile/
+   --diagram modifiers below) let each item claim the width its own
+   aspect ratio actually needs, while aspect-ratio on the <img> itself
+   (not just the card) is what fixes uneven row heights: every image in
+   view now renders inside a fixed-ratio box instead of its own native
+   proportions, so a tall screenshot next to a short one no longer looks
+   stretched or squashed relative to its neighbor. */
 .shot-row {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(180px, 240px);
+  display: flex;
   gap: 18px;
   overflow-x: auto;
   padding-bottom: 10px;
   scrollbar-width: thin;
 }
-.shot-row--wide { grid-auto-columns: minmax(240px, 460px); margin-top: 20px; }
+.shot-row--wide { margin-top: 20px; }
+
+/* Card: was a 10px white "photo mat" padding around every image (the flat,
+   generic-frame look). Now the image bleeds to the card edge and the
+   border + caption strip alone carry the framing, so the warm border
+   color still reads instead of being buried under white padding. */
 .shot {
+  flex: 0 0 auto;
+  width: min(300px, 82vw); /* fallback for any .shot without a type modifier */
   background: var(--ty-surface);
   border: 1px solid var(--ty-border);
   border-radius: var(--ty-radius-sm);
-  padding: 10px 10px 12px;
+  overflow: hidden;
   cursor: zoom-in;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .shot:hover { transform: translateY(-4px); box-shadow: var(--ty-shadow-card); }
-.shot img { border-radius: 8px; width: 100%; min-height: 160px; background: var(--ty-bg); }
-.shot figcaption { font-size: 0.76rem; color: var(--ty-text-sub); margin-top: 8px; text-align: center; }
+.shot img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: contain; background: var(--ty-bg); }
+.shot .tag-mini { margin: 10px 0 0 10px; }
+.shot figcaption { font-size: 0.76rem; color: var(--ty-text-sub); text-align: center; padding: 8px 10px 10px; border-top: 1px solid var(--ty-border); margin-top: 4px; }
+
+/* Type modifiers — pick the one matching what the screenshot actually is.
+   Diagrams (canvases, maps, matrices) run close to landscape; desktop UI
+   screenshots run wider still; phone screenshots are tall and need to
+   stay narrow rather than being blown up to a desktop-width column. */
+.shot--diagram { width: min(320px, 82vw); }
+.shot--diagram img { aspect-ratio: 4 / 3; background: #fff; }
+.shot-row--wide .shot--diagram { width: min(460px, 85vw); }
+
+.shot--desktop { width: min(480px, 85vw); }
+.shot--desktop img { aspect-ratio: 16 / 10; }
+.shot-row--wide .shot--desktop,
+.shot-row--screens .shot--desktop { width: min(580px, 88vw); }
+
+.shot--mobile { width: min(220px, 62vw); }
+.shot--mobile img { aspect-ratio: 9 / 18.5; }
 
 /* Feature cards — used by NextGen AI (Solution) and TooYen+ (Solution).
    NextGen AI's --4 modifier and TooYen+'s icon badge are both additive,

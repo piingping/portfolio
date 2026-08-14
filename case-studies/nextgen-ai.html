@@ -19,6 +19,11 @@
 
   <link rel="stylesheet" href="../styles/main.css">
   <link rel="stylesheet" href="../styles/project-detail.css">
+  <!-- Swiper — used only for the Key Screens browsing galleries (Core /
+       Supporting screens). Comparison rows elsewhere on this page stay
+       plain side-by-side <div class="shot-row">, not Swiper, so every
+       item in a comparison is visible at once. -->
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" /> -->
 
   <style>
     /* ---------------------------------------------------
@@ -34,8 +39,14 @@
     .hero h1 { font-size: clamp(2.2rem, 5.6vw, 3.6rem); line-height: 1.05; letter-spacing: -0.01em; }
     /* Longer tagline sentence needs more width than the shared 46ch default. */
     .hero__tagline { max-width: 48ch; }
-    /* Role/Status fact values wrap across more text than the shared 440px default. */
-    .factbox { max-width: 460px; }
+
+    /* Image-left / text-right hero, matching the PAO case study's layout.
+       Page-local only: the shared .hero__grid columns (1.1fr text-first /
+       0.9fr image-first) stay untouched so PingHub/PAO/TooYen+ don't shift —
+       this page alone now puts the image column first and gives it a touch
+       less width than the text+facts column beside it. */
+    .case-study--nextgen-ai .hero__grid { grid-template-columns: 0.95fr 1.05fr; }
+
 
     /* Used standalone (no card) as a label above Research/Impact headings —
        needs its own block-level spacing, unlike the shared in-card default. */
@@ -52,6 +63,90 @@
 
     /* Inline pull-quote style, used inside .story__intro on this page only. */
     .story__intro em.quote { color: var(--ty-text); font-style: italic; }
+
+    /* Thin accent-2 top strip on every shot card, page-local only (not in
+       the shared project-detail.css) so it doesn't change PingHub/PAO/
+       TooYen+ — keeps a bit of color on the image cards now that the old
+       white padding-mat is gone, without a shared-file risk. */
+    .case-study--nextgen-ai .shot { position: relative; }
+    .case-study--nextgen-ai .shot::before {
+      content: '';
+      display: block;
+      height: 3px;
+      background: var(--ty-accent-2);
+    }
+
+    /* ---------------------------------------------------
+       Overrides for Borderless Screens & Lightbox Zoom
+    --------------------------------------------------- */
+    
+    /* Layout แบบ Grid สำหรับแสดงรูปทุกอันแทน Swiper */
+    .screen-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 48px;
+      margin-top: 24px;
+    }
+    @media (max-width: 860px) {
+      .screen-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* สไตล์สำหรับรูปที่เอากรอบออก และแสดงรูปแบบยืดหยุ่น */
+    .shot--borderless {
+      width: 100% !important;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+    }
+    .case-study--nextgen-ai .shot--borderless::before {
+      display: none !important; /* เอาเส้นสีเหลืองด้านบนออก */
+    }
+    .shot--borderless:hover {
+      transform: none !important;
+    }
+    .shot--borderless img {
+      width: 100%;
+      height: auto; /* ไม่ fix ขนาดรูป */
+      border-radius: 8px; /* ลบออกได้หากไม่ต้องการมุมโค้ง */
+      cursor: zoom-in;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: transparent !important;
+      aspect-ratio: auto !important;
+    }
+    /* เงาสี Accent เมื่อ Hover ที่รูป */
+    .shot--borderless:hover img {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px rgba(214, 91, 62, 0.25) !important; 
+    }
+    /* คำบรรยายใต้ภาพ */
+    .shot--borderless figcaption {
+      border-top: none !important;
+      padding: 16px 0 0 !important;
+      font-size: 0.95rem;
+      text-align: left !important;
+    }
+
+    /* ---------------------------------------------------
+       Lightbox Zoom Styles 
+    --------------------------------------------------- */
+    .ty-lightbox {
+      overflow-y: auto;
+      align-items: flex-start !important; /* ให้เริ่มจากด้านบนเพื่อรองรับการ scroll */
+    }
+    .ty-lightbox__frame {
+      margin: auto; /* จัดให้อยู่กึ่งกลางหากรูปเล็กกว่าหน้าจอ */
+      padding: 40px 20px;
+    }
+    .ty-lightbox img {
+      cursor: zoom-in;
+    }
+    .ty-lightbox img.is-zoomed {
+      max-width: none !important;
+      max-height: none !important;
+      cursor: zoom-out;
+    }
   </style>
 </head>
 <body>
@@ -114,37 +209,34 @@
     <!-- ============ HERO ============ -->
     <header class="hero" id="top">
       <div class="wrap hero__grid">
-        <div data-reveal>
-          <p class="eyebrow">Senior Capstone Project — KMITL</p>
-          <h1>NextGen <span class="accent">AI</span> Camp</h1>
-          <p class="hero__subtitle">Educational Camp Management Platform</p>
-          <p class="hero__tagline">Built from the ground up for a 1,000+ participant, multi-phase AI education camp — shaped by alumni feedback, past staff insight, and growing instructor requirements, then validated against real usage mid-camp.</p>
-
-
-        </div>
-
         <div class="hero__art" data-reveal>
           <div class="hero__phone">
             <!-- placeholder: needs real screenshot — Timeline screen -->
             <img src="../assets/images/case-studies/nextgen-ai/landing-page.png" alt="Landing page showing the NextGen AI Camp interface">
           </div>
         </div>
-                  <div class="factbox">
-            <div class="factbox__head">Project Facts </div>
+
+        <div data-reveal>
+          <p class="eyebrow">Senior Capstone Project — KMITL</p>
+          <h1>NextGen <span class="accent">AI</span> Camp</h1>
+          <p class="hero__subtitle">Educational Camp Management Platform</p>
+          <p class="hero__tagline">Built from the ground up for a 1,000+ participant, multi-phase AI education camp — shaped by alumni feedback, past staff insight, and growing instructor requirements, then validated against real usage mid-camp.</p>
+
+          <div class="factbox">
             <div class="fact-row"><span class="label">Role</span><span class="leader"></span><span class="value is-long">UX/UI Designer, Student Experience + Admin Permission page</span></div>
             <div class="fact-row"><span class="label">Timeline</span><span class="leader"></span><span class="value">Nov 2025 – Present</span></div>
             <div class="fact-row"><span class="label">Tools</span><span class="leader"></span><span class="value">Figma</span></div>
             <div class="fact-row"><span class="label">Team</span><span class="leader"></span><span class="value">3</span></div>
             <div class="fact-row"><span class="label">Status</span><span class="leader"></span><span class="value is-long">UI design complete · development in progress (team's stack: SvelteKit, PostgreSQL)</span></div>
           </div>
+        </div>
       </div>
-      
     </header>
 
     <!-- ============ OVERVIEW & MY ROLE ============ -->
     <section class="section" id="overview">
       <div class="wrap">
-        <span class="tag-label">Tag 01 — Overview &amp; My Role</span>
+        <span class="tag-label">Overview &amp; My Role</span>
         <div class="section__head">
           <h2>A long-running camp, one Student-side owner.</h2>
           <p class="section__lede">NextGen AI Camp is a long-running, multi-phase educational camp — registration through a final hackathon — serving 1,000+ participants. This wasn't a redesign of an existing product: the system was built from scratch, shaped by three inputs — feedback from alumni who'd been through past camps, insight from staff who'd run previous rounds, and a growing list of requirements from instructors as the camp scaled.</p>
@@ -178,7 +270,7 @@
     <!-- ============ THE PROBLEM ============ -->
     <section class="section" id="problem">
       <div class="wrap">
-        <span class="tag-label">Tag 02 — The Problem</span>
+        <span class="tag-label">The Problem</span>
         <div class="section__head">
           <h2>One confusing system, three stakeholder groups to satisfy.</h2>
         </div>
@@ -194,12 +286,12 @@
 
         <div class="shot-row shot-row--wide" data-reveal>
           <!-- placeholder: needs real diagram — Stakeholder Mapping -->
-          <figure class="shot" data-shot data-caption="Stakeholder mapping across instructors, student organizers, and students">
+          <figure class="shot shot--diagram" data-shot data-caption="Stakeholder mapping across instructors, student organizers, and students">
             <img src="../assets/images/case-studies/nextgen-ai/01-stakeholder-mapping.png" alt="Stakeholder mapping diagram covering instructors, student organizers, and students" loading="lazy">
             <figcaption>Stakeholder Mapping</figcaption>
           </figure>
           <!-- placeholder: needs real diagram — Problem Statement Canvas -->
-          <figure class="shot" data-shot data-caption="Problem statement canvas framing the core student-experience problems">
+          <figure class="shot shot--diagram" data-shot data-caption="Problem statement canvas framing the core student-experience problems">
             <img src="../assets/images/case-studies/nextgen-ai/02-problem-statement-canvas.png" alt="Problem statement canvas outlining the camp's core student-experience problems" loading="lazy">
             <figcaption>Problem Statement Canvas</figcaption>
           </figure>
@@ -210,7 +302,7 @@
     <!-- ============ RESEARCH ============ -->
     <section class="section" id="research">
       <div class="wrap">
-        <span class="tag-label">Tag 03 — Research</span>
+        <span class="tag-label">Research</span>
         <div class="section__head">
           <h2>Three decisions, backed by data.</h2>
         </div>
@@ -219,18 +311,30 @@
           <span class="pain-card__num">Decision 01 · Who to design for</span>
           <h3>A persona with real stakes</h3>
           <p>Persona "Nong Phat" and an empathy map revealed high personal stakes — <em class="quote">"if I place Top 10, I can get into Computer Engineering here directly."</em> Her journey map surfaced the core pain point: no way to know her status, phase, or pending tasks anywhere in the system. This finding is what led to designing the Timeline from scratch.</p>
-          <div class="shot-row shot-row--wide">
-            <!-- placeholder: needs real diagram — Empathy Map for Nong Phat -->
-            <figure class="shot" data-shot data-caption="Empathy map for persona Nong Phat">
-              <img src="../assets/images/case-studies/nextgen-ai/03-empathy-map.png" alt="Empathy map for persona Nong Phat, highlighting her high-stakes motivation to place in the Top 10" loading="lazy">
-              <figcaption>Empathy Map — Nong Phat</figcaption>
-            </figure>
-            <!-- placeholder: needs real diagram — Journey Map for Nong Phat -->
-            <figure class="shot" data-shot data-caption="Journey map for persona Nong Phat, surfacing the status/phase visibility gap">
-              <img src="../assets/images/case-studies/nextgen-ai/04-journey-map.png" alt="Journey map for persona Nong Phat, surfacing the core pain point of not knowing her status, phase, or pending tasks" loading="lazy">
-              <figcaption>Journey Map — Nong Phat</figcaption>
-            </figure>
-          </div>
+        
+            <div class="shot-row shot-row--wide">
+              <!-- placeholder: needs real diagram — Empathy Map for Nong Phat -->
+              <figure class="shot shot--diagram" data-shot data-caption="Empathy map for persona Nong Phat">
+                <img src="../assets/images/case-studies/nextgen-ai/03-empathy-map.png" alt="Empathy map for persona Nong Phat, highlighting her high-stakes motivation to place in the Top 10" loading="lazy">
+                <figcaption>Empathy Map — Nong Phat</figcaption>
+              </figure>
+            </div>
+            <div class="shot-row shot-row--wide">
+              <!-- placeholder: needs real diagram — Journey Map for Nong Phat (Before) -->
+              <figure class="shot shot--diagram" data-shot data-caption="Journey map for persona Nong Phat, before — surfacing the status/phase visibility gap">
+                <span class="tag-mini tag-mini--before">Before</span>
+                <img src="../assets/images/case-studies/nextgen-ai/04-journey-before.png" alt="Journey map for persona Nong Phat, before, surfacing the core pain point of not knowing her status, phase, or pending tasks" loading="lazy">
+                <figcaption>Journey Map — Nong Phat</figcaption>
+              </figure>
+
+              <!-- placeholder: needs real diagram — Journey Map for Nong Phat (After) -->
+              <figure class="shot shot--diagram" data-shot data-caption="Journey map for persona Nong Phat, after — status and next steps now visible throughout">
+                <span class="tag-mini tag-mini--after">After</span>
+                <img src="../assets/images/case-studies/nextgen-ai/05-journey-after.png" alt="Journey map for persona Nong Phat, after, showing status and next steps now visible throughout" loading="lazy">
+                <figcaption>Journey Map — Nong Phat</figcaption>
+              </figure>
+            </div>
+          
         </div>
 
         <div class="solution-block" data-reveal>
@@ -239,8 +343,8 @@
           <p>A Weighted Decision Matrix against 4 competitors (legacy system, Kaggle, GitHub Classroom, Google Classroom) across 8 criteria showed every one — including our own legacy system — scored poorly on phase-based timelines and public/private scoring. That data is why those two became the core pillars of the new system.</p>
           <div class="shot-row shot-row--wide">
             <!-- placeholder: needs real diagram — Weighted Decision Matrix -->
-            <figure class="shot" data-shot data-caption="Weighted decision matrix across 4 competitors and 8 criteria">
-              <img src="../assets/images/case-studies/nextgen-ai/05-weighted-decision-matrix.png" alt="Weighted decision matrix comparing the legacy system, Kaggle, GitHub Classroom, and Google Classroom across 8 criteria" loading="lazy">
+            <figure class="shot shot--diagram" data-shot data-caption="Weighted decision matrix across 4 competitors and 8 criteria">
+              <img src="../assets/images/case-studies/nextgen-ai/06-weighted-decision-matrix.png" alt="Weighted decision matrix comparing the legacy system, Kaggle, GitHub Classroom, and Google Classroom across 8 criteria" loading="lazy">
               <figcaption>Weighted Decision Matrix</figcaption>
             </figure>
           </div>
@@ -257,7 +361,7 @@
     <!-- ============ IDEATE ============ -->
     <section class="section" id="ideate">
       <div class="wrap">
-        <span class="tag-label">Tag 04 — Ideate</span>
+        <span class="tag-label">Ideate</span>
         <div class="section__head">
           <h2>Mapping the structure before the screens.</h2>
         </div>
@@ -268,13 +372,13 @@
 
         <div class="shot-row shot-row--wide" data-reveal>
           <!-- placeholder: needs real diagram — Site Map -->
-          <figure class="shot" data-shot data-caption="Site map of the student-facing information architecture">
-            <img src="../assets/images/case-studies/nextgen-ai/06-site-map.png" alt="Site map showing the information architecture of the student-facing experience" loading="lazy">
+          <figure class="shot shot--diagram" data-shot data-caption="Site map of the student-facing information architecture">
+            <img src="../assets/images/case-studies/nextgen-ai/07-site-map.png" alt="Site map showing the information architecture of the student-facing experience" loading="lazy">
             <figcaption>Site Map</figcaption>
           </figure>
           <!-- placeholder: needs real diagram — FigJam Leaderboard ideation board -->
-          <figure class="shot" data-shot data-caption="FigJam board exploring Leaderboard ranking-visibility options with the team">
-            <img src="../assets/images/case-studies/nextgen-ai/07-figjam-leaderboard-ideation.png" alt="FigJam board exploring Leaderboard ideas and ranking-visibility questions with the team" loading="lazy">
+          <figure class="shot shot--diagram" data-shot data-caption="FigJam board exploring Leaderboard ranking-visibility options with the team">
+            <img src="../assets/images/case-studies/nextgen-ai/08-figjam-leaderboard-ideation.png" alt="FigJam board exploring Leaderboard ideas and ranking-visibility questions with the team" loading="lazy">
             <figcaption>FigJam — Leaderboard Ideation</figcaption>
           </figure>
         </div>
@@ -284,9 +388,9 @@
     <!-- ============ SOLUTION ============ -->
     <section class="section" id="solution">
       <div class="wrap">
-        <span class="tag-label">Tag 05 — Solution</span>
+        <!-- <span class="tag-label">Solution</span> -->
         <div class="section__head">
-          <h2>Four pieces closing the "where do I stand?" gap.</h2>
+          <h2>Solution</h2>
         </div>
 
         <div class="feature-grid feature-grid--4">
@@ -342,9 +446,13 @@
 
           <div class="shot-row shot-row--wide">
             <!-- placeholder: needs real screenshot — Permission page -->
-            <figure class="shot" data-shot data-caption="Permission page — Admin control over visibility and access per role">
+            <figure class="shot shot--tall" data-shot data-caption="Permission page — Admin control over visibility and access per role">
               <img src="../assets/images/case-studies/nextgen-ai/18-permission.png" alt="Permission page letting Admins control visibility and access per role" loading="lazy">
               <figcaption>Permission — Admin access control</figcaption>
+            </figure>
+             <figure class="shot shot--desktop" data-shot data-caption="Member page — Admin view of user role management">
+              <img src="../assets/images/case-studies/nextgen-ai/19-member.png" alt="Member page showing Admin view of user management" loading="lazy">
+              <figcaption>Member — Admin user management</figcaption>
             </figure>
           </div>
         </div>
@@ -354,7 +462,7 @@
     <!-- ============ IMPACT ============ -->
     <section class="section" id="impact">
       <div class="wrap">
-        <span class="tag-label">Tag 06 — Impact</span>
+        <span class="tag-label">Impact</span>
         <div class="section__head">
           <h2>Three rounds on the Leaderboard.</h2>
         </div>
@@ -370,18 +478,18 @@
 
           <div class="shot-row shot-row--wide">
             <!-- placeholder: needs real screenshot — Leaderboard, original version -->
-            <figure class="shot" data-shot data-caption="v1 — Original Leaderboard, before any student-facing revisions">
-              <img src="../assets/images/case-studies/nextgen-ai/08-leaderboard-v1-original.png" alt="Original Leaderboard design before any student-facing revisions" loading="lazy">
+            <figure class="shot shot--desktop" data-shot data-caption="v1 — Original Leaderboard, before any student-facing revisions">
+              <img src="../assets/images/case-studies/nextgen-ai/09-leaderboard-v1-original.png" alt="Original Leaderboard design before any student-facing revisions" loading="lazy">
               <figcaption>v1 — Original</figcaption>
             </figure>
             <!-- placeholder: needs real screenshot — Leaderboard after Round 1 (tabs) -->
-            <figure class="shot" data-shot data-caption="v2 — After Round 1: split into Public and Private tabs">
-              <img src="../assets/images/case-studies/nextgen-ai/09-leaderboard-v2-tabs.png" alt="Leaderboard split into Public and Private tabs to support staged score releases" loading="lazy">
+            <figure class="shot shot--desktop" data-shot data-caption="v2 — After Round 1: split into Public and Private tabs">
+              <img src="../assets/images/case-studies/nextgen-ai/10-leaderboard-v2-tabs.png" alt="Leaderboard split into Public and Private tabs to support staged score releases" loading="lazy">
               <figcaption>v2 — Public/Private tabs</figcaption>
             </figure>
             <!-- placeholder: needs real screenshot — Leaderboard after Round 2 (period labels + auto-latest) -->
-            <figure class="shot" data-shot data-caption="v3 — After Round 2: period/date labels, defaults to the latest leaderboard">
-              <img src="../assets/images/case-studies/nextgen-ai/10-leaderboard-v3-final.png" alt="Final Leaderboard with period/date labels, defaulting automatically to the latest results" loading="lazy">
+            <figure class="shot shot--desktop" data-shot data-caption="v3 — After Round 2: period/date labels, defaults to the latest leaderboard">
+              <img src="../assets/images/case-studies/nextgen-ai/11-leaderboard-v3-final.png" alt="Final Leaderboard with period/date labels, defaulting automatically to the latest results" loading="lazy">
               <figcaption>v3 — Period labels + auto-latest</figcaption>
             </figure>
           </div>
@@ -392,20 +500,15 @@
           <p>The instructor raised a case where a higher rank didn't guarantee passing, since subjective behavioral scoring factored in separately with no fixed rule. Instead of forcing an interface fix, we agreed the instructor would fold that scoring into the total upstream. No UI change needed.</p>
         </div>
 
-        <div class="honesty-note" data-reveal>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v2m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
-          <p>Timeline and the remaining screens were checked informally with student staff — no confusion reported, but not yet tested with incoming students; that's next.</p>
-        </div>
       </div>
     </section>
-
-    <!-- ============ KEY SCREENS ============ -->
+<!-- ============ KEY SCREENS ============ -->
     <section class="section" id="screens">
       <div class="wrap">
-        <span class="tag-label">Tag 07 — Key Screens</span>
+        <span class="tag-label">Key Screens</span>
         <div class="section__head">
           <h2>Every screen, hi-fi.</h2>
-          <p class="section__lede">Scroll each row sideways on smaller screens. Tap any screen to see it larger.</p>
+          <p class="section__lede">Tap any screen to see it larger.</p>
         </div>
 
         <div class="screen-group">
@@ -413,58 +516,59 @@
             <h3>Core screens</h3>
             <p>The five screens built specifically around this project's research findings.</p>
           </div>
-          <div class="shot-row">
-            <!-- placeholder: needs real screenshot — Timeline -->
-            <figure class="shot" data-shot data-caption="Status at a glance">
+          
+          <!-- เปลี่ยนจาก Swiper เป็น Grid -->
+          <div class="screen-grid">
+            <figure class="shot shot--borderless" data-shot data-caption="Status at a glance">
               <img src="../assets/images/case-studies/nextgen-ai/13-timeline.png" alt="Timeline screen showing explicit Pending, Passed, or Not Passed status with due dates" loading="lazy">
               <figcaption>Timeline</figcaption>
             </figure>
-            <!-- placeholder: needs real screenshot — Materials -->
-            <figure class="shot" data-shot data-caption="Weekly accordion of course materials">
+
+            <figure class="shot shot--borderless" data-shot data-caption="Weekly accordion of course materials">
               <img src="../assets/images/case-studies/nextgen-ai/14-materials.png" alt="Materials screen organized as a weekly accordion" loading="lazy">
               <figcaption>Materials</figcaption>
             </figure>
-            <!-- placeholder: needs real screenshot — Workshop -->
-            <figure class="shot" data-shot data-caption="Public and Private scores">
+
+            <figure class="shot shot--borderless" data-shot data-caption="Public and Private scores">
               <img src="../assets/images/case-studies/nextgen-ai/15-workshop.png" alt="Workshop screen showing Public and Private scores" loading="lazy">
               <figcaption>Workshop</figcaption>
             </figure>
-            <!-- placeholder: needs real screenshot — Leaderboard, final version -->
-            <figure class="shot" data-shot data-caption="Final Leaderboard — see Impact above for how this evolved across three rounds">
-              <img src="../assets/images/case-studies/nextgen-ai/10-leaderboard-v3-final.png" alt="Final Leaderboard with period/date labels, defaulting automatically to the latest results" loading="lazy">
+
+            <figure class="shot shot--borderless" data-shot data-caption="Final Leaderboard — see Impact above for how this evolved across three rounds">
+              <img src="../assets/images/case-studies/nextgen-ai/11-leaderboard-v3-final.png" alt="Final Leaderboard with period/date labels, defaulting automatically to the latest results" loading="lazy">
               <figcaption>Leaderboard</figcaption>
             </figure>
-            <!-- placeholder: needs real screenshot — Permission page -->
-            <figure class="shot" data-shot data-caption="Permission — Admin access control (designed by me)">
+
+            <figure class="shot shot--borderless" data-shot data-caption="Permission — Admin access control (designed by me)">
               <img src="../assets/images/case-studies/nextgen-ai/18-permission.png" alt="Permission page letting Admins control visibility and access per role" loading="lazy">
               <figcaption>Permission</figcaption>
             </figure>
           </div>
         </div>
 
-        <div class="screen-group">
+        <div class="screen-group" style="margin-top: 64px;">
           <div class="screen-group__head">
             <h3>Supporting screens</h3>
             <p>Same design system as the core screens above.</p>
           </div>
-          <div class="shot-row">
-            <!-- placeholder: needs real screenshot — Landing -->
-            <figure class="shot" data-shot data-caption="Landing screen">
-              <img src="../assets/images/case-studies/nextgen-ai/11-landing.png" alt="Landing screen for the NextGen AI Camp student experience" loading="lazy">
+          
+          <div class="screen-grid">
+            <figure class="shot shot--borderless" data-shot data-caption="Landing screen">
+              <img src="../assets/images/case-studies/nextgen-ai/20-landing.png" alt="Landing screen for the NextGen AI Camp student experience" loading="lazy">
               <figcaption>Landing</figcaption>
             </figure>
-            <!-- placeholder: needs real screenshot — Register -->
-            <figure class="shot" data-shot data-caption="Registration screen">
-              <img src="../assets/images/case-studies/nextgen-ai/12-register.png" alt="Registration screen for the NextGen AI Camp student experience" loading="lazy">
+
+            <figure class="shot shot--borderless" data-shot data-caption="Registration screen">
+              <img src="../assets/images/case-studies/nextgen-ai/21-register.png" alt="Registration screen for the NextGen AI Camp student experience" loading="lazy">
               <figcaption>Register</figcaption>
             </figure>
-            <!-- placeholder: needs real screenshot — Profile -->
-            <figure class="shot" data-shot data-caption="Profile screen">
-              <img src="../assets/images/case-studies/nextgen-ai/16-profile.png" alt="Profile screen using the same design system as the rest of the student experience" loading="lazy">
+
+            <figure class="shot shot--borderless" data-shot data-caption="Profile screen">
+              <img src="../assets/images/case-studies/nextgen-ai/22-profile.png" alt="Profile screen using the same design system as the rest of the student experience" loading="lazy">
               <figcaption>Profile</figcaption>
             </figure>
-            <!-- placeholder: needs real screenshot — Announcement -->
-            <figure class="shot" data-shot data-caption="Announcement screen">
+
+            <figure class="shot shot--borderless" data-shot data-caption="Announcement screen">
               <img src="../assets/images/case-studies/nextgen-ai/17-announcement.png" alt="Announcement screen using the same design system as the rest of the student experience" loading="lazy">
               <figcaption>Announcement</figcaption>
             </figure>
@@ -476,7 +580,7 @@
     <!-- ============ CHALLENGES ============ -->
     <section class="section" id="challenges">
       <div class="wrap">
-        <span class="tag-label">Tag 08 — Challenges</span>
+        <span class="tag-label">Challenges</span>
         <div class="section__head">
           <h2>No room for scope creep.</h2>
         </div>
@@ -490,7 +594,7 @@
     <!-- ============ LESSON LEARNED ============ -->
     <section class="section" id="lessons">
       <div class="wrap">
-        <span class="tag-label">Tag 09 — Lesson Learned</span>
+        <span class="tag-label">Lesson Learned</span>
         <div class="section__head">
           <h2>What I'd carry into the next project.</h2>
         </div>
@@ -577,6 +681,31 @@
 
   <!-- <script src="../scripts/main.js" defer></script> Phase 2: script -->
 
+  <!-- Swiper JS — only powers the two Key Screens galleries (see CSS note
+       above); everything else on the page is untouched, plain HTML/CSS. -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> -->
+  <!-- <script>
+    ['coreScreensSwiper', 'supportingScreensSwiper'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      new Swiper(el, {
+        slidesPerView: 'auto',
+        spaceBetween: 18,
+        watchOverflow: true, // hides arrows/dots if every slide already fits on screen
+        keyboard: { enabled: true },
+        a11y: { enabled: true },
+        navigation: {
+          nextEl: el.querySelector('.swiper-button-next'),
+          prevEl: el.querySelector('.swiper-button-prev')
+        },
+        pagination: {
+          el: el.querySelector('.swiper-pagination'),
+          clickable: true
+        }
+      });
+    });
+  </script> -->
+
   <script>
     // ---- scroll reveal ----
     var tyRevealEls = document.querySelectorAll('.case-study--nextgen-ai [data-reveal]');
@@ -605,8 +734,7 @@
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
     tySections.forEach(function (s) { tyTocObserver.observe(s); });
-
-    // ---- lightbox ----
+// ---- lightbox ----
     var tyLightbox = document.getElementById('tyLightbox');
     var tyLightboxImg = document.getElementById('tyLightboxImg');
     var tyLightboxCaption = document.getElementById('tyLightboxCaption');
@@ -622,14 +750,22 @@
       });
     });
 
+    // **ส่วนที่เพิ่มใหม่: คลิกรูปใน lightbox เพื่อสลับการซูม**
+    tyLightboxImg.addEventListener('click', function(e) {
+      e.stopPropagation(); // ป้องกันไม่ให้ทะลุไปปิด lightbox
+      this.classList.toggle('is-zoomed');
+    });
+
     function tyCloseLightbox() {
       tyLightbox.classList.remove('is-open');
       tyLightboxImg.src = '';
+      tyLightboxImg.classList.remove('is-zoomed'); // รีเซ็ตการซูมกลับเมื่อปิด
     }
-    tyLightboxClose.addEventListener('click', tyCloseLightbox);
-    tyLightbox.addEventListener('click', function (e) { if (e.target === tyLightbox) tyCloseLightbox(); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') tyCloseLightbox(); });
 
+    tyLightboxClose.addEventListener('click', tyCloseLightbox);
+    tyLightbox.addEventListener('click', function (e) { if (e.target === tyLightbox || e.target.classList.contains('ty-lightbox__frame')) tyCloseLightbox(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') tyCloseLightbox(); });
+    
     // ---- back-to-top: show once the reader scrolls past the hero ----
     var tyBackToTop = document.getElementById('backToTop');
     var tyHero = document.getElementById('top');
